@@ -42,4 +42,34 @@ class UserStudenteTest < ActiveSupport::TestCase
     @userStudente.birthDay = nil
     assert_not @userStudente.valid?
   end
+  
+  test "name should not be too long" do
+    @userStudente.name = "a" * 51
+    assert_not @userStudente.valid?
+  end
+  
+  test "surname should not be too long" do
+    @userStudente.surname = "a" * 51
+    assert_not @userStudente.valid?
+  end
+  
+  test "email should not be too long" do
+    @userStudente.email = "a" * 244 + "@example.com"
+    assert_not @userStudente.valid?
+  end
+  
+  test "username should not be too long" do
+    @userStudente.username = "a" * 51
+    assert_not @userStudente.valid?
+  end
+  
+  test "fiscal code should not be longer than 16 char" do
+    @userStudente.fiscalCode = "a" * 17
+    assert_not @userStudente.valid?
+  end
+  
+  test "fiscal code should not be shorter than 16 char" do
+    @userStudente.fiscalCode = "a" * 15
+    assert_not @userStudente.valid?
+  end
 end
