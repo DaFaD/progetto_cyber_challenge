@@ -17,4 +17,29 @@ class UserStudenteTest < ActiveSupport::TestCase
     @userStudente.name = "    "
     assert_not @userStudente.valid?
   end
+  
+  test "surname should be present" do
+    @userStudente.surname = ""
+    assert_not @userStudente.valid?
+  end
+  
+  test "email should be present" do
+    @userStudente.email = " "
+    assert_not @userStudente.valid?
+  end
+  
+  test "username should be present" do
+    @userStudente.username = " "
+    assert_not @userStudente.valid?
+  end
+  
+  test "fiscal code should be present" do
+    @userStudente.fiscalCode = " "
+    assert_not @userStudente.valid?
+  end
+  
+  test "birth day should be present" do
+    @userStudente.birthDay = nil
+    assert_not @userStudente.valid?
+  end
 end
