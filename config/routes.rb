@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  #get 'static_pages/paginaIniziale'
   root 'static_pages#paginaIniziale'
+  
+  get 'studenteOProfessore' => 'static_pages#studenteOProfessore'
 
-  get 'signup' => 'users#new'
+  get 'signupStudente' => 'users#newStudente'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
