@@ -1,3 +1,5 @@
+ENV['RUBY_DEP_GEM_SILENCE_WARNINGS'] = '1' #(per disabilitare warning relativi alla versione di ruby)
+
 source 'https://rubygems.org'
 
 gem 'rails', '4.2.0.rc2'
