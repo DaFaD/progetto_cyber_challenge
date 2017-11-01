@@ -6,7 +6,7 @@ class UserStudenteTest < ActiveSupport::TestCase
   # end
   
   def setup
-    @userStudente = UserStudente.new(name: "daniele", surname: "Sinibaldi", email: "daniel46.95@gmail.com", username: "Daniel46-95", fiscalCode: "SNBDNL95H20C858U", birthDay: Date.new(1995, 6, 20))
+    @userStudente = UserStudente.new(name: "Matteo", surname: "Vari", email: "mattew98.01@gmail.com", username: "Mattew98-01", fiscalCode: "VRAMTT98M06C858Y", birthDay: Date.new(1998, 8, 6))
   end
   
   test "should be valid" do
@@ -87,5 +87,47 @@ class UserStudenteTest < ActiveSupport::TestCase
         @userStudente.email = invalid_address
         assert_not @userStudente.valid?, "#{invalid_address.inspect} should be invalid"
     end
+  end
+  
+  test "fiscal code validation should accept valid codes" do
+    valid_codes = %w[RSSMRC80A01H501W DVLFNC93M52F205E rssmrc80a01h501w dvlfnc93m52f205e RMCNTN01S07C858L rmcntn01s07c858l]
+    valid_codes.each do |valid_code|
+        @userStudente.fiscalCode = valid_code
+        assert @userStudente.valid?, "#{valid_code.inspect} should be valid"
+    end
+  end
+  
+  test "fiscal code validation should reject invalid codes" do
+    invalid_codes = %w[RSSMRC80901H501W DVLFNC9EM52F205E rssmrc80z01z501w dvlfnc93752f205e RMCNTN01S07W858L rmcntn01s0jc858l RS8MRC80A01H501W]
+    invalid_codes.each do |invalid_code|
+        @userStudente.fiscalCode = invalid_code
+        assert_not @userStudente.valid?, "#{invalid_code.inspect} should be invalid"
+    end
+  end
+  
+  test "email addresses should be unique" do
+    altroStudente = UserStudente.new(name: "Gianfranco", surname: "Verdi", email: "mattew98.01@gmail.com", username: "Giangi", fiscalCode: "GNFVRD00H04H501Q", birthDay: Date.new(2000, 6, 4))
+    @userStudente.save
+    assert_not altroStudente.valid?
+  end
+  
+  test "email addresses should be unique (case-insensitive)" do
+    altroStudente = UserStudente.new(name: "Gianfranco", surname: "Verdi", email: "mattew98.01@gmail.com", username: "Giangi", fiscalCode: "GNFVRD00H04H501Q", birthDay: Date.new(2000, 6, 4))
+    altroStudente.email = @userStudente.email.upcase
+    @userStudente.save
+    assert_not altroStudente.valid?
+  end
+  
+  test "usernames should be unique" do
+    altroStudente = UserStudente.new(name: "Gianfranco", surname: "Verdi", email: "giangi@gmail.com", username: "Mattew98-01", fiscalCode: "GNFVRD00H04H501Q", birthDay: Date.new(2000, 6, 4))
+    @userStudente.save
+    assert_not altroStudente.valid?
+  end
+  
+  test "usernames should be unique (case-insensitive)" do
+    altroStudente = UserStudente.new(name: "Gianfranco", surname: "Verdi", email: "giangi@gmail.com", username: "Mattew98-01", fiscalCode: "GNFVRD00H04H501Q", birthDay: Date.new(2000, 6, 4))
+    altroStudente.username = @userStudente.username.upcase
+    @userStudente.save
+    assert_not altroStudente.valid?
   end
 end
