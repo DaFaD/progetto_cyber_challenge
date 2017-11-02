@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'manage' => 'manage#manage'
+  get 'menage' => 'manage#manage'
 
   get 'home_page' => 'home_page#homepage'
 

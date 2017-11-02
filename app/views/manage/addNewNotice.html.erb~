@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+html, body{
+	height: 100%}
+
+.page-wrap {
+	min-height: 100%;
+	margin-bottom:-80px;}
+
+.page-wrap:after {
+
+	}
+
+.site-footer, .page-wrap:after {
+	height: 80px;
+	}
+
+.site-footer {
+	background: #333;
+	
+	}
+
+.navebar1 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+.navebar2{
+	float: left;}
+.navebar2 a{
+	display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;}
+    
+.navebar2 a:hover{
+	
+    background-color: #111;
+}
+
+.navebar1 li {
+    float: right;
+}
+
+.navebar1 li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navebar1 li a:hover {
+    background-color: #111;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td {
+    height: 50px;
+    
+}
+
+
+th{
+	text-align: center;}
+
+ footer {
+    display: block;
+}
+
+
+
+</style>
+</head>
+<body style="background-color: #B34154;">
+
+<div class= "page-wrap">
+
+<ul class= "navebar1">
+  <la class= "navebar2" ><%= link_to "CyberChallenge app", home_page_path %></la>
+  <li class= "navebar1" ><a href="#news">Log out</a></li>
+  
+  <li><a href="#contact">Send Request</a></li>
+  <li><a href="#news">Classification</a></li>
+  <li><%= link_to "Manage", menage_path %></a></li>
+  <li><a href="#news">Exam</a></li>
+  <li><a href="#news">Profile</a></li>
+  
+  <li><a href="#about">Subscribe to competition</a></li>
+  <li><a href="#news">Training</a></li>
+</ul class= "navebar1">
+<br>
+<br>
+<br>
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<footer class= "site-footer">
+  <p style="text-align: center;" >Contacts</p>
+  <p>Contact information: <a href="mailto:someone@example.com">someone@example.com</a>.</p>
+</footer>
+</body>
+</html>
+
