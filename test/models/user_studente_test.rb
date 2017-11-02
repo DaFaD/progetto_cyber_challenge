@@ -6,7 +6,7 @@ class UserStudenteTest < ActiveSupport::TestCase
   # end
   
   def setup
-    @userStudente = UserStudente.new(name: "Matteo", surname: "Vari", email: "mattew98.01@gmail.com", username: "Mattew98-01", fiscalCode: "VRAMTT98M06C858Y", birthDay: Date.new(1998, 8, 6))
+    @userStudente = UserStudente.new(name: "Matteo", surname: "Vari", email: "mattew98.01@gmail.com", username: "Mattew98-01", fiscalCode: "VRAMTT98M06C858Y", birthDay: Date.new(1998, 8, 6), password: "foobar", password_confirmation: "foobar")
   end
   
   test "should be valid" do
@@ -82,7 +82,7 @@ class UserStudenteTest < ActiveSupport::TestCase
   end
   
   test "email validation should reject invalid addresses" do
-    invalid_addresses = %w[user@example,com user_at_foo.org user.name@example. foo@bar_baz.com foo@bar+baz.com utente@hotmail.it utente@live.com nome.cognome@alice.com]
+    invalid_addresses = %w[user@example,com user_at_foo.org user.name@example. foo@bar_baz.com foo@bar+baz.com utente@hotmail.it utente@live.com nome.cognome@alice.com utente@gmail..com.]
     invalid_addresses.each do |invalid_address|
         @userStudente.email = invalid_address
         assert_not @userStudente.valid?, "#{invalid_address.inspect} should be invalid"
@@ -106,41 +106,67 @@ class UserStudenteTest < ActiveSupport::TestCase
   end
   
   test "email addresses should be unique" do
-    altroStudente = UserStudente.new(name: "Gianfranco", surname: "Verdi", email: "mattew98.01@gmail.com", username: "Giangi", fiscalCode: "GNFVRD00H04H501Q", birthDay: Date.new(2000, 6, 4))
+    altroStudente = UserStudente.new(name: "Gianfranco", surname: "Verdi", email: "mattew98.01@gmail.com", username: "Giangi", fiscalCode: "GNFVRD00H04H501Q", birthDay: Date.new(2000, 6, 4), password: "foobar2", password_confirmation: "foobar2")
     @userStudente.save
     assert_not altroStudente.valid?
   end
   
   test "email addresses should be unique (case-insensitive)" do
-    altroStudente = UserStudente.new(name: "Gianfranco", surname: "Verdi", email: "mattew98.01@gmail.com", username: "Giangi", fiscalCode: "GNFVRD00H04H501Q", birthDay: Date.new(2000, 6, 4))
+    altroStudente = UserStudente.new(name: "Gianfranco", surname: "Verdi", email: "mattew98.01@gmail.com", username: "Giangi", fiscalCode: "GNFVRD00H04H501Q", birthDay: Date.new(2000, 6, 4), password: "foobar2", password_confirmation: "foobar2")
     altroStudente.email = @userStudente.email.upcase
     @userStudente.save
     assert_not altroStudente.valid?
   end
   
+  test "email addresses should be saved as lower-case" do
+    mixed_case_email = "Foo@GmaIL.CoM"
+    @userStudente.email = mixed_case_email
+    @userStudente.save
+    assert_equal mixed_case_email.downcase, @userStudente.reload.email
+  end
+  
   test "usernames should be unique" do
-    altroStudente = UserStudente.new(name: "Gianfranco", surname: "Verdi", email: "giangi@gmail.com", username: "Mattew98-01", fiscalCode: "GNFVRD00H04H501Q", birthDay: Date.new(2000, 6, 4))
+    altroStudente = UserStudente.new(name: "Gianfranco", surname: "Verdi", email: "giangi@gmail.com", username: "Mattew98-01", fiscalCode: "GNFVRD00H04H501Q", birthDay: Date.new(2000, 6, 4), password: "foobar2", password_confirmation: "foobar2")
     @userStudente.save
     assert_not altroStudente.valid?
   end
   
   test "usernames should be unique (case-insensitive)" do
-    altroStudente = UserStudente.new(name: "Gianfranco", surname: "Verdi", email: "giangi@gmail.com", username: "Mattew98-01", fiscalCode: "GNFVRD00H04H501Q", birthDay: Date.new(2000, 6, 4))
+    altroStudente = UserStudente.new(name: "Gianfranco", surname: "Verdi", email: "giangi@gmail.com", username: "Mattew98-01", fiscalCode: "GNFVRD00H04H501Q", birthDay: Date.new(2000, 6, 4), password: "foobar2", password_confirmation: "foobar2")
     altroStudente.username = @userStudente.username.upcase
     @userStudente.save
     assert_not altroStudente.valid?
   end
   
+  test "usernames should be saved as lower-case" do
+    mixed_case_username = "PrOVa"
+    @userStudente.username = mixed_case_username
+    @userStudente.save
+    assert_equal mixed_case_username.downcase, @userStudente.reload.username
+  end
+  
   test "fiscal codes should be unique" do
-    altroStudente = UserStudente.new(name: "Gianfranco", surname: "Verdi", email: "giangi@gmail.com", username: "Giangi", fiscalCode: "VRAMTT98M06C858Y", birthDay: Date.new(2000, 6, 4))
+    altroStudente = UserStudente.new(name: "Gianfranco", surname: "Verdi", email: "giangi@gmail.com", username: "Giangi", fiscalCode: "VRAMTT98M06C858Y", birthDay: Date.new(2000, 6, 4), password: "foobar2", password_confirmation: "foobar2")
     @userStudente.save
     assert_not altroStudente.valid?
   end
   
   test "fiscal codes should be unique (case-insensitive)" do
-    altroStudente = UserStudente.new(name: "Gianfranco", surname: "Verdi", email: "giangi@gmail.com", username: "Giangi", fiscalCode: "vramtt98m06c858y", birthDay: Date.new(2000, 6, 4))
+    altroStudente = UserStudente.new(name: "Gianfranco", surname: "Verdi", email: "giangi@gmail.com", username: "Giangi", fiscalCode: "vramtt98m06c858y", birthDay: Date.new(2000, 6, 4), password: "foobar2", password_confirmation: "foobar2")
     altroStudente.fiscalCode = @userStudente.fiscalCode.upcase
     @userStudente.save
     assert_not altroStudente.valid?
+  end
+  
+  test "fiscal codes should be saved as lower-case" do
+    mixed_case_fiscalCode = "RsSmRC80A01H501w"
+    @userStudente.fiscalCode = mixed_case_fiscalCode
+    @userStudente.save
+    assert_equal mixed_case_fiscalCode.downcase, @userStudente.reload.fiscalCode
+  end
+  
+  test "password should have a minimum length of 6 characters" do
+    @userStudente.password = @userStudente.password_confirmation = "a" * 5
+    assert_not @userStudente.valid?
   end
 end
