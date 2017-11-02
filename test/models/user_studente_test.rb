@@ -130,4 +130,17 @@ class UserStudenteTest < ActiveSupport::TestCase
     @userStudente.save
     assert_not altroStudente.valid?
   end
+  
+  test "fiscal codes should be unique" do
+    altroStudente = UserStudente.new(name: "Gianfranco", surname: "Verdi", email: "giangi@gmail.com", username: "Giangi", fiscalCode: "VRAMTT98M06C858Y", birthDay: Date.new(2000, 6, 4))
+    @userStudente.save
+    assert_not altroStudente.valid?
+  end
+  
+  test "fiscal codes should be unique (case-insensitive)" do
+    altroStudente = UserStudente.new(name: "Gianfranco", surname: "Verdi", email: "giangi@gmail.com", username: "Giangi", fiscalCode: "vramtt98m06c858y", birthDay: Date.new(2000, 6, 4))
+    altroStudente.fiscalCode = @userStudente.fiscalCode.upcase
+    @userStudente.save
+    assert_not altroStudente.valid?
+  end
 end
