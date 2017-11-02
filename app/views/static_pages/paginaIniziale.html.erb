@@ -1,5 +1,30 @@
+<!DOCTYPE html>
 <html>
     <head>
+        <style>
+            .button {
+              display: inline-block;
+              padding: 15px 25px;
+              font-size: 24px;
+              cursor: pointer;
+              text-align: center;
+              text-decoration: none;
+              outline: none;
+              color: #fff;
+              background-color: #4CAF50;
+              border: none;
+              border-radius: 15px;
+              box-shadow: 0 9px #999;
+            }
+
+            .button:hover {background-color: #3e8e41}
+
+            .button:active {
+              background-color: #3e8e41;
+              box-shadow: 0 5px #666;
+              transform: translateY(4px);
+            }
+        </style>
     </head>
     <body style="background-color:#B34154">
         <table style="width:100%">
@@ -19,10 +44,10 @@
             </tr>
             <tr>
                 <td style="text-align:center;">
-                    <input type="button" onclick="location.href='http://google.com';" value="With us" />
+                    <input type="button" class="button" onclick="location.href='http://google.com';" value="With us" />
                 </td>
                 <td style="text-align:center;">
-                    <input type="button" onclick="location.href='https://accounts.google.com/ServiceLogin?service=mail&passive=true&rm=false&continue=https://mail.google.com/mail/&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1#';" value="With G-mail" />
+                    <input type="button" class="button" onclick="location.href='https://accounts.google.com/ServiceLogin?service=mail&passive=true&rm=false&continue=https://mail.google.com/mail/&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1#';" value="With G-mail" />
                 </td>
             </tr>
             <tr>
@@ -41,10 +66,10 @@
             </tr>
             <tr>
                 <td style="text-align:center;">
-                    <%= button_to "With us", studenteOProfessore_path, method: :get %>
+                    <%= button_to "With us", studenteOProfessore_path, method: :get, :class => "button" %>
                 </td>
                 <td style="text-align:center;">
-                    <input type="button" onclick="location.href='https://accounts.google.com/ServiceLogin?service=mail&passive=true&rm=false&continue=https://mail.google.com/mail/&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1#';" value="With G-mail" />
+                    <input type="button" class="button" onclick="location.href='https://accounts.google.com/ServiceLogin?service=mail&passive=true&rm=false&continue=https://mail.google.com/mail/&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1#';" value="With G-mail" />
                 </td>
             </tr>
         </table> 
