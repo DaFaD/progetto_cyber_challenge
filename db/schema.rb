@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171102144605) do
+ActiveRecord::Schema.define(version: 20171103181224) do
+
+  create_table "user_professores", force: true do |t|
+    t.string   "name"
+    t.string   "surname"
+    t.string   "email"
+    t.string   "username"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "password_digest"
+  end
+
+  add_index "user_professores", ["email"], name: "index_user_professores_on_email", unique: true
+  add_index "user_professores", ["username"], name: "index_user_professores_on_username", unique: true
 
   create_table "user_studentes", force: true do |t|
     t.string   "name"
