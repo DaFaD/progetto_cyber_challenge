@@ -5,5 +5,9 @@ class StaticPagesControllerTest < ActionController::TestCase
     get :paginaIniziale
     assert_response :success
   end
-
+  
+  test "should get studenteOProfessore" do
+    get :studenteOProfessore
+    assert_response :success
+  end
 end

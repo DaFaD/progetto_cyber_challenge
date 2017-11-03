@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   get 'studenteOProfessore' => 'static_pages#studenteOProfessore'
 
   get 'signupStudente' => 'users#newStudente'
+  
+  get 'signupProfessore' => 'users#newProfessore'
+  
+  get 'signupAdmin' => 'users#newAdmin'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
