@@ -6,7 +6,7 @@ class UserAdminTest < ActiveSupport::TestCase
   # end
   
   def setup
-    @userAdmin = UserAdmin.new(name: "Matteo", surname: "Vari", email: "mattew98.01@dis.uniroma1.it", username: "Mattew98-01")#, password: "foobar", password_confirmation: "foobar")
+    @userAdmin = UserAdmin.new(name: "Matteo", surname: "Vari", email: "mattew98.01@dis.uniroma1.it", username: "Mattew98-01", password: "foobar", password_confirmation: "foobar")
   end
   
   test "should be valid" do
@@ -62,7 +62,7 @@ class UserAdminTest < ActiveSupport::TestCase
   end
   
   test "email validation should reject invalid addresses" do
-    invalid_addresses = %w[user@example,com user_at_foo.org user.name@example. foo@bar_baz.com foo@bar+baz.com utente@gmail..com.]
+    invalid_addresses = %w[user@example,com user_at_foo.org user.name@example. foo@bar_baz.com foo@bar+baz.com foo@bar..com utente@gmail..com.]
     invalid_addresses.each do |invalid_address|
         @userAdmin.email = invalid_address
         assert_not @userAdmin.valid?, "#{invalid_address.inspect} should be invalid"
@@ -70,13 +70,13 @@ class UserAdminTest < ActiveSupport::TestCase
   end
   
   test "email addresses should be unique" do
-    altroAdmin = UserAdmin.new(name: "Gianfranco", surname: "Verdi", email: "mattew98.01@dis.uniroma1.it", username: "Giangi")#, password: "foobar2", password_confirmation: "foobar2")
+    altroAdmin = UserAdmin.new(name: "Gianfranco", surname: "Verdi", email: "mattew98.01@dis.uniroma1.it", username: "Giangi", password: "foobar2", password_confirmation: "foobar2")
     @userAdmin.save
     assert_not altroAdmin.valid?
   end
   
   test "email addresses should be unique (case-insensitive)" do
-    altroAdmin = UserAdmin.new(name: "Gianfranco", surname: "Verdi", email: "mattew98.01@dis.uniroma1.it", username: "Giangi")#, password: "foobar2", password_confirmation: "foobar2")
+    altroAdmin = UserAdmin.new(name: "Gianfranco", surname: "Verdi", email: "mattew98.01@dis.uniroma1.it", username: "Giangi", password: "foobar2", password_confirmation: "foobar2")
     altroAdmin.email = @userAdmin.email.upcase
     @userAdmin.save
     assert_not altroAdmin.valid?
@@ -90,13 +90,13 @@ class UserAdminTest < ActiveSupport::TestCase
   end
   
   test "usernames should be unique" do
-    altroAdmin = UserAdmin.new(name: "Gianfranco", surname: "Verdi", email: "giangi@uniroma1.it", username: "Mattew98-01")#, password: "foobar2", password_confirmation: "foobar2")
+    altroAdmin = UserAdmin.new(name: "Gianfranco", surname: "Verdi", email: "giangi@uniroma1.it", username: "Mattew98-01", password: "foobar2", password_confirmation: "foobar2")
     @userAdmin.save
     assert_not altroAdmin.valid?
   end
   
   test "usernames should be unique (case-insensitive)" do
-    altroAdmin = UserAdmin.new(name: "Gianfranco", surname: "Verdi", email: "giangi@uniroma1.it", username: "Mattew98-01")#, password: "foobar2", password_confirmation: "foobar2")
+    altroAdmin = UserAdmin.new(name: "Gianfranco", surname: "Verdi", email: "giangi@uniroma1.it", username: "Mattew98-01", password: "foobar2", password_confirmation: "foobar2")
     altroAdmin.username = @userAdmin.username.upcase
     @userAdmin.save
     assert_not altroAdmin.valid?
@@ -108,10 +108,9 @@ class UserAdminTest < ActiveSupport::TestCase
     @userAdmin.save
     assert_equal mixed_case_username.downcase, @userAdmin.reload.username
   end
-=begin
+  
   test "password should have a minimum length of 6 characters" do
     @userAdmin.password = @userAdmin.password_confirmation = "a" * 5
     assert_not @userAdmin.valid?
   end
-=end
 end
