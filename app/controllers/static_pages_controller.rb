@@ -4,4 +4,7 @@ class StaticPagesController < ApplicationController
   
   def studenteOProfessore
   end
+  
+  def testNavFoo
+  end
 end

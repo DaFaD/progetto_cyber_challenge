@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get 'signupProfessore' => 'users#newProfessore'
   
   get 'signupAdmin' => 'users#newAdmin'
+  
+  get 'testNavFoo' => 'static_pages#testNavFoo'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
