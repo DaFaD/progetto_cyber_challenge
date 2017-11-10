@@ -1,0 +1,7 @@
+<%= @userAdmin.name %>, <%= @userAdmin.surname %>, <%= @userAdmin.email %>, <%= @userAdmin.username %>
+
+<% provide(:title, @userAdmin.name) %>
+<h1>
+    <%= gravatar_for @userAdmin %>
+    <%= @userAdmin.name %>
+</h1>

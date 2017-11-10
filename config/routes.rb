@@ -1,13 +1,20 @@
 Rails.application.routes.draw do
+
   root 'static_pages#paginaIniziale'
   
   get 'studenteOProfessore' => 'static_pages#studenteOProfessore'
 
-  get 'signupStudente' => 'users#newStudente'
+  get 'signupStudente' => 'user_studentes#new'
   
-  get 'signupProfessore' => 'users#newProfessore'
+  get 'signupProfessore' => 'user_professores#new'
   
-  get 'signupAdmin' => 'users#newAdmin'
+  get 'signupAdmin' => 'user_admins#new'
+  
+  resources :user_studentes
+  
+  resources :user_professores
+  
+  resources :user_admins
   
   get 'testNavFoo' => 'static_pages#testNavFoo'
 

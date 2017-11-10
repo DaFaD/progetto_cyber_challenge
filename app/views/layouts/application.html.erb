@@ -5,10 +5,32 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  
+  <style>
+    /* mixins */
+    
+    @mixin box_sizing {
+        -moz-box-sizing:    border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing:         border-box;
+    }
+    
+    /* miscellaneous */
+    
+    .debug_dump {
+        clear: both;
+        float: left;
+        width: 100%;
+        margin-top: 45px;
+        @include box_sizing;
+    }
+  </style>
+  
 </head>
 <body>
     <div class="container">
         <%= yield %>
+        <%= debug(params) if Rails.env.development? %>
     </div>
 </body>
 </html>
