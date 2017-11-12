@@ -5,5 +5,6 @@ class UserStudentesController < ApplicationController
   end
   
   def new
+    @userStudente = UserStudente.new
   end
 end

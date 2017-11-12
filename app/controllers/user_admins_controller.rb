@@ -5,5 +5,6 @@ class UserAdminsController < ApplicationController
   end
 
   def new
+    @userAdmin = UserAdmin.new
   end
 end
