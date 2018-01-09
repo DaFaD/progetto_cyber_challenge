@@ -67,26 +67,28 @@
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3">
                             <%= form_for(@userAdmin) do |f| %>
+                                <%= render 'shared/error_messages_admin' %>
+                            
                                 <h3><%= f.label :name %></h3>
-                                <%= f.text_field :name , class: "personal_field", placeholder: "Your name..." %>
+                                <%= f.text_field :name , class: "personal_field form-control", placeholder: "Your name..." %>
                                 
                                 <h3><%= f.label :surname %></h3>
-                                <%= f.text_field :surname , class: "personal_field", placeholder: "Your surname..." %>
+                                <%= f.text_field :surname , class: "personal_field form-control", placeholder: "Your surname..." %>
                                 
                                 <h3><%= f.label :email %></h3>
-                                <%= f.text_field :email , class: "personal_field", placeholder: "Your e-mail..." %>
+                                <%= f.text_field :email , class: "personal_field form-control", placeholder: "Your e-mail..." %>
                                 
                                 <h3><%= f.label :username %></h3>
-                                <%= f.text_field :username , class: "personal_field", placeholder: "Your username..." %>
+                                <%= f.text_field :username , class: "personal_field form-control", placeholder: "Your username..." %>
                                 
                                 <h3><%= f.label :password, "My new Password" %></h3>
-                                <%= f.password_field :password , class: "personal_field", placeholder: "Your password..." %>
+                                <%= f.password_field :password , class: "personal_field form-control", placeholder: "Your password..." %>
                                 
                                 <h3><%= f.label :password_confirmation, "My new Password Confirmation" %></h3>
-                                <%= f.password_field :password_confirmation , class: "personal_field", placeholder: "Confirm your password..." %>
+                                <%= f.password_field :password_confirmation , class: "personal_field form-control", placeholder: "Confirm your password..." %>
                                 
                                 <h3><%= f.label :administrator_password, "Insert administrators' password to create a new Administrator Account" %></h3>
-                                <%= f.password_field :administrator_password , class: "personal_field", placeholder: "Administrators' password..." %>
+                                <%= f.password_field :administrator_password , class: "personal_field form-control", placeholder: "Administrators' password..." %>
                                 
                                 <%= f.submit "Create my account", class: "btn btn-primary", id: "button" %>
                             <% end %>
