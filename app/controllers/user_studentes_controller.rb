@@ -11,7 +11,8 @@ class UserStudentesController < ApplicationController
   def create
     @userStudente = UserStudente.new(user_params)
     if @userStudente.save
-        # Handle a successful save.
+        flash[:success] = "Welcome to the Cyber Challenge Platform!"
+        redirect_to @userStudente
     else
         render 'new'
     end
