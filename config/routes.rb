@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   
   resources :user_admins
   
-  get 'testNavFoo' => 'static_pages#testNavFoo'
+  # get 'testNavFoo' => 'static_pages#testNavFoo'
   
   get 'login' => 'sessions#new'
   
