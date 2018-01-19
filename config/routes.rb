@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   # get 'sessions/new'
 
-  root 'static_pages#paginaIniziale'
+  root 'static_pages#homeMomentanea'
+  
+  get 'paginaIniziale' => 'static_pages#paginaIniziale'
   
   get 'studenteOProfessore' => 'static_pages#studenteOProfessore'
 
