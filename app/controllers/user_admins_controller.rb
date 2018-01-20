@@ -11,6 +11,7 @@ class UserAdminsController < ApplicationController
   def create
     @userAdmin = UserAdmin.new(user_params)
     if @userAdmin.save
+        log_in @userAdmin
         flash[:success] = "Welcome to the Cyber Challenge Platform!"
         redirect_to @userAdmin
     else

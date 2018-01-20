@@ -2,5 +2,5 @@ nomequalsiasiprofessore:
     name: Nomeprofessore
     surname: Cognomeprofessore
     email: nomeprofessore@uniroma1.it
-    username: Soprannomeprofessore
+    username: soprannomeprofessore
     password_digest: <%= UserProfessore.digest('password') %>

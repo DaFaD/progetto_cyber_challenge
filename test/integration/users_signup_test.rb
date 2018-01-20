@@ -35,6 +35,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
             post_via_redirect user_admins_path, user_admin: { name: "Nome", surname: "Cognome", email: "nome.cognome@hotmail.it", username: "Soprannome", password: "foobar", password_confirmation: "foobar" }
         end
         assert_template 'user_admins/show'
+        assert is_logged_in?
     end
     
     test "valid signup information for a professor user" do
@@ -43,6 +44,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
             post_via_redirect user_professores_path, user_professore: { name: "Nome", surname: "Cognome", email: "cognome@uniroma1.it", username: "Soprannome", password: "foobar", password_confirmation: "foobar" }
         end
         assert_template 'user_professores/show'
+        assert is_logged_in?
     end
     
     test "valid signup information for a student user" do
@@ -51,5 +53,6 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
             post_via_redirect user_studentes_path, user_studente: { name: "Nome", surname: "Cognome", email: "cognome.1656284@studenti.uniroma1.it", username: "Soprannome", fiscalCode: "CGNNMO00H04H501T", birthDay: Date.new(2000, 6, 4), password: "foobar", password_confirmation: "foobar" }
         end
         assert_template 'user_studentes/show'
+        assert is_logged_in?
     end
 end

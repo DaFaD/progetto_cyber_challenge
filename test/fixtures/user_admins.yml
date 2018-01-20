@@ -2,5 +2,5 @@ nomequalsiasiadmin:
     name: Nomeadmin
     surname: Cognomeadmin
     email: nomeadmin@hotmail.it
-    username: Soprannomeadmin
+    username: soprannomeadmin
     password_digest: <%= UserAdmin.digest('password') %>

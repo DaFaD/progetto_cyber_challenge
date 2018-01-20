@@ -2,7 +2,7 @@ nomequalsiasistudente:
     name: Nomestudente
     surname: Cognomestudente
     email: cognomestudente.1656293@studenti.uniroma1.it
-    username: Soprannomestudente
-    fiscalCode: CGNNST98M06H501B
-    birthDay: Date.new(1998, 8, 6)
+    username: soprannomestudente
+    fiscalCode: cgnnst98m06h501b
+    birthDay: 1998-08-06
     password_digest: <%= UserStudente.digest('password') %>
