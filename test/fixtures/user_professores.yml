@@ -1,3 +1,6 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-# empty
+nomequalsiasiprofessore:
+    name: Nomeprofessore
+    surname: Cognomeprofessore
+    email: nomeprofessore@uniroma1.it
+    username: Soprannomeprofessore
+    password_digest: <%= UserProfessore.digest('password') %>

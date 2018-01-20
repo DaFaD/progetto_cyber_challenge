@@ -1,3 +1,8 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-#empty
+nomequalsiasistudente:
+    name: Nomestudente
+    surname: Cognomestudente
+    email: cognomestudente.1656293@studenti.uniroma1.it
+    username: Soprannomestudente
+    fiscalCode: CGNNST98M06H501B
+    birthDay: Date.new(1998, 8, 6)
+    password_digest: <%= UserStudente.digest('password') %>

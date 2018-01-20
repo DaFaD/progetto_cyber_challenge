@@ -1,3 +1,6 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-# empty
+nomequalsiasiadmin:
+    name: Nomeadmin
+    surname: Cognomeadmin
+    email: nomeadmin@hotmail.it
+    username: Soprannomeadmin
+    password_digest: <%= UserAdmin.digest('password') %>

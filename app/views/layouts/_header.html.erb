@@ -90,7 +90,7 @@ th{
     <la class= "navebar2" ><%= link_to "CyberChallenge app", root_path %></la>
     
     <% if logged_in? %>
-        <li class= "navebar1"><%= link_to "Log out", paginaIniziale_path %></li>
+        <li class= "navebar1"><%= link_to "Log out", logout_path %></li>
     <% else %>
         <li class= "navebar1"><%= link_to "Log in / Sign in", paginaIniziale_path %></li>
     <% end %>
@@ -101,15 +101,23 @@ th{
     
     <% if user_admin? || user_professore? %>
         <li><a href="#news">Classification</a></li>
-        <li><%= link_to "Manage", paginaIniziale_path %></a></li>
+        <li><%= link_to "Manage", root_path %></li>
     <% end %>
     
     <% if user_admin? || user_studente? %>
         <li><a href="#news">Exam</a></li>
     <% end %>
     
-    <% if logged_in? %>
-        <li><a href="#news">Profile</a></li>
+    <% if user_admin? %>
+        <li><%= link_to "Profile", user_admin_path(current_user) %></li>
+    <% end %>
+    
+    <% if user_professore? %>
+        <li><%= link_to "Profile", user_professore_path(current_user) %></li>
+    <% end %>
+    
+    <% if user_studente? %>
+        <li><%= link_to "Profile", user_studente_path(current_user) %></li>
     <% end %>
     
     <% if user_admin? || user_studente? %>
