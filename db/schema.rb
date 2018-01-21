@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171106141354) do
+ActiveRecord::Schema.define(version: 20180121122929) do
 
   create_table "user_admins", force: true do |t|
     t.string   "name"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20171106141354) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "password_digest"
+    t.string   "remember_digest"
   end
 
   add_index "user_admins", ["email"], name: "index_user_admins_on_email", unique: true
@@ -34,6 +35,7 @@ ActiveRecord::Schema.define(version: 20171106141354) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "password_digest"
+    t.string   "remember_digest"
   end
 
   add_index "user_professores", ["email"], name: "index_user_professores_on_email", unique: true
@@ -49,6 +51,7 @@ ActiveRecord::Schema.define(version: 20171106141354) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "password_digest"
+    t.string   "remember_digest"
   end
 
   add_index "user_studentes", ["email"], name: "index_user_studentes_on_email", unique: true

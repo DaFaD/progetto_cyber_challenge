@@ -1,4 +1,5 @@
 class UserStudente < ActiveRecord::Base
+    attr_accessor :remember_token
     before_save { self.email = email.downcase }
     before_save { self.username = username.downcase }
     before_save { self.fiscalCode = fiscalCode.downcase }
@@ -18,5 +19,26 @@ class UserStudente < ActiveRecord::Base
         cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                       BCrypt::Engine.cost
         BCrypt::Password.create(string, cost: cost)
+    end
+    
+    # Returns a random token.
+    def UserStudente.new_token
+        SecureRandom.urlsafe_base64
+    end
+    
+    # Remembers a user in the database for use in persistent sessions.
+    def remember
+        self.remember_token = UserStudente.new_token
+        update_attribute(:remember_digest, UserStudente.digest(remember_token))
+    end
+    
+    # Returns true if the given token matches the digest.
+    def authenticated?(remember_token)
+        BCrypt::Password.new(remember_digest).is_password?(remember_token)
+    end
+    
+    # Forgets a user.
+    def forget
+        update_attribute(:remember_digest, nil)
     end
 end

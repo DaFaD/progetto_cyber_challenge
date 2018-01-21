@@ -5,18 +5,40 @@ module SessionsHelper
         session[:user_type_string] = user.class.to_s
     end
     
-    # Returns the current logged-in user (if any).
+    # Remembers a user in a persistent session.
+    def remember(user)
+        user.remember
+        cookies.permanent.signed[:user_id] = user.id
+        cookies.permanent.signed[:user_type_string] = user.class.to_s
+        cookies.permanent[:remember_token] = user.remember_token
+    end
+    
+    # Returns the user corresponding to the remember token cookie.
     def current_user
-        if @current_user != nil
-            @current_user
-        elsif session[:user_type_string] == "UserAdmin"
-            @current_user = UserAdmin.find_by(id: session[:user_id])
-        elsif session[:user_type_string] == "UserProfessore"
-            @current_user = UserProfessore.find_by(id: session[:user_id])
-        elsif session[:user_type_string] == "UserStudente"
-            @current_user = UserStudente.find_by(id: session[:user_id])
-        else
-            nil
+        if (user_id = session[:user_id])
+            if @current_user != nil
+                @current_user
+            elsif session[:user_type_string] == "UserAdmin"
+                @current_user = UserAdmin.find_by(id: session[:user_id])
+            elsif session[:user_type_string] == "UserProfessore"
+                @current_user = UserProfessore.find_by(id: session[:user_id])
+            elsif session[:user_type_string] == "UserStudente"
+                @current_user = UserStudente.find_by(id: session[:user_id])
+            else
+                nil
+            end
+        elsif (user_id = cookies.signed[:user_id])
+            if cookies.signed[:user_type_string] == "UserAdmin"
+                user = UserAdmin.find_by(id: user_id)
+            elsif cookies.signed[:user_type_string] == "UserProfessore"
+                user = UserProfessore.find_by(id: user_id)
+            elsif cookies.signed[:user_type_string] == "UserStudente"
+                user = UserStudente.find_by(id: user_id)
+            end
+            if user && user.authenticated?(cookies[:remember_token])
+                log_in user
+                @current_user = user
+            end
         end
     end
     
@@ -48,8 +70,17 @@ module SessionsHelper
         current_user_type_to_s == "UserStudente"
     end
     
+    # Forgets a persistent session.
+    def forget(user)
+        user.forget
+        cookies.delete(:user_id)
+        cookies.delete(:user_type_string)
+        cookies.delete(:remember_token)
+    end
+    
     # Logs out the current user.
     def log_out
+        forget(current_user)
         session.delete(:user_id)
         session.delete(:user_type_string)
         @current_user = nil
