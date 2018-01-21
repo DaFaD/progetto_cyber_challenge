@@ -24,6 +24,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     test "login with valid information for an admin user" do
         get login_path
         post login_path, session: { email: @userAdmin.email, password: 'password' }
+        assert is_logged_in?
         assert_redirected_to @userAdmin
         follow_redirect!
         assert_template 'user_admins/show'
@@ -35,6 +36,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     test "login with valid information for a professor user" do
         get login_path
         post login_path, session: { email: @userProfessore.email, password: 'password' }
+        assert is_logged_in?
         assert_redirected_to @userProfessore
         follow_redirect!
         assert_template 'user_professores/show'
@@ -46,6 +48,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     test "login with valid information for a student user" do
         get login_path
         post login_path, session: { email: @userStudente.email, password: 'password' }
+        assert is_logged_in?
         assert_redirected_to @userStudente
         follow_redirect!
         assert_template 'user_studentes/show'
@@ -53,5 +56,61 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
         assert_select "a[href=?]", logout_path
         assert_select "a[href=?]", user_studente_path(@userStudente)
     end
-
+    
+    test "login with valid information followed by logout for an admin user" do
+        get login_path
+        post login_path, session: { email: @userAdmin.email, password: 'password' }
+        assert is_logged_in?
+        assert_redirected_to @userAdmin
+        follow_redirect!
+        assert_template 'user_admins/show'
+        assert_select "a[href=?]", paginaIniziale_path, count: 0
+        assert_select "a[href=?]", logout_path
+        assert_select "a[href=?]", user_admin_path(@userAdmin)
+        delete logout_path
+        assert_not is_logged_in?
+        assert_redirected_to root_url
+        follow_redirect!
+        assert_select "a[href=?]", paginaIniziale_path
+        assert_select "a[href=?]", logout_path, count: 0
+        assert_select "a[href=?]", user_admin_path(@userAdmin), count: 0
+    end
+    
+    test "login with valid information followed by logout for a professor user" do
+        get login_path
+        post login_path, session: { email: @userProfessore.email, password: 'password' }
+        assert is_logged_in?
+        assert_redirected_to @userProfessore
+        follow_redirect!
+        assert_template 'user_professores/show'
+        assert_select "a[href=?]", paginaIniziale_path, count: 0
+        assert_select "a[href=?]", logout_path
+        assert_select "a[href=?]", user_professore_path(@userProfessore)
+        delete logout_path
+        assert_not is_logged_in?
+        assert_redirected_to root_url
+        follow_redirect!
+        assert_select "a[href=?]", paginaIniziale_path
+        assert_select "a[href=?]", logout_path, count: 0
+        assert_select "a[href=?]", user_professore_path(@userProfessore), count: 0
+    end
+    
+    test "login with valid information followed by logout for a student user" do
+        get login_path
+        post login_path, session: { email: @userStudente.email, password: 'password' }
+        assert is_logged_in?
+        assert_redirected_to @userStudente
+        follow_redirect!
+        assert_template 'user_studentes/show'
+        assert_select "a[href=?]", paginaIniziale_path, count: 0
+        assert_select "a[href=?]", logout_path
+        assert_select "a[href=?]", user_studente_path(@userStudente)
+        delete logout_path
+        assert_not is_logged_in?
+        assert_redirected_to root_url
+        follow_redirect!
+        assert_select "a[href=?]", paginaIniziale_path
+        assert_select "a[href=?]", logout_path, count: 0
+        assert_select "a[href=?]", user_studente_path(@userStudente), count: 0
+    end
 end

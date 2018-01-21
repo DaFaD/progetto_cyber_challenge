@@ -47,4 +47,11 @@ module SessionsHelper
     def user_studente?
         current_user_type_to_s == "UserStudente"
     end
+    
+    # Logs out the current user.
+    def log_out
+        session.delete(:user_id)
+        session.delete(:user_type_string)
+        @current_user = nil
+    end
 end
