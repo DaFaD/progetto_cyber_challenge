@@ -113,4 +113,8 @@ class UserAdminTest < ActiveSupport::TestCase
     @userAdmin.password = @userAdmin.password_confirmation = "a" * 5
     assert_not @userAdmin.valid?
   end
+  
+  test "authenticated? should return false for a user with nil digest" do
+    assert_not @userAdmin.authenticated?('')
+  end
 end
