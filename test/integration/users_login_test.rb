@@ -176,4 +176,34 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
         assert_select "a[href=?]", logout_path, count: 0
         assert_select "a[href=?]", user_studente_path(@userStudente), count: 0
     end
+    
+    test "login with remembering for an admin user" do
+        log_in_as(@userAdmin, remember_me: '1')
+        assert_not_nil cookies['remember_token']
+    end
+    
+    test "login without remembering for an admin user" do
+        log_in_as(@userAdmin, remember_me: '0')
+        assert_nil cookies['remember_token']
+    end
+    
+    test "login with remembering for a professor user" do
+        log_in_as(@userProfessore, remember_me: '1')
+        assert_not_nil cookies['remember_token']
+    end
+    
+    test "login without remembering for a professor user" do
+        log_in_as(@userProfessore, remember_me: '0')
+        assert_nil cookies['remember_token']
+    end
+    
+    test "login with remembering for a student user" do
+        log_in_as(@userStudente, remember_me: '1')
+        assert_not_nil cookies['remember_token']
+    end
+    
+    test "login without remembering for a student user" do
+        log_in_as(@userStudente, remember_me: '0')
+        assert_nil cookies['remember_token']
+    end
 end
