@@ -76,7 +76,7 @@
                     <div class="row">
                         <aside class="col-md-4">
                             <section class="user_info">
-                                <%= gravatar_for @userStudente %><br><br>
+                                <%= gravatar_for @userStudente, size: 300 %><br><br>
                                 <strong>Name:</strong> <%= @userStudente.name %><br>
                                 <strong>Surame:</strong> <%= @userStudente.surname %><br>
                                 <strong>E-mail:</strong> <%= @userStudente.email %><br>
@@ -90,7 +90,7 @@
             </tr>
             <tr>
                 <td style="text-align:center;">
-                    <%= button_to "Change Password", paginaIniziale_path, method: :get, :class => "button" %>
+                    <%= button_to "Profile Settings", edit_user_studente_path(current_user), method: :get, :class => "button" %>
                 </td>
                 <td style="text-align:center;">
                     <%= button_to "Test History", paginaIniziale_path, method: :get, :class => "button" %>

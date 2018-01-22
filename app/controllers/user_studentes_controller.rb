@@ -19,6 +19,19 @@ class UserStudentesController < ApplicationController
     end
   end
   
+  def edit
+    @userStudente = UserStudente.find(params[:id])
+  end
+  
+  def update
+    @userStudente = UserStudente.find(params[:id])
+    if @userStudente.update_attributes(user_params)
+      # Handle a successful update.
+    else
+      render 'edit'
+    end
+  end
+  
   private
   
     def user_params

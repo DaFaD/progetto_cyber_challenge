@@ -19,6 +19,19 @@ class UserProfessoresController < ApplicationController
     end
   end
   
+  def edit
+    @userProfessore = UserProfessore.find(params[:id])
+  end
+  
+  def update
+    @userProfessore = UserProfessore.find(params[:id])
+    if @userProfessore.update_attributes(user_params)
+      # Handle a successful update.
+    else
+      render 'edit'
+    end
+  end
+  
   private
   
     def user_params
