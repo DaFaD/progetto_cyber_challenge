@@ -25,6 +25,30 @@
         @include box_sizing;
     }
     
+    /* message box */
+    
+    .my_box {
+        width: 94%;
+        padding: 25px;
+        margin: 25px;
+    }
+    .my_box-success {
+        background-color: lightgreen;
+        border: 10px solid green;
+    }
+    .my_box-info {
+        background-color: lightblue;
+        border: 10px solid blue;
+    }
+    .my_box-warning {
+        background-color: lightyellow;
+        border: 10px solid yellow;
+    }
+    .my_box-danger {
+        background-color: #FA5C71;
+        border: 10px solid red;
+    }
+    
   </style>
   
 </head>
@@ -32,11 +56,11 @@
     <%= render 'layouts/header' %>
     <div class="container">
         <div style="text-align: center;">
-            <h1>
+            <h3>
                 <% flash.each do |message_type, message| %>
-                    <div class="alert alert-<%= message_type %>"><%= message %></div>
+                    <div class="my_box my_box-<%= message_type %> alert alert-<%= message_type %>"><%= message %></div>
                 <% end %>
-            </h1>
+            </h3>
         </div>
         <%= yield %>
         <%= render 'layouts/footer' %>

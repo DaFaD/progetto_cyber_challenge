@@ -12,6 +12,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     end
     
     test "unsuccessful edit for an admin user" do
+        log_in_as(@userAdmin)
         get edit_user_admin_path(@userAdmin)
         assert_template 'user_admins/edit'
         patch user_admin_path(@userAdmin), user_admin: { name: "", surname: "", email: "foo@invalid", username: "", password: "foo", password_confirmation: "bar" }
@@ -19,6 +20,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     end
     
     test "unsuccessful edit for a professor user" do
+        log_in_as(@userProfessore)
         get edit_user_professore_path(@userProfessore)
         assert_template 'user_professores/edit'
         patch user_professore_path(@userProfessore), user_professore: { name: "", surname: "", email: "foo@invalid", username: "", password: "foo", password_confirmation: "bar" }
@@ -26,6 +28,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     end
     
     test "unsuccessful edit for a student user" do
+        log_in_as(@userStudente)
         get edit_user_studente_path(@userStudente)
         assert_template 'user_studentes/edit'
         patch user_studente_path(@userStudente), user_studente: { name: "", surname: "", email: "foo@invalid", username: "", fiscalCode: "", birthDay: Date.new(2000, 6, 4), password: "foo", password_confirmation: "bar" }
@@ -33,6 +36,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     end
     
     test "successful edit for an admin user" do
+        log_in_as(@userAdmin)
         get edit_user_admin_path(@userAdmin)
         assert_template 'user_admins/edit'
         name = "Foo"
@@ -50,6 +54,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     end
     
     test "successful edit for a professor user" do
+        log_in_as(@userProfessore)
         get edit_user_professore_path(@userProfessore)
         assert_template 'user_professores/edit'
         name = "Foo"
@@ -67,6 +72,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     end
     
     test "successful edit for a student user" do
+        log_in_as(@userStudente)
         get edit_user_studente_path(@userStudente)
         assert_template 'user_studentes/edit'
         name = "Foo"

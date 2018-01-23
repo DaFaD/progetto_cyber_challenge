@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :logged_out_user, only: [:new, :create]
+
   def new
   end
   
@@ -25,4 +27,16 @@ class SessionsController < ApplicationController
     log_out if logged_in?
     redirect_to root_url
   end
+  
+  private
+  
+    # Before filters
+    
+    # Confirms a logged-out user.
+    def logged_out_user
+        unless !logged_in?
+            flash[:danger] = "Please log out."
+            redirect_to root_url
+        end
+    end
 end

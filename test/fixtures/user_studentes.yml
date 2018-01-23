@@ -6,3 +6,12 @@ nomequalsiasistudente:
     fiscalCode: cgnnst98m06h501b
     birthDay: 1998-08-06
     password_digest: <%= UserStudente.digest('password') %>
+
+nomequalsiasistudente2:
+    name: Nomestudente2
+    surname: Cognomestudente2
+    email: cognomestudente2.1656592@studenti.uniroma1.it
+    username: soprannomestudente2
+    fiscalCode: cgnnst98m06h501c
+    birthDay: 1998-08-06
+    password_digest: <%= UserStudente.digest('password') %>

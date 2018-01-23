@@ -4,3 +4,10 @@ nomequalsiasiadmin:
     email: nomeadmin@hotmail.it
     username: soprannomeadmin
     password_digest: <%= UserAdmin.digest('password') %>
+
+nomequalsiasiadmin2:
+    name: Nomeadmin2
+    surname: Cognomeadmin2
+    email: nomeadmin2@hotmail.it
+    username: soprannomeadmin2
+    password_digest: <%= UserAdmin.digest('password') %>
