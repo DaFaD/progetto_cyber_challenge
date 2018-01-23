@@ -31,4 +31,59 @@ class UsersEditTest < ActionDispatch::IntegrationTest
         patch user_studente_path(@userStudente), user_studente: { name: "", surname: "", email: "foo@invalid", username: "", fiscalCode: "", birthDay: Date.new(2000, 6, 4), password: "foo", password_confirmation: "bar" }
         assert_template 'user_studentes/edit'
     end
+    
+    test "successful edit for an admin user" do
+        get edit_user_admin_path(@userAdmin)
+        assert_template 'user_admins/edit'
+        name = "Foo"
+        surname= "Bar"
+        email = "foo@bar.com"
+        username= "BarFooAdmin"
+        patch user_admin_path(@userAdmin), user_admin: { name: name, surname: surname, email: email, username: username, password: "", password_confirmation: "" }
+        assert_not flash.empty?
+        assert_redirected_to @userAdmin
+        @userAdmin.reload
+        assert_equal @userAdmin.name, name
+        assert_equal @userAdmin.surname, surname
+        assert_equal @userAdmin.email, email.downcase
+        assert_equal @userAdmin.username, username.downcase
+    end
+    
+    test "successful edit for a professor user" do
+        get edit_user_professore_path(@userProfessore)
+        assert_template 'user_professores/edit'
+        name = "Foo"
+        surname= "Bar"
+        email = "foo@uniroma1.it"
+        username= "BarFooProfessore"
+        patch user_professore_path(@userProfessore), user_professore: { name: name, surname: surname, email: email, username: username, password: "", password_confirmation: "" }
+        assert_not flash.empty?
+        assert_redirected_to @userProfessore
+        @userProfessore.reload
+        assert_equal @userProfessore.name, name
+        assert_equal @userProfessore.surname, surname
+        assert_equal @userProfessore.email, email.downcase
+        assert_equal @userProfessore.username, username.downcase
+    end
+    
+    test "successful edit for a student user" do
+        get edit_user_studente_path(@userStudente)
+        assert_template 'user_studentes/edit'
+        name = "Foo"
+        surname= "Bar"
+        email = "foobar.1656293@studenti.uniroma1.it"
+        username= "BarFooStudente"
+        fiscalCode= "BRAFOO99B19H501Q"
+        birthDay= Date.new(1999, 2, 12)
+        patch user_studente_path(@userStudente), user_studente: { name: name, surname: surname, email: email, username: username, fiscalCode: fiscalCode, birthDay: birthDay, password: "", password_confirmation: "" }
+        assert_not flash.empty?
+        assert_redirected_to @userStudente
+        @userStudente.reload
+        assert_equal @userStudente.name, name
+        assert_equal @userStudente.surname, surname
+        assert_equal @userStudente.email, email.downcase
+        assert_equal @userStudente.username, username.downcase
+        assert_equal @userStudente.fiscalCode, fiscalCode.downcase
+        assert_equal @userStudente.birthDay, birthDay
+    end
 end

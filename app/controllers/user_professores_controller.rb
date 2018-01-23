@@ -26,7 +26,8 @@ class UserProfessoresController < ApplicationController
   def update
     @userProfessore = UserProfessore.find(params[:id])
     if @userProfessore.update_attributes(user_params)
-      # Handle a successful update.
+      flash[:success] = "Profile updated"
+      redirect_to @userProfessore
     else
       render 'edit'
     end

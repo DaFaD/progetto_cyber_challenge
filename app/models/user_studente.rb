@@ -12,7 +12,7 @@ class UserStudente < ActiveRecord::Base
     validates :fiscalCode, presence: true, length: { maximum: 16, minimum: 16 }, format: { with: VALID_FISCALCODE_REGEX }, uniqueness: { case_sensitive: false }
     validates :birthDay, presence: true
     has_secure_password
-    validates :password, length: { minimum: 6 }
+    validates :password, length: { minimum: 6 }, allow_blank: true
     
     # Returns the hash digest of the given string.
     def UserStudente.digest(string)

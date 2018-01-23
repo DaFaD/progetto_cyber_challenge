@@ -26,7 +26,8 @@ class UserAdminsController < ApplicationController
   def update
     @userAdmin = UserAdmin.find(params[:id])
     if @userAdmin.update_attributes(user_params)
-      # Handle a successful update.
+      flash[:success] = "Profile updated"
+      redirect_to @userAdmin
     else
       render 'edit'
     end
