@@ -33,14 +33,14 @@ class UserAdminsControllerTest < ActionController::TestCase
   test "should redirect edit when logged in as wrong user" do
     log_in_as(@userAdmin2)
     get :edit, id: @userAdmin
-    assert flash.empty?
+    assert_not flash.empty?
     assert_redirected_to root_url
   end
   
   test "should redirect update when logged in as wrong user" do
     log_in_as(@userAdmin2)
     patch :update, id: @userAdmin, user_admin: { name: @userAdmin.name, surname: @userAdmin.surname, email: @userAdmin.email, username: @userAdmin.username }
-    assert flash.empty?
+    assert_not flash.empty?
     assert_redirected_to root_url
   end
 end

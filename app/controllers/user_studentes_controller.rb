@@ -1,6 +1,7 @@
 class UserStudentesController < ApplicationController
   before_action :logged_out_user, only: [:new, :create]
   before_action :logged_in_user, only: [:edit, :update, :show]
+  before_action :correct_user, only: [:edit, :update]
   
   def show
     @userStudente = UserStudente.find(params[:id])
@@ -22,11 +23,9 @@ class UserStudentesController < ApplicationController
   end
   
   def edit
-    @userStudente = UserStudente.find(params[:id])
   end
   
   def update
-    @userStudente = UserStudente.find(params[:id])
     if @userStudente.update_attributes(user_params)
       flash[:success] = "Profile updated"
       redirect_to @userStudente
@@ -46,6 +45,7 @@ class UserStudentesController < ApplicationController
     # Confirms a logged-in user.
     def logged_in_user
         unless logged_in?
+            store_location
             flash[:danger] = "Please log in."
             redirect_to login_url
         end
@@ -56,6 +56,15 @@ class UserStudentesController < ApplicationController
         unless !logged_in?
             flash[:danger] = "Please log out."
             redirect_to root_url
+        end
+    end
+    
+    # Confirms the correct user.
+    def correct_user
+        @userStudente = UserStudente.find(params[:id])
+        unless current_user?(@userStudente)
+            flash[:danger] = "You don't have the rights for this page/action."
+            redirect_to(root_url)
         end
     end
 end

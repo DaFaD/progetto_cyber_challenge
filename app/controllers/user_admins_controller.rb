@@ -1,6 +1,7 @@
 class UserAdminsController < ApplicationController
   before_action :logged_out_user, only: [:new, :create]
   before_action :logged_in_user, only: [:edit, :update, :show]
+  before_action :correct_user, only: [:edit, :update]
 
   def show
     @userAdmin = UserAdmin.find(params[:id])
@@ -22,11 +23,9 @@ class UserAdminsController < ApplicationController
   end
   
   def edit
-    @userAdmin = UserAdmin.find(params[:id])
   end
   
   def update
-    @userAdmin = UserAdmin.find(params[:id])
     if @userAdmin.update_attributes(user_params)
       flash[:success] = "Profile updated"
       redirect_to @userAdmin
@@ -46,6 +45,7 @@ class UserAdminsController < ApplicationController
     # Confirms a logged-in user.
     def logged_in_user
         unless logged_in?
+            store_location
             flash[:danger] = "Please log in."
             redirect_to login_url
         end
@@ -56,6 +56,15 @@ class UserAdminsController < ApplicationController
         unless !logged_in?
             flash[:danger] = "Please log out."
             redirect_to root_url
+        end
+    end
+    
+    # Confirms the correct user.
+    def correct_user
+        @userAdmin = UserAdmin.find(params[:id])
+        unless current_user?(@userAdmin)
+            flash[:danger] = "You don't have the rights for this page/action."
+            redirect_to(root_url)
         end
     end
 end

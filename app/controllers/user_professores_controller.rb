@@ -1,6 +1,7 @@
 class UserProfessoresController < ApplicationController
   before_action :logged_out_user, only: [:new, :create]
   before_action :logged_in_user, only: [:edit, :update, :show]
+  before_action :correct_user, only: [:edit, :update]
 
   def show
     @userProfessore = UserProfessore.find(params[:id])
@@ -22,11 +23,9 @@ class UserProfessoresController < ApplicationController
   end
   
   def edit
-    @userProfessore = UserProfessore.find(params[:id])
   end
   
   def update
-    @userProfessore = UserProfessore.find(params[:id])
     if @userProfessore.update_attributes(user_params)
       flash[:success] = "Profile updated"
       redirect_to @userProfessore
@@ -46,6 +45,7 @@ class UserProfessoresController < ApplicationController
     # Confirms a logged-in user.
     def logged_in_user
         unless logged_in?
+            store_location
             flash[:danger] = "Please log in."
             redirect_to login_url
         end
@@ -56,6 +56,15 @@ class UserProfessoresController < ApplicationController
         unless !logged_in?
             flash[:danger] = "Please log out."
             redirect_to root_url
+        end
+    end
+    
+    # Confirms the correct user.
+    def correct_user
+        @userProfessore = UserProfessore.find(params[:id])
+        unless current_user?(@userProfessore)
+            flash[:danger] = "You don't have the rights for this page/action."
+            redirect_to(root_url)
         end
     end
 end
