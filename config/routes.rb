@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   
   resources :user_admins
   
+  get 'listaStudenteOProfOAdmin' => 'static_pages#listaStudenteOProfOAdmin'
+  
   # get 'testNavFoo' => 'static_pages#testNavFoo'
   
   get 'login' => 'sessions#new'

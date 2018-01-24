@@ -13,6 +13,9 @@
         color: #3535FF;
     }
 }
+
+/* remember me checkbox */
+
 .checkbox {
     margin-top: -10px;
     margin-bottom: 10px;
@@ -24,4 +27,16 @@
 #session_remember_me {
     width: auto;
     margin-left: 0;
+}
+
+/* Users index */
+
+.users {
+    list-style: none;
+    margin: 0;
+    li {
+        overflow: auto;
+        padding: 10px 0;
+        border-bottom: 0px solid #CFD1CB;
+    }
 }

@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+  before_action :logged_in_user, only: [:listaStudenteOProfOAdmin]
   before_action :logged_out_user, only: [:paginaIniziale, :studenteOProfessore]
 
   def homeMomentanea
@@ -10,6 +11,9 @@ class StaticPagesController < ApplicationController
   def studenteOProfessore
   end
   
+  def listaStudenteOProfOAdmin
+  end
+  
   #def testNavFoo
   #end
   
@@ -17,6 +21,15 @@ class StaticPagesController < ApplicationController
   private
   
     # Before filters
+    
+    # Confirms a logged-in user.
+    def logged_in_user
+        unless logged_in?
+            store_location
+            flash[:danger] = "Please log in."
+            redirect_to login_url
+        end
+    end
     
     # Confirms a logged-out user.
     def logged_out_user

@@ -108,6 +108,10 @@ th{
         <li><a href="#news">Exam</a></li>
     <% end %>
     
+    <% if logged_in? %>
+        <li><%= link_to "Users", listaStudenteOProfOAdmin_path %></li>
+    <% end %>
+    
     <% if user_admin? %>
         <li><%= link_to "Profile", user_admin_path(current_user) %></li>
     <% end %>

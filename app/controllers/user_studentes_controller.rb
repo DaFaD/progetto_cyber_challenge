@@ -1,7 +1,11 @@
 class UserStudentesController < ApplicationController
   before_action :logged_out_user, only: [:new, :create]
-  before_action :logged_in_user, only: [:edit, :update, :show]
+  before_action :logged_in_user, only: [:index, :edit, :update, :show]
   before_action :correct_user, only: [:edit, :update]
+  
+  def index
+    @userStudentes = UserStudente.all
+  end
   
   def show
     @userStudente = UserStudente.find(params[:id])

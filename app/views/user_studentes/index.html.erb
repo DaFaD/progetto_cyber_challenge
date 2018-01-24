@@ -1,0 +1,18 @@
+<% provide(:title, 'All student users') %>
+<table style="width:100%;" cellpadding="10">
+    <tr>
+        <td colspan="2" style="text-align: center;">
+            <h1>All student users</h1>
+        </td>
+    </tr>
+    <% @userStudentes.each do |user| %>
+        <tr>
+            <td style="text-align: right; width:50%;">
+                <%= gravatar_for user, size: 50 %>
+            </td>
+            <td style="text-align: left; width:50%;">
+                <%= link_to user.username, user %>
+            </td>
+        </tr>
+    <% end %>
+</table>

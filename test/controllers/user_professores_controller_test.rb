@@ -6,6 +6,11 @@ class UserProfessoresControllerTest < ActionController::TestCase
     @userProfessore = user_professores(:nomequalsiasiprofessore)
     @userProfessore2 = user_professores(:nomequalsiasiprofessore2)
   end
+  
+  test "should redirect index when not logged in" do
+    get :index
+    assert_redirected_to login_url
+  end
 
   test "should get new" do
     get :new
