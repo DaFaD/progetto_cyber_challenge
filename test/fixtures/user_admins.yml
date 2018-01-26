@@ -11,3 +11,26 @@ nomequalsiasiadmin2:
     email: nomeadmin2@hotmail.it
     username: soprannomeadmin2
     password_digest: <%= UserAdmin.digest('password') %>
+
+nomequalsiasiadmin3:
+    name: Nomeadmin3
+    surname: Cognomeadmin3
+    email: nomeadmin3@hotmail.it
+    username: soprannomeadmin3
+    password_digest: <%= UserAdmin.digest('password') %>
+
+nomequalsiasiadmin4:
+    name: Nomeadmin4
+    surname: Cognomeadmin4
+    email: nomeadmin4@hotmail.it
+    username: soprannomeadmin4
+    password_digest: <%= UserAdmin.digest('password') %>
+
+<% 30.times do |n| %>
+user_admin_<%= n %>:
+    name: <%= "UserNomeAdmin-#{n}" %>
+    surname: <%= "UserCognomeAdmin-#{n}" %>
+    email: <%= "useradmin-#{n}@hotmail.it" %>
+    username: <%= "usersoprannomeadmin-#{n}" %>
+    password_digest: <%= UserAdmin.digest('password') %>
+<% end %>
