@@ -4,7 +4,7 @@ class UserAdminsController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   
   def index
-    @userAdmins = UserAdmin.all
+    @user_admins = UserAdmin.paginate(page: params[:page])
   end
   
   def show

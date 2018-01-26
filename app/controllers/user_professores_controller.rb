@@ -4,7 +4,7 @@ class UserProfessoresController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   
   def index
-    @userProfessores = UserProfessore.all
+    @user_professores = UserProfessore.paginate(page: params[:page])
   end
 
   def show
