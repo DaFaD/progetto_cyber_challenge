@@ -34,6 +34,9 @@
             </td>
             <td style="text-align: left; width:55%;">
                 <%= link_to user.username, user %>
+                <% if this_is_admin?(current_user) && !current_user?(user) %>
+                    | <%= link_to "delete", user, method: :delete, data: { confirm: "You sure?" } %>
+                <% end %>
             </td>
         </tr>
     <% end %>

@@ -1,10 +1,11 @@
 class UserProfessoresController < ApplicationController
   before_action :logged_out_user, only: [:new, :create]
-  before_action :logged_in_user, only: [:index, :edit, :update, :show]
+  before_action :logged_in_user, only: [:index, :edit, :update, :show, :destroy]
   before_action :correct_user, only: [:edit, :update]
+  before_action :admin_user, only: :destroy
   
   def index
-    @user_professores = UserProfessore.paginate(page: params[:page])
+    @user_professores = UserProfessore.paginate(page: params[:page]).order('username')
   end
 
   def show
@@ -38,6 +39,12 @@ class UserProfessoresController < ApplicationController
     end
   end
   
+  def destroy
+    UserProfessore.find(params[:id]).destroy
+    flash[:success] = "User deleted"
+    redirect_to user_professores_url
+  end
+  
   private
   
     def user_params
@@ -68,6 +75,14 @@ class UserProfessoresController < ApplicationController
         @userProfessore = UserProfessore.find(params[:id])
         unless current_user?(@userProfessore)
             flash[:danger] = "You don't have the rights for this page/action."
+            redirect_to(root_url)
+        end
+    end
+    
+    # Confirms an admin user.
+    def admin_user
+        unless this_is_admin?(current_user)
+            flash[:danger] = "You don't have the rights for this action."
             redirect_to(root_url)
         end
     end
