@@ -29,6 +29,12 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   
   delete 'logout' => 'sessions#destroy'
+  
+  delete 'destroyMySelfAdmin' => 'user_admins#destroyMySelf'
+  
+  delete 'destroyMySelfProfessore' => 'user_professores#destroyMySelf'
+  
+  delete 'destroyMySelfStudente' => 'user_studentes#destroyMySelf'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

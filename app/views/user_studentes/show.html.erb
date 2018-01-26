@@ -97,7 +97,7 @@
                         <%= button_to "Test History", paginaIniziale_path, method: :get, :class => "button" %>
                     </td>
                     <td style="text-align:center;">
-                        <%= button_to "Delete My Account", paginaIniziale_path, method: :get, :class => "button" %>
+                        <%= button_to "Delete My Account", destroyMySelfStudente_path, method: :delete, :class => "button", data: { confirm: "You sure?" } %>
                     </td>
                 </tr>
             <% end %>

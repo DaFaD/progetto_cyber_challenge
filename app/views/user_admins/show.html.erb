@@ -93,7 +93,7 @@
                         <%= button_to "Profile Settings", edit_user_admin_path(current_user), method: :get, :class => "button" %>
                     </td>
                     <td style="text-align:center;">
-                        <%= button_to "Delete My Account", paginaIniziale_path, method: :get, :class => "button" %>
+                        <%= button_to "Delete My Account", destroyMySelfAdmin_path, method: :delete, :class => "button", data: { confirm: "You sure?" } %>
                     </td>
                 </tr>
             <% end %>

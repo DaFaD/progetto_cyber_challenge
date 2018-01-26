@@ -1,6 +1,6 @@
 class UserAdminsController < ApplicationController
   before_action :logged_out_user, only: [:new, :create]
-  before_action :logged_in_user, only: [:index, :edit, :update, :show, :destroy]
+  before_action :logged_in_user, only: [:index, :edit, :update, :show, :destroy, :destroyMySelf]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
   
@@ -43,6 +43,14 @@ class UserAdminsController < ApplicationController
     UserAdmin.find(params[:id]).destroy
     flash[:success] = "User deleted"
     redirect_to user_admins_url
+  end
+  
+  def destroyMySelf
+    @userCorrenteAdmin= current_user
+    log_out
+    @userCorrenteAdmin.destroy
+    flash[:success] = "You deleted your account"
+    redirect_to root_url
   end
   
   private
