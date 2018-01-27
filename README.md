@@ -1,7 +1,7 @@
 # Progetto Cyber Challenge
 
 Gemme utilizzate:
-	gem 'rails', '4.2.0.beta4'
+	gem 'rails', '4.2.0.rc2'
 	gem 'sass-rails', '5.0.0.beta1'
 	gem 'uglifier', '2.5.3'
 	gem 'coffee-rails', '4.0.1'
