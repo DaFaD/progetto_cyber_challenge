@@ -1,0 +1,106 @@
+<html>
+    <head>
+        <style>
+            /*buttons*/
+            
+            .button {
+              display: inline-block;
+              padding: 15px 25px;
+              font-size: 24px;
+              cursor: pointer;
+              text-align: center;
+              text-decoration: none;
+              outline: none;
+              color: #fff;
+              background-color: #333;
+              border: none;
+              border-radius: 15px;
+              box-shadow: 0 9px #999;
+            }
+
+            .button:hover {background-color: #222}
+
+            .button:active {
+              background-color: #222;
+              box-shadow: 0 5px #666;
+              transform: translateY(4px);
+            }
+            
+            /* sidebar */
+            
+            aside {
+                section.user_info {
+                    margin-top: 20px;
+                }
+                section {
+                    padding: 10px 0;
+                    margin-top: 20px;
+                    &:first-child {
+                        border: 0;
+                        padding-top: 0;
+                    }
+                    span {
+                        display: block;
+                        margin-bottom: 3px;
+                        line-height: 1;
+                    }
+                    h1 {
+                        font-size: 1.4em;
+                        text-align: left;
+                        letter-spacing: -1px;
+                        margin-bottom: 3px;
+                        margin-top: 0px;
+                    }
+                }
+            }
+            
+            .gravatar {
+                float: center; /*left;*/
+                margin-right: 10px;
+            }
+            
+            .gravatar_edit {
+                margin-top: 15px;
+            }
+            
+        </style>
+    </head>
+    <body style="background-color: #B34154;">
+        <table style="width:100%">
+            <tr>
+                <td colspan="3" style="text-align:center;">
+                    <h1>
+                        Student User
+                    </h1>
+                    <% provide(:title, @userStudente.name) %>
+                    <div class="row">
+                        <aside class="col-md-4">
+                            <section class="user_info">
+                                <%= gravatar_for @userStudente, size: 300 %><br><br>
+                                <strong>Name:</strong> <%= @userStudente.name %><br>
+                                <strong>Surame:</strong> <%= @userStudente.surname %><br>
+                                <strong>E-mail:</strong> <%= @userStudente.email %><br>
+                                <strong>Username:</strong> <%= @userStudente.username %><br>
+                                <strong>Fiscal Code:</strong> <%= @userStudente.fiscalCode.upcase %><br>
+                                <strong>Birth Day:</strong> <%= @userStudente.birthDay %><br><br><br><br>
+                            </section>
+                        </aside>
+                    </div>
+                </td>
+            </tr>
+            <% if current_user == @userStudente %>
+                <tr>
+                    <td style="text-align:center;">
+                        <%= button_to "Profile Settings", edit_user_studente_path(current_user), method: :get, :class => "button" %>
+                    </td>
+                    <td style="text-align:center;">
+                        <%= button_to "Test History", paginaIniziale_path, method: :get, :class => "button" %>
+                    </td>
+                    <td style="text-align:center;">
+                        <%= button_to "Delete My Account", destroyMySelfStudente_path, method: :delete, :class => "button", data: { confirm: "You sure?" } %>
+                    </td>
+                </tr>
+            <% end %>
+        </table>
+    </body>
+</html>

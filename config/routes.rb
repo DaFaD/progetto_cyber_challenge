@@ -1,4 +1,41 @@
 Rails.application.routes.draw do
+
+  # get 'sessions/new'
+
+  root 'static_pages#homeMomentanea'
+  
+  get 'paginaIniziale' => 'static_pages#paginaIniziale'
+  
+  get 'studenteOProfessore' => 'static_pages#studenteOProfessore'
+
+  get 'signupStudente' => 'user_studentes#new'
+  
+  get 'signupProfessore' => 'user_professores#new'
+  
+  get 'signupAdmin' => 'user_admins#new'
+  
+  resources :user_studentes
+  
+  resources :user_professores
+  
+  resources :user_admins
+  
+  get 'listaStudenteOProfOAdmin' => 'static_pages#listaStudenteOProfOAdmin'
+  
+  # get 'testNavFoo' => 'static_pages#testNavFoo'
+  
+  get 'login' => 'sessions#new'
+  
+  post 'login' => 'sessions#create'
+  
+  delete 'logout' => 'sessions#destroy'
+  
+  delete 'destroyMySelfAdmin' => 'user_admins#destroyMySelf'
+  
+  delete 'destroyMySelfProfessore' => 'user_professores#destroyMySelf'
+  
+  delete 'destroyMySelfStudente' => 'user_studentes#destroyMySelf'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

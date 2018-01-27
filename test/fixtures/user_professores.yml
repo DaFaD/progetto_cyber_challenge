@@ -1,0 +1,36 @@
+nomequalsiasiprofessore:
+    name: Nomeprofessore
+    surname: Cognomeprofessore
+    email: nomeprofessore@uniroma1.it
+    username: soprannomeprofessore
+    password_digest: <%= UserProfessore.digest('password') %>
+
+nomequalsiasiprofessore2:
+    name: Nomeprofessore2
+    surname: Cognomeprofessore2
+    email: nomeprofessore2@uniroma1.it
+    username: soprannomeprofessore2
+    password_digest: <%= UserProfessore.digest('password') %>
+
+nomequalsiasiprofessore3:
+    name: Nomeprofessore3
+    surname: Cognomeprofessore3
+    email: nomeprofessore3@uniroma1.it
+    username: soprannomeprofessore3
+    password_digest: <%= UserProfessore.digest('password') %>
+
+nomequalsiasiprofessore4:
+    name: Nomeprofessore4
+    surname: Cognomeprofessore4
+    email: nomeprofessore4@uniroma1.it
+    username: soprannomeprofessore4
+    password_digest: <%= UserProfessore.digest('password') %>
+
+<% 30.times do |n| %>
+user_professore_<%= n %>:
+    name: <%= "UserNomeProfessore-#{n}" %>
+    surname: <%= "UserCognomeProfessore-#{n}" %>
+    email: <%= "userprofessore-#{n}@uniroma1.it" %>
+    username: <%= "usersoprannomeprofessore-#{n}" %>
+    password_digest: <%= UserProfessore.digest('password') %>
+<% end %>

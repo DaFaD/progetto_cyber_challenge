@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <style>
+            /*button*/
+            
+            #button {
+              display: inline-block;
+              padding: 15px 25px;
+              font-size: 24px;
+              cursor: pointer;
+              text-align: center;
+              text-decoration: none;
+              outline: none;
+              color: #fff;
+              background-color: #333;
+              border: none;
+              border-radius: 15px;
+              box-shadow: 0 9px #999;
+            }
+
+            #button:hover {background-color: #222}
+
+            #button:active {
+              background-color: #222;
+              box-shadow: 0 5px #666;
+              transform: translateY(4px);
+            }
+            
+            /* forms */
+            
+            input, textarea, select, .uneditable-input {
+                border: 1px solid #bbb;
+                width: 100%;
+                margin-bottom: 15px;
+                @include box_sizing;
+            }
+            
+            input {
+                height: auto !important;
+            }
+            
+            /*fields*/
+            
+            .personal_field {
+                background-color: #999;
+                width: 100%;
+                padding: 6px 10px;
+                margin: 8px 0;
+                box-sizing: border-box;
+                border: 1px solid #555;
+                outline: none;
+            }
+            .personal_field:focus {
+                background-color: #777;
+            }
+        </style>
+    </head>
+    <body style="background-color: #B34154;">
+        <table style="width:100%;">
+            <tr>
+                <td style="width:33%;">
+                </td>
+                <td style="width:34%; text-align:center;">
+                    <% provide(:title, 'Sign up for Professors') %>
+                    <h1>Sign up for Professors</h1>
+
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <%= form_for(@userProfessore) do |f| %>
+                                <%= render 'shared/error_messages_professore' %>
+                            
+                                <h3><%= f.label :name %></h3>
+                                <%= f.text_field :name , class: "personal_field form-control", placeholder: "Your name..." %>
+                                
+                                <h3><%= f.label :surname %></h3>
+                                <%= f.text_field :surname , class: "personal_field form-control", placeholder: "Your surname..." %>
+                                
+                                <h3><%= f.label :email %></h3>
+                                <%= f.text_field :email , class: "personal_field form-control", placeholder: "Your e-mail..." %>
+                                
+                                <h3><%= f.label :username %></h3>
+                                <%= f.text_field :username , class: "personal_field form-control", placeholder: "Your username..." %>
+                                
+                                <h3><%= f.label :password %></h3>
+                                <%= f.password_field :password , class: "personal_field form-control", placeholder: "Your password..." %>
+                                
+                                <h3><%= f.label :password_confirmation, "Confirmation" %></h3>
+                                <%= f.password_field :password_confirmation , class: "personal_field form-control", placeholder: "Confirm your password..." %>
+                                
+                                <%= f.submit "Create my account", class: "btn btn-primary", id: "button" %>
+                            <% end %>
+                        </div>
+                    </div>
+                </td>
+                <td style="width:33%;">
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
