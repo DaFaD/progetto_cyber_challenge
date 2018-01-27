@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+html, body{
+	height: 100%}
+
+.page-wrap {
+	min-height: 100%;
+	margin-bottom:-80px;}
+
+.page-wrap:after {
+	content:"";
+	display: block;}
+
+.site-footer, .page-wrap:after {
+	height: 80px;
+	}
+
+.site-footer {
+	background: #333;}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+la{
+	float: left;}
+la a{
+	display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;}
+    
+la a:hover{
+	
+    background-color: #111;
+}
+
+li {
+    float: right;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td {
+    height: 50px;
+    
+}
+
+
+th{
+	text-align: center;}
+
+ footer {
+    display: block;
+}
+
+
+</style>
+</head>
+<body style="background-color: #B34154;">
+
+<div class= "page-wrap">
+
+<ul>
+  <la><%= link_to "CyberChallenge app", home_page_path %></la>
+  <li><a href="#news">Log out</a></li>
+  
+  <li><a href="#contact">Send Request</a></li>
+  <li><a href="#news">Classification</a></li>
+  <li><%= link_to "Manage", manage_path %></a></li>
+  <li><a href="#news">Exam</a></li>
+  <li><a href="#news">Profile</a></li>
+  
+  <li><a href="#about">Subscribe to competition</a></li>
+  <li><a href="#news">Training</a></li>
+</ul>
+<br>
+<br>
+<br>
+<table>
+  
+  <tr>
+  	<th><h1>Description of the competition</h1></th>
+    <th><h1>Notice Board</h1></th>
+  </tr>
+  <tr>
+    <td style="text-align: left;" width="50%";>Lorem ipsum
+dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod 
+tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, 
+quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+ Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, 
+vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim 
+qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor 
+cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.
+<br>
+Lorem ipsum
+dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod 
+tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, 
+quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+ Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, 
+vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim 
+qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor 
+cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.
+<br>
+Lorem ipsum
+dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod 
+tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, 
+quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+ Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, 
+vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim 
+qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor 
+cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. </td>
+    <td style="text-align: right;">asjdkshadkjshsafkisailfjsa</td>
+  </tr>
+  
+
+</table>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+<footer class= "site-footer">
+  <p style="text-align: center;" >Contacts</p>
+  <p>Contact information: <a href="mailto:someone@example.com">someone@example.com</a>.</p>
+</footer>
+</body>
+</html>
+
+
