@@ -3,9 +3,8 @@ Rails.application.routes.draw do
 
   get 'home_page' => 'home_page#homepage'
 
-  get 'notice' => 'manage#addNewNotice'
 
- 
+
 
   #get 'home_page/homepage'
 
