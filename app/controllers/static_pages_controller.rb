@@ -2,8 +2,6 @@ class StaticPagesController < ApplicationController
   before_action :logged_in_user, only: [:listaStudenteOProfOAdmin]
   before_action :logged_out_user, only: [:paginaIniziale, :studenteOProfessore]
 
-  def homeMomentanea
-  end
   
   def paginaIniziale
   end
