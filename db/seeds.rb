@@ -83,3 +83,11 @@ end
     password = "password"
     UserStudente.create!(name: name, surname: surname, email: email, username: username, fiscalCode: fiscalCode, birthDay: birthDay, password: password, password_confirmation: password)
 end
+
+100.times do |n|
+    title = "title-#{n+1}"
+    content = "Lorem -#{n+1}- ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis"
+    author = UserProfessore.find_by(id: "#{n+1}").username.to_s
+    writtenAt = Time.now
+    Advice.create!(title: title, content: content, author: author, writtenAt: writtenAt)
+end

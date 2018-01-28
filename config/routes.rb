@@ -14,11 +14,15 @@ Rails.application.routes.draw do
   
   get 'signupAdmin' => 'user_admins#new'
   
+  get 'newAdvice' => 'advices#new'
+  
   resources :user_studentes
   
   resources :user_professores
   
   resources :user_admins
+  
+  resources :advices
   
   get 'listaStudenteOProfOAdmin' => 'static_pages#listaStudenteOProfOAdmin'
   

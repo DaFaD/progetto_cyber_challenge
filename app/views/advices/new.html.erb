@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <style>
+            /*button*/
+            
+            #button {
+              display: inline-block;
+              padding: 15px 25px;
+              font-size: 24px;
+              cursor: pointer;
+              text-align: center;
+              text-decoration: none;
+              outline: none;
+              color: #fff;
+              background-color: #333;
+              border: none;
+              border-radius: 15px;
+              box-shadow: 0 9px #999;
+            }
+
+            #button:hover {background-color: #222}
+
+            #button:active {
+              background-color: #222;
+              box-shadow: 0 5px #666;
+              transform: translateY(4px);
+            }
+            
+            /* forms */
+            
+            input, textarea, select, .uneditable-input {
+                border: 1px solid #bbb;
+                width: 100%;
+                margin-bottom: 15px;
+                @include box_sizing;
+            }
+            
+            input {
+                height: auto !important;
+            }
+            
+            /*fields*/
+            
+            .personal_field {
+                background-color: #999;
+                width: 100%;
+                padding: 6px 10px;
+                margin: 8px 0;
+                box-sizing: border-box;
+                border: 1px solid #555;
+                outline: none;
+            }
+            .personal_field:focus {
+                background-color: #777;
+            }
+            .personal_textarea {
+                resize: none;
+            }
+        </style>
+    </head>
+    <body style="background-color: #B34154;">
+        <table style="width:100%;">
+            <tr>
+                <td style="width:33%;">
+                </td>
+                <td style="width:34%; text-align:center;">
+                    <% provide(:title, 'Create a new advice') %>
+                    <h1>Create a new advice</h1>
+
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <%= form_for(@advice) do |f| %>
+                                <%= render 'shared/error_messages_advice' %>
+                            
+                                <h3><%= f.label :title %></h3>
+                                <%= f.text_field :title , class: "personal_field form-control", placeholder: "The title of the new advice..." %>
+                                
+                                <h3><%= f.label :content %></h3>
+                                <%= f.text_area :content, :cols => "10", :rows => "10" , class: "personal_textarea personal_field form-control", :maxlength => "950", placeholder: "The content of the new advice..." %>
+                                
+                                <%= f.submit "Create the new advice", class: "btn btn-primary", id: "button" %>
+                            <% end %>
+                        </div>
+                    </div>
+                </td>
+                <td style="width:33%;">
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
