@@ -18,7 +18,10 @@ class UserAdminsController < ApplicationController
   
   def create
     @userAdmin = UserAdmin.new(user_params)
-    if @userAdmin.save
+    if UserProfessore.find_by(username: @userAdmin.username.downcase) != nil || UserStudente.find_by(username: @userAdmin.username.downcase) != nil
+        flash[:danger] = "Username already token!"
+        redirect_to signupAdmin_url
+    elsif @userAdmin.save
         log_in @userAdmin
         flash[:success] = "Welcome to the Cyber Challenge Platform!"
         redirect_to @userAdmin
