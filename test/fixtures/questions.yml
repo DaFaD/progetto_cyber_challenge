@@ -1,15 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  ans1: MyString
-  ans2: MyString
-  ans3: MyString
-  ans4: MyString
-  ansOk: MyString
+  Text: MyText
+  Ans1: MyText
+  Ans2: MyText
+  Ans3: MyText
+  Ans4: MyText
+  Ans_ok: MyString
 
 two:
-  ans1: MyString
-  ans2: MyString
-  ans3: MyString
-  ans4: MyString
-  ansOk: MyString
+  Text: MyText
+  Ans1: MyText
+  Ans2: MyText
+  Ans3: MyText
+  Ans4: MyText
+  Ans_ok: MyString
