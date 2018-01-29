@@ -19,8 +19,8 @@ class UserProfessoresController < ApplicationController
   def create
     @userProfessore = UserProfessore.new(user_params)
     if UserAdmin.find_by(username: @userProfessore.username.downcase) != nil || UserStudente.find_by(username: @userProfessore.username.downcase) != nil
-        flash[:danger] = "Username already token!"
-        redirect_to signupProfessore_url
+        flash.now[:danger] = "Username already token!"
+        render 'new'
     elsif @userProfessore.save
         log_in @userProfessore
         flash[:success] = "Welcome to the Cyber Challenge Platform!"
