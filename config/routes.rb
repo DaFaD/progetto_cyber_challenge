@@ -49,6 +49,14 @@ Rails.application.routes.draw do
   delete 'destroyMySelfStudente' => 'user_studentes#destroyMySelf'
   
   get 'manage' => 'manage#manage'
+  
+  get 'changeAdministratorsPassword' => 'pw_new_admins#editAdministratorsPassword'
+  
+  post 'changeAdministratorsPassword' => 'pw_new_admins#updateAdministratorsPassword'
+  
+  get 'changeProfessorsPassword' => 'pw_new_professores#editProfessorsPassword'
+  
+  post 'changeProfessorsPassword' => 'pw_new_professores#updateProfessorsPassword'
 
 
 

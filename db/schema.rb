@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180121122929) do
+ActiveRecord::Schema.define(version: 20180130214826) do
+
+  create_table "pw_new_admins", force: true do |t|
+    t.string   "pw"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pw_new_professores", force: true do |t|
+    t.string   "pw"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "user_admins", force: true do |t|
     t.string   "name"

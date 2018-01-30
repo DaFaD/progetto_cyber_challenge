@@ -87,8 +87,8 @@
                                 <h3><%= f.label :password_confirmation, "My new Password Confirmation" %></h3>
                                 <%= f.password_field :password_confirmation , class: "personal_field form-control", placeholder: "Confirm your password..." %>
                                 
-                                <h3><%= f.label :administrator_password, "Insert administrators' password to create a new Administrator Account" %></h3>
-                                <%= f.password_field :administrator_password , class: "personal_field form-control", placeholder: "Administrators' password..." %>
+                                <h3><%= f.label :administrator_password, "Insert the necessary password to create a new Administrator Account" %></h3>
+                                <%= f.password_field :administrator_password , class: "personal_field form-control", placeholder: "The password..." %>
                                 
                                 <%= f.submit "Create my account", class: "btn btn-primary", id: "button" %>
                             <% end %>

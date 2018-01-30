@@ -8,7 +8,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     test "invalid signup information for an admin user" do
         get '/signupAdmin'
         assert_no_difference 'UserAdmin.count' do
-            post user_admins_path, user_admin: { name: "", surname: "", email: "user@invalid", username: "", password: "foo", password_confirmation: "bar" }
+            post user_admins_path, user_admin: { name: "", surname: "", email: "user@invalid", username: "", password: "foo", password_confirmation: "bar", administrator_password: "password" }
         end
         assert_template 'user_admins/new'
     end
@@ -16,7 +16,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     test "invalid signup information for a professor user" do
         get '/signupProfessore'
         assert_no_difference 'UserProfessore.count' do
-            post user_professores_path, user_professore: { name: "", surname: "", email: "user@invalid", username: "", password: "foo", password_confirmation: "bar" }
+            post user_professores_path, user_professore: { name: "", surname: "", email: "user@invalid", username: "", password: "foo", password_confirmation: "bar", professor_password: "password" }
         end
         assert_template 'user_professores/new'
     end
@@ -32,7 +32,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     test "valid signup information for an admin user" do
         get '/signupAdmin'
         assert_difference 'UserAdmin.count', 1 do
-            post_via_redirect user_admins_path, user_admin: { name: "Nome", surname: "Cognome", email: "nome.cognome@hotmail.it", username: "Soprannome", password: "foobar", password_confirmation: "foobar" }
+            post_via_redirect user_admins_path, user_admin: { name: "Nome", surname: "Cognome", email: "nome.cognome@hotmail.it", username: "Soprannome", password: "foobar", password_confirmation: "foobar", administrator_password: "password" }
         end
         assert_template 'user_admins/show'
         assert is_logged_in?
@@ -41,7 +41,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     test "valid signup information for a professor user" do
         get '/signupProfessore'
         assert_difference 'UserProfessore.count', 1 do
-            post_via_redirect user_professores_path, user_professore: { name: "Nome", surname: "Cognome", email: "cognome@uniroma1.it", username: "Soprannome", password: "foobar", password_confirmation: "foobar" }
+            post_via_redirect user_professores_path, user_professore: { name: "Nome", surname: "Cognome", email: "cognome@uniroma1.it", username: "Soprannome", password: "foobar", password_confirmation: "foobar", professor_password: "password" }
         end
         assert_template 'user_professores/show'
         assert is_logged_in?

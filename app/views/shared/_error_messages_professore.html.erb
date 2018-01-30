@@ -1,3 +1,14 @@
+<% if session[:professorPasswordSbagliata] == "1" %>
+    <div id="error_explanation">
+        <div class="alert alert-danger">
+            The form contains 1 error.
+        </div>
+        <ul>
+            <li>The necessary password to create a new professor user is uncorrect</li>
+        </ul>
+    </div>
+<% end %>
+
 <% if session[:giaPresoProfessore] == "1" %>
     <div id="error_explanation">
         <div class="alert alert-danger">

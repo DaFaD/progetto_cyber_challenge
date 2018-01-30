@@ -13,6 +13,9 @@ class UserAdminsController < ApplicationController
   end
   
   def newAdmin
+    if session[:administratorPasswordSbagliata] != nil
+        session.delete(:administratorPasswordSbagliata)
+    end
     if session[:giaPresoAdmin] != nil
         session.delete(:giaPresoAdmin)
     end
@@ -25,20 +28,37 @@ class UserAdminsController < ApplicationController
   
   def create
     @userAdmin = UserAdmin.new(user_params)
-    if UserProfessore.find_by(username: @userAdmin.username.downcase) != nil || UserStudente.find_by(username: @userAdmin.username.downcase) != nil
-        session[:giaPresoAdmin] = "1"
-        render 'new'
-    elsif @userAdmin.save
-        if session[:giaPresoAdmin] != nil
-            session.delete(:giaPresoAdmin)
+    if PwNewAdmin.right_pw?(params[:user_admin][:administrator_password])
+        if UserProfessore.find_by(username: @userAdmin.username.downcase) != nil || UserStudente.find_by(username: @userAdmin.username.downcase) != nil
+            if session[:administratorPasswordSbagliata] != nil
+                session.delete(:administratorPasswordSbagliata)
+            end
+            session[:giaPresoAdmin] = "1"
+            render 'new'
+        elsif @userAdmin.save
+            if session[:administratorPasswordSbagliata] != nil
+                session.delete(:administratorPasswordSbagliata)
+            end
+            if session[:giaPresoAdmin] != nil
+                session.delete(:giaPresoAdmin)
+            end
+            log_in @userAdmin
+            flash[:success] = "Welcome to the Cyber Challenge Platform!"
+            redirect_to @userAdmin
+        else
+            if session[:administratorPasswordSbagliata] != nil
+                session.delete(:administratorPasswordSbagliata)
+            end
+            if session[:giaPresoAdmin] != nil
+                session.delete(:giaPresoAdmin)
+            end
+            render 'new'
         end
-        log_in @userAdmin
-        flash[:success] = "Welcome to the Cyber Challenge Platform!"
-        redirect_to @userAdmin
     else
         if session[:giaPresoAdmin] != nil
             session.delete(:giaPresoAdmin)
         end
+        session[:administratorPasswordSbagliata] = "1"
         render 'new'
     end
   end

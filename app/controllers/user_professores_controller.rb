@@ -13,6 +13,9 @@ class UserProfessoresController < ApplicationController
   end
   
   def newProfessore
+    if session[:professorPasswordSbagliata] != nil
+        session.delete(:professorPasswordSbagliata)
+    end
     if session[:giaPresoProfessore] != nil
         session.delete(:giaPresoProfessore)
     end
@@ -25,20 +28,37 @@ class UserProfessoresController < ApplicationController
   
   def create
     @userProfessore = UserProfessore.new(user_params)
-    if UserAdmin.find_by(username: @userProfessore.username.downcase) != nil || UserStudente.find_by(username: @userProfessore.username.downcase) != nil
-        session[:giaPresoProfessore] = "1"
-        render 'new'
-    elsif @userProfessore.save
-        if session[:giaPresoProfessore] != nil
-            session.delete(:giaPresoProfessore)
+    if PwNewProfessore.right_pw?(params[:user_professore][:professor_password])
+        if UserAdmin.find_by(username: @userProfessore.username.downcase) != nil || UserStudente.find_by(username: @userProfessore.username.downcase) != nil
+            if session[:professorPasswordSbagliata] != nil
+                session.delete(:professorPasswordSbagliata)
+            end
+            session[:giaPresoProfessore] = "1"
+            render 'new'
+        elsif @userProfessore.save
+            if session[:professorPasswordSbagliata] != nil
+                session.delete(:professorPasswordSbagliata)
+            end
+            if session[:giaPresoProfessore] != nil
+                session.delete(:giaPresoProfessore)
+            end
+            log_in @userProfessore
+            flash[:success] = "Welcome to the Cyber Challenge Platform!"
+            redirect_to @userProfessore
+        else
+            if session[:professorPasswordSbagliata] != nil
+                session.delete(:professorPasswordSbagliata)
+            end
+            if session[:giaPresoProfessore] != nil
+                session.delete(:giaPresoProfessore)
+            end
+            render 'new'
         end
-        log_in @userProfessore
-        flash[:success] = "Welcome to the Cyber Challenge Platform!"
-        redirect_to @userProfessore
     else
         if session[:giaPresoProfessore] != nil
             session.delete(:giaPresoProfessore)
         end
+        session[:professorPasswordSbagliata] = "1"
         render 'new'
     end
   end

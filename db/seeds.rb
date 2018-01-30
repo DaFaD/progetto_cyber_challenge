@@ -38,6 +38,10 @@ def CFgenerate(nome, cognome, cfintermedio)
     res.downcase
 end
 
+PwNewAdmin.create!(pw: PwNewAdmin.digest("password"))
+
+PwNewProfessore.create!(pw: PwNewProfessore.digest("password"))
+
 UserAdmin.create!(name: "Daniele", surname: "Sinibaldi", email: "daniel46.95@gmail.com", username: "Daniel-01", password: "password", password_confirmation: "password")
 UserAdmin.create!(name: "Daniele", surname: "Sinibaldi", email: "daniel46-95@hotmail.it", username: "Daniel-02", password: "password", password_confirmation: "password")
 UserAdmin.create!(name: "User", surname: "Example", email: "example@railstutorial.org", username: "EsempioSoprannome-0", password: "password", password_confirmation: "password")

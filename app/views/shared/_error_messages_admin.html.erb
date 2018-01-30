@@ -1,3 +1,14 @@
+<% if session[:administratorPasswordSbagliata] == "1" %>
+    <div id="error_explanation">
+        <div class="alert alert-danger">
+            The form contains 1 error.
+        </div>
+        <ul>
+            <li>The necessary password to create a new administrator user is uncorrect</li>
+        </ul>
+    </div>
+<% end %>
+
 <% if session[:giaPresoAdmin] == "1" %>
     <div id="error_explanation">
         <div class="alert alert-danger">
