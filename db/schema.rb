@@ -11,7 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180121122929) do
+ActiveRecord::Schema.define(version: 20180129103309) do
+
+  create_table "questions", force: true do |t|
+    t.string   "text"
+    t.string   "ans1"
+    t.string   "ans2"
+    t.string   "ans3"
+    t.string   "ans4"
+    t.string   "ans_ok"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "quizzes", force: true do |t|
+    t.integer  "q1"
+    t.integer  "q2"
+    t.integer  "q3"
+    t.integer  "q4"
+    t.integer  "q5"
+    t.integer  "q6"
+    t.integer  "q7"
+    t.integer  "q8"
+    t.integer  "q9"
+    t.integer  "q10"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "user_admins", force: true do |t|
     t.string   "name"

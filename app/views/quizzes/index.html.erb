@@ -1,0 +1,62 @@
+<% provide(:title, 'All quizzes') %>
+<table style="width:100%;" cellpadding="10">
+    <tr>
+        <td colspan="2" style="text-align: center;">
+            <h1>All quizzes</h1>
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" style="text-align: center;">
+            <table style="width:100%;">
+                <tr>
+                    <td style="width:40%;">
+                    </td>
+                    <td style="width:20%;">
+                        <div class="digg_pagination">
+                            <div class="page_info">
+                                <%= page_entries_info @posts %>
+                            </div>
+                            <%= will_paginate @posts, :container => false %>
+                        </div>
+                    </td>
+                    <td style="width:40%;">
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+ <% @quizzes.each do |quiz| %>
+        <tr>
+
+            <td style="text-align: center;">
+                <%= link_to "Quiz# #{quiz.id}", quiz%>
+                <% if this_is_professore?(current_user)%>
+                    | <%= link_to "delete", quiz, method: :delete, data: { confirm: "You sure?" } %>
+                <% end %>
+            </td>
+        </tr>
+    <% end %>
+
+    <tr>
+        <td colspan="2" style="text-align: center;">
+            <table style="width:100%;">
+                <tr>
+                    <td style="width:40%;">
+                    </td>
+                    <td style="width:20%;">
+                        <div class="digg_pagination">
+                            <div class="page_info">
+                                <%= page_entries_info @posts %>
+                            </div>
+                            <%= will_paginate @posts, :container => false %>
+                        </div>
+                    </td>
+                    <td style="width:40%;">
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

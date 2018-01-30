@@ -83,3 +83,32 @@ end
     password = "password"
     UserStudente.create!(name: name, surname: surname, email: email, username: username, fiscalCode: fiscalCode, birthDay: birthDay, password: password, password_confirmation: password)
 end
+
+50.times do |n|
+
+    text =('a'..'z').to_a.shuffle[0..7].join
+    ans1 =('a'..'z').to_a.shuffle[0..7].join
+    ans2 =('a'..'z').to_a.shuffle[0..7].join
+    ans3 =('a'..'z').to_a.shuffle[0..7].join
+    ans4 =('a'..'z').to_a.shuffle[0..7].join
+
+    ans_ok=('1'..'4').to_a.shuffle[0].to_s
+    Question.create!(text: text, ans1: ans1, ans2: ans2,  ans3: ans3, ans4: ans4, ans_ok: ans_ok)
+end
+
+50.times do |n|
+
+    q1 =1+rand(n)
+    q2 =1+rand(n)
+    q3 =1+rand(n)
+    q4 =1+rand(n)
+    q5 =1+rand(n)
+    q6 =1+rand(n)
+    q7 =1+rand(n)
+    q8 =1+rand(n)
+    q9 =1+rand(n)
+    q10 =1+rand(n)
+
+
+    Quiz.create!(q1: q1,q2: q2,q3: q3,q4: q4,q5: q5,q6: q6,q7: q7,q8: q8,q9: q9,q10: q10)
+end
