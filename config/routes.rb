@@ -20,6 +20,12 @@ Rails.application.routes.draw do
   
   get 'signupAdminNew' => 'user_admins#new'
   
+  get 'editStudenteNow' => 'user_studentes#editStudenteNow'
+  
+  get 'editProfessoreNow' => 'user_professores#editProfessoreNow'
+  
+  get 'editAdminNow' => 'user_admins#editAdminNow'
+  
   resources :user_studentes
   
   resources :user_professores

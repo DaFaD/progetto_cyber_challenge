@@ -1,6 +1,6 @@
 class UserAdminsController < ApplicationController
   before_action :logged_out_user, only: [:new, :newAdmin, :create]
-  before_action :logged_in_user, only: [:index, :edit, :update, :show, :destroy, :destroyMySelf]
+  before_action :logged_in_user, only: [:index, :edit, :editAdminNow, :update, :show, :destroy, :destroyMySelf]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
   
@@ -43,15 +43,31 @@ class UserAdminsController < ApplicationController
     end
   end
   
+  def editAdminNow
+    if session[:giaPresoAdmin] != nil
+        session.delete(:giaPresoAdmin)
+    end
+    redirect_to edit_user_admin_url(current_user)
+  end
+  
   def edit
   end
   
   def update
-    if @userAdmin.update_attributes(user_params)
-      flash[:success] = "Profile updated"
-      redirect_to @userAdmin
+    if UserProfessore.find_by(username: params[:user_admin][:username].downcase) != nil || UserStudente.find_by(username: params[:user_admin][:username].downcase) != nil
+        session[:giaPresoAdmin] = "1"
+        render 'edit'
+    elsif @userAdmin.update_attributes(user_params)
+        if session[:giaPresoAdmin] != nil
+            session.delete(:giaPresoAdmin)
+        end
+        flash[:success] = "Profile updated"
+        redirect_to @userAdmin
     else
-      render 'edit'
+        if session[:giaPresoAdmin] != nil
+            session.delete(:giaPresoAdmin)
+        end
+        render 'edit'
     end
   end
   

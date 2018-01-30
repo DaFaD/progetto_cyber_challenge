@@ -90,7 +90,7 @@
             <% if current_user == @userProfessore %>
                 <tr>
                     <td style="text-align:center;">
-                        <%= button_to "Profile Settings", edit_user_professore_path(current_user), method: :get, :class => "button" %>
+                        <%= button_to "Profile Settings", editProfessoreNow_path, method: :get, :class => "button" %>
                     </td>
                     <td style="text-align:center;">
                         <%= button_to "Delete My Account", destroyMySelfProfessore_path, method: :delete, :class => "button", data: { confirm: "You sure?" } %>

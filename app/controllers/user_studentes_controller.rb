@@ -1,6 +1,6 @@
 class UserStudentesController < ApplicationController
   before_action :logged_out_user, only: [:new, :newStudente, :create]
-  before_action :logged_in_user, only: [:index, :edit, :update, :show, :destroy, :destroyMySelf]
+  before_action :logged_in_user, only: [:index, :edit, :editStudenteNow, :update, :show, :destroy, :destroyMySelf]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
   
@@ -43,15 +43,31 @@ class UserStudentesController < ApplicationController
     end
   end
   
+  def editStudenteNow
+    if session[:giaPresoStudente] != nil
+        session.delete(:giaPresoStudente)
+    end
+    redirect_to edit_user_studente_url(current_user)
+  end
+  
   def edit
   end
   
   def update
-    if @userStudente.update_attributes(user_params)
-      flash[:success] = "Profile updated"
-      redirect_to @userStudente
+    if UserAdmin.find_by(username: params[:user_studente][:username].downcase) != nil || UserProfessore.find_by(username: params[:user_studente][:username].downcase) != nil
+        session[:giaPresoStudente] = "1"
+        render 'edit'
+    elsif @userStudente.update_attributes(user_params)
+        if session[:giaPresoStudente] != nil
+            session.delete(:giaPresoStudente)
+        end
+        flash[:success] = "Profile updated"
+        redirect_to @userStudente
     else
-      render 'edit'
+        if session[:giaPresoStudente] != nil
+            session.delete(:giaPresoStudente)
+        end
+        render 'edit'
     end
   end
   
