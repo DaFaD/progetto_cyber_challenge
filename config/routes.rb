@@ -8,11 +8,17 @@ Rails.application.routes.draw do
   
   get 'studenteOProfessore' => 'static_pages#studenteOProfessore'
 
-  get 'signupStudente' => 'user_studentes#new'
+  get 'signupStudente' => 'user_studentes#newStudente'
   
-  get 'signupProfessore' => 'user_professores#new'
+  get 'signupStudenteNew' => 'user_studentes#new'
   
-  get 'signupAdmin' => 'user_admins#new'
+  get 'signupProfessore' => 'user_professores#newProfessore'
+  
+  get 'signupProfessoreNew' => 'user_professores#new'
+  
+  get 'signupAdmin' => 'user_admins#newAdmin'
+  
+  get 'signupAdminNew' => 'user_admins#new'
   
   resources :user_studentes
   

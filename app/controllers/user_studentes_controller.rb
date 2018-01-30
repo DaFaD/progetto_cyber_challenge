@@ -1,5 +1,5 @@
 class UserStudentesController < ApplicationController
-  before_action :logged_out_user, only: [:new, :create]
+  before_action :logged_out_user, only: [:new, :newStudente, :create]
   before_action :logged_in_user, only: [:index, :edit, :update, :show, :destroy, :destroyMySelf]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
@@ -12,6 +12,13 @@ class UserStudentesController < ApplicationController
     @userStudente = UserStudente.find(params[:id])
   end
   
+  def newStudente
+    if session[:giaPresoStudente] != nil
+        session.delete(:giaPresoStudente)
+    end
+    redirect_to signupStudenteNew_url
+  end
+  
   def new
     @userStudente = UserStudente.new
   end
@@ -19,13 +26,19 @@ class UserStudentesController < ApplicationController
   def create
     @userStudente = UserStudente.new(user_params)
     if UserAdmin.find_by(username: @userStudente.username.downcase) != nil || UserProfessore.find_by(username: @userStudente.username.downcase) != nil
-        flash.now[:danger] = "Username already token!"
+        session[:giaPresoStudente] = "1"
         render 'new'
     elsif @userStudente.save
+        if session[:giaPresoStudente] != nil
+            session.delete(:giaPresoStudente)
+        end
         log_in @userStudente
         flash[:success] = "Welcome to the Cyber Challenge Platform!"
         redirect_to @userStudente
     else
+        if session[:giaPresoStudente] != nil
+            session.delete(:giaPresoStudente)
+        end
         render 'new'
     end
   end
