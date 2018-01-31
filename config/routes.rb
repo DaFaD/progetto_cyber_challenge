@@ -32,11 +32,7 @@ Rails.application.routes.draw do
   
   resources :user_admins
   
-  resources :account_activation_studentes, only: [:edit]
-  
-  resources :account_activation_professores, only: [:edit]
-  
-  resources :account_activation_admins, only: [:edit]
+  resources :account_activations, only: [:edit]
   
   get 'listaStudenteOProfOAdmin' => 'static_pages#listaStudenteOProfOAdmin'
   
