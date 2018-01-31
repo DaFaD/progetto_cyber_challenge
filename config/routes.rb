@@ -32,6 +32,12 @@ Rails.application.routes.draw do
   
   resources :user_admins
   
+  resources :account_activation_studentes, only: [:edit]
+  
+  resources :account_activation_professores, only: [:edit]
+  
+  resources :account_activation_admins, only: [:edit]
+  
   get 'listaStudenteOProfOAdmin' => 'static_pages#listaStudenteOProfOAdmin'
   
   # get 'testNavFoo' => 'static_pages#testNavFoo'

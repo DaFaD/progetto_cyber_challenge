@@ -1,0 +1,2 @@
+class AccountActivationProfessoresController < ApplicationController
+end

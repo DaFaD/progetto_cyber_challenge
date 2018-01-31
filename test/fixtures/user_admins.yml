@@ -4,6 +4,8 @@ nomequalsiasiadmin:
     email: nomeadmin@hotmail.it
     username: soprannomeadmin
     password_digest: <%= UserAdmin.digest('password') %>
+    activated: true
+    activated_at: <%= Time.zone.now %>
 
 nomequalsiasiadmin2:
     name: Nomeadmin2
@@ -11,6 +13,8 @@ nomequalsiasiadmin2:
     email: nomeadmin2@hotmail.it
     username: soprannomeadmin2
     password_digest: <%= UserAdmin.digest('password') %>
+    activated: true
+    activated_at: <%= Time.zone.now %>
 
 nomequalsiasiadmin3:
     name: Nomeadmin3
@@ -18,6 +22,8 @@ nomequalsiasiadmin3:
     email: nomeadmin3@hotmail.it
     username: soprannomeadmin3
     password_digest: <%= UserAdmin.digest('password') %>
+    activated: true
+    activated_at: <%= Time.zone.now %>
 
 nomequalsiasiadmin4:
     name: Nomeadmin4
@@ -25,6 +31,8 @@ nomequalsiasiadmin4:
     email: nomeadmin4@hotmail.it
     username: soprannomeadmin4
     password_digest: <%= UserAdmin.digest('password') %>
+    activated: true
+    activated_at: <%= Time.zone.now %>
 
 <% 30.times do |n| %>
 user_admin_<%= n %>:
@@ -33,4 +41,6 @@ user_admin_<%= n %>:
     email: <%= "useradmin-#{n}@hotmail.it" %>
     username: <%= "usersoprannomeadmin-#{n}" %>
     password_digest: <%= UserAdmin.digest('password') %>
+    activated: true
+    activated_at: <%= Time.zone.now %>
 <% end %>
