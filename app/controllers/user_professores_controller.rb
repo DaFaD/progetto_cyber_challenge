@@ -42,9 +42,9 @@ class UserProfessoresController < ApplicationController
             if session[:giaPresoProfessore] != nil
                 session.delete(:giaPresoProfessore)
             end
-            log_in @userProfessore
-            flash[:success] = "Welcome to the Cyber Challenge Platform!"
-            redirect_to @userProfessore
+            UserMailer.account_activation(@userProfessore).deliver_now
+            flash[:info] = "Please check your email to activate your account."
+            redirect_to root_url
         else
             if session[:professorPasswordSbagliata] != nil
                 session.delete(:professorPasswordSbagliata)

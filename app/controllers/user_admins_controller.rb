@@ -42,9 +42,9 @@ class UserAdminsController < ApplicationController
             if session[:giaPresoAdmin] != nil
                 session.delete(:giaPresoAdmin)
             end
-            log_in @userAdmin
-            flash[:success] = "Welcome to the Cyber Challenge Platform!"
-            redirect_to @userAdmin
+            UserMailer.account_activation(@userAdmin).deliver_now
+            flash[:info] = "Please check your email to activate your account."
+            redirect_to root_url
         else
             if session[:administratorPasswordSbagliata] != nil
                 session.delete(:administratorPasswordSbagliata)
