@@ -3,6 +3,7 @@ class UserAdminsController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :editAdminNow, :update, :show, :destroy, :destroyMySelf]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
+  before_action :passato_di_qua_admin, only: :new
   
   def index
     @user_admins = UserAdmin.paginate(page: params[:page]).order('username')
@@ -13,6 +14,7 @@ class UserAdminsController < ApplicationController
   end
   
   def newAdmin
+    session[:passatoQuaAdmin] = "1"
     if session[:administratorPasswordSbagliata] != nil
         session.delete(:administratorPasswordSbagliata)
     end
@@ -23,6 +25,12 @@ class UserAdminsController < ApplicationController
   end
 
   def new
+    if session[:passatoQuaProfessore] != nil
+        session.delete(:passatoQuaProfessore)
+    end
+    if session[:passatoQuaStudente] != nil
+        session.delete(:passatoQuaStudente)
+    end
     @userAdmin = UserAdmin.new
   end
   
@@ -41,6 +49,9 @@ class UserAdminsController < ApplicationController
             end
             if session[:giaPresoAdmin] != nil
                 session.delete(:giaPresoAdmin)
+            end
+            if session[:passatoQuaAdmin] != nil
+                session.delete(:passatoQuaAdmin)
             end
             UserMailer.account_activation(@userAdmin).deliver_now
             flash[:info] = "Please check your email to activate your account."
@@ -77,7 +88,7 @@ class UserAdminsController < ApplicationController
     if UserProfessore.find_by(username: params[:user_admin][:username].downcase) != nil || UserStudente.find_by(username: params[:user_admin][:username].downcase) != nil
         session[:giaPresoAdmin] = "1"
         render 'edit'
-    elsif @userAdmin.update_attributes(user_params)
+    elsif @userAdmin.update_attributes(user_params_for_update)
         if session[:giaPresoAdmin] != nil
             session.delete(:giaPresoAdmin)
         end
@@ -109,6 +120,10 @@ class UserAdminsController < ApplicationController
   
     def user_params
         params.require(:user_admin).permit(:name, :surname, :email, :username, :password, :password_confirmation)
+    end
+    
+    def user_params_for_update
+        params.require(:user_admin).permit(:name, :surname, :username, :password, :password_confirmation)
     end
     
     # Before filters
@@ -143,6 +158,13 @@ class UserAdminsController < ApplicationController
     def admin_user
         unless this_is_admin?(current_user)
             flash[:danger] = "You don't have the rights for this action."
+            redirect_to(root_url)
+        end
+    end
+    
+    def passato_di_qua_admin
+        unless session[:passatoQuaAdmin] == "1"
+            flash[:danger] = "You don't have the rights for this page."
             redirect_to(root_url)
         end
     end

@@ -3,6 +3,7 @@ class UserProfessoresController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :editProfessoreNow, :update, :show, :destroy, :destroyMySelf]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
+  before_action :passato_di_qua_professore, only: :new
   
   def index
     @user_professores = UserProfessore.paginate(page: params[:page]).order('username')
@@ -13,6 +14,7 @@ class UserProfessoresController < ApplicationController
   end
   
   def newProfessore
+    session[:passatoQuaProfessore] = "1"
     if session[:professorPasswordSbagliata] != nil
         session.delete(:professorPasswordSbagliata)
     end
@@ -23,6 +25,12 @@ class UserProfessoresController < ApplicationController
   end
 
   def new
+    if session[:passatoQuaAdmin] != nil
+        session.delete(:passatoQuaAdmin)
+    end
+    if session[:passatoQuaStudente] != nil
+        session.delete(:passatoQuaStudente)
+    end
     @userProfessore = UserProfessore.new
   end
   
@@ -41,6 +49,9 @@ class UserProfessoresController < ApplicationController
             end
             if session[:giaPresoProfessore] != nil
                 session.delete(:giaPresoProfessore)
+            end
+            if session[:passatoQuaProfessore] != nil
+                session.delete(:passatoQuaProfessore)
             end
             UserMailer.account_activation(@userProfessore).deliver_now
             flash[:info] = "Please check your email to activate your account."
@@ -77,7 +88,7 @@ class UserProfessoresController < ApplicationController
     if UserAdmin.find_by(username: params[:user_professore][:username].downcase) != nil || UserStudente.find_by(username: params[:user_professore][:username].downcase) != nil
         session[:giaPresoProfessore] = "1"
         render 'edit'
-    elsif @userProfessore.update_attributes(user_params)
+    elsif @userProfessore.update_attributes(user_params_for_update)
         if session[:giaPresoProfessore] != nil
             session.delete(:giaPresoProfessore)
         end
@@ -109,6 +120,10 @@ class UserProfessoresController < ApplicationController
   
     def user_params
         params.require(:user_professore).permit(:name, :surname, :email, :username, :password, :password_confirmation)
+    end
+    
+    def user_params_for_update
+        params.require(:user_professore).permit(:name, :surname, :username, :password, :password_confirmation)
     end
     
     # Before filters
@@ -143,6 +158,13 @@ class UserProfessoresController < ApplicationController
     def admin_user
         unless this_is_admin?(current_user)
             flash[:danger] = "You don't have the rights for this action."
+            redirect_to(root_url)
+        end
+    end
+    
+    def passato_di_qua_professore
+        unless session[:passatoQuaProfessore] == "1"
+            flash[:danger] = "You don't have the rights for this page."
             redirect_to(root_url)
         end
     end
