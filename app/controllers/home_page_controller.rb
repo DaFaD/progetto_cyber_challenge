@@ -9,5 +9,6 @@ class HomePageController < ApplicationController
     if session[:passatoQuaStudente] != nil
         session.delete(:passatoQuaStudente)
     end
+    @home_page = Advice.paginate(page: params[:page]).order('id DESC').per_page(2)
   end
 end

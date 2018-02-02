@@ -30,12 +30,16 @@ Rails.application.routes.draw do
   
   get 'editAdminNow' => 'user_admins#editAdminNow'
   
+  get 'newAdvice' => 'advices#new'
+  
   resources :user_studentes
   
   resources :user_professores
   
   resources :user_admins
   
+  resources :advices
+
   resources :account_activations, only: [:edit]
   
   resources :password_resets, only: [:new, :create, :edit, :update]

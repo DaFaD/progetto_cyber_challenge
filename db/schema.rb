@@ -13,6 +13,12 @@
 
 ActiveRecord::Schema.define(version: 20180202112256) do
 
+  create_table "advices", force: true do |t|
+    t.string   "title"
+    t.string   "content"
+    t.string   "author"
+    t.datetime "writtenAt"
+
   create_table "pw_new_admins", force: true do |t|
     t.string   "pw"
     t.datetime "created_at", null: false
