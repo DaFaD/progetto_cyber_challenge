@@ -18,7 +18,13 @@ class ActiveSupport::TestCase
         password = options[:password] || 'password'
         remember_me = options[:remember_me] || '1'
         if integration_test?
-            post login_path, session: { email: user.email, password: password, remember_me: remember_me }
+            if user.class.to_s == "UserAdmin"
+                post loginAdmin_path, session: { email: user.email, password: password, remember_me: remember_me }
+            elsif user.class.to_s == "UserProfessore"
+                post loginProfessore_path, session: { email: user.email, password: password, remember_me: remember_me }
+            elsif user.class.to_s == "UserStudente"
+                post loginStudente_path, session: { email: user.email, password: password, remember_me: remember_me }
+            end
         else
             session[:user_id] = user.id
             session[:user_type_string] = user.class.to_s

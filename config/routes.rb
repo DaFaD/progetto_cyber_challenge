@@ -42,6 +42,12 @@ Rails.application.routes.draw do
   
   post 'login' => 'sessions#create'
   
+  post 'loginAdmin' => 'sessions#createAdmin'
+  
+  post 'loginProfessore' => 'sessions#createProfessore'
+  
+  post 'loginStudente' => 'sessions#createStudente'
+  
   delete 'logout' => 'sessions#destroy'
   
   delete 'destroyMySelfAdmin' => 'user_admins#destroyMySelf'
