@@ -1,0 +1,4 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pw: $2a$10$l/GxDpV.ReIDRNVecO1kaepnjAcLPeJJCjrRcXhpPt/8IbdD3J3XW

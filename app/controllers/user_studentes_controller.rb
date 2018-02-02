@@ -1,41 +1,85 @@
 class UserStudentesController < ApplicationController
-  before_action :logged_out_user, only: [:new, :create]
-  before_action :logged_in_user, only: [:index, :edit, :update, :show, :destroy, :destroyMySelf]
+  before_action :logged_out_user, only: [:new, :newStudente, :create]
+  before_action :logged_in_user, only: [:index, :edit, :editStudenteNow, :update, :show, :destroy, :destroyMySelf]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
+  before_action :passato_di_qua_studente, only: :new
   
   def index
-    @user_studentes = UserStudente.paginate(page: params[:page]).order('username')
+    @user_studentes = UserStudente.where(activated: true).paginate(page: params[:page]).order('username')
   end
   
   def show
     @userStudente = UserStudente.find(params[:id])
+    redirect_to root_url and return unless @userStudente.activated == true
+  end
+  
+  def newStudente
+    session[:passatoQuaStudente] = "1"
+    if session[:giaPresoStudente] != nil
+        session.delete(:giaPresoStudente)
+    end
+    redirect_to signupStudenteNew_url
   end
   
   def new
+    if session[:passatoQuaAdmin] != nil
+        session.delete(:passatoQuaAdmin)
+    end
+    if session[:passatoQuaProfessore] != nil
+        session.delete(:passatoQuaProfessore)
+    end
     @userStudente = UserStudente.new
   end
   
   def create
     @userStudente = UserStudente.new(user_params)
-    if @userStudente.save
-        log_in @userStudente
-        flash[:success] = "Welcome to the Cyber Challenge Platform!"
-        redirect_to @userStudente
+    if UserAdmin.find_by(username: @userStudente.username.downcase) != nil || UserProfessore.find_by(username: @userStudente.username.downcase) != nil
+        session[:giaPresoStudente] = "1"
+        render 'new'
+    elsif @userStudente.save
+        if session[:giaPresoStudente] != nil
+            session.delete(:giaPresoStudente)
+        end
+        if session[:passatoQuaStudente] != nil
+            session.delete(:passatoQuaStudente)
+        end
+        UserMailer.account_activation(@userStudente).deliver_now
+        flash[:info] = "Please check your email to activate your account."
+        redirect_to root_url
     else
+        if session[:giaPresoStudente] != nil
+            session.delete(:giaPresoStudente)
+        end
         render 'new'
     end
+  end
+  
+  def editStudenteNow
+    if session[:giaPresoStudente] != nil
+        session.delete(:giaPresoStudente)
+    end
+    redirect_to edit_user_studente_url(current_user)
   end
   
   def edit
   end
   
   def update
-    if @userStudente.update_attributes(user_params)
-      flash[:success] = "Profile updated"
-      redirect_to @userStudente
+    if UserAdmin.find_by(username: params[:user_studente][:username].downcase) != nil || UserProfessore.find_by(username: params[:user_studente][:username].downcase) != nil
+        session[:giaPresoStudente] = "1"
+        render 'edit'
+    elsif @userStudente.update_attributes(user_params_for_update)
+        if session[:giaPresoStudente] != nil
+            session.delete(:giaPresoStudente)
+        end
+        flash[:success] = "Profile updated"
+        redirect_to @userStudente
     else
-      render 'edit'
+        if session[:giaPresoStudente] != nil
+            session.delete(:giaPresoStudente)
+        end
+        render 'edit'
     end
   end
   
@@ -57,6 +101,10 @@ class UserStudentesController < ApplicationController
   
     def user_params
         params.require(:user_studente).permit(:name, :surname, :email, :username, :fiscalCode, :birthDay, :password, :password_confirmation)
+    end
+    
+    def user_params_for_update
+        params.require(:user_studente).permit(:name, :surname, :username, :fiscalCode, :birthDay, :password, :password_confirmation)
     end
     
     # Before filters
@@ -91,6 +139,13 @@ class UserStudentesController < ApplicationController
     def admin_user
         unless this_is_admin?(current_user)
             flash[:danger] = "You don't have the rights for this action."
+            redirect_to(root_url)
+        end
+    end
+    
+    def passato_di_qua_studente
+        unless session[:passatoQuaStudente] == "1"
+            flash[:danger] = "You don't have the rights for this page."
             redirect_to(root_url)
         end
     end

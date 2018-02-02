@@ -81,11 +81,14 @@
                                 <h3><%= f.label :username %></h3>
                                 <%= f.text_field :username , class: "personal_field form-control", placeholder: "Your username..." %>
                                 
-                                <h3><%= f.label :password %></h3>
+                                <h3><%= f.label :password, "My new Password" %></h3>
                                 <%= f.password_field :password , class: "personal_field form-control", placeholder: "Your password..." %>
                                 
-                                <h3><%= f.label :password_confirmation, "Confirmation" %></h3>
+                                <h3><%= f.label :password_confirmation, "My new Password Confirmation" %></h3>
                                 <%= f.password_field :password_confirmation , class: "personal_field form-control", placeholder: "Confirm your password..." %>
+                                
+                                <h3><%= f.label :professor_password, "Insert the necessary password to create a new Professor Account" %></h3>
+                                <%= f.password_field :professor_password , class: "personal_field form-control", placeholder: "The password..." %>
                                 
                                 <%= f.submit "Create my account", class: "btn btn-primary", id: "button" %>
                             <% end %>

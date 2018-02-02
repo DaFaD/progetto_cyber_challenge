@@ -91,7 +91,7 @@
             <% if current_user == @userStudente %>
                 <tr>
                     <td style="text-align:center;">
-                        <%= button_to "Profile Settings", edit_user_studente_path(current_user), method: :get, :class => "button" %>
+                        <%= button_to "Profile Settings", editStudenteNow_path, method: :get, :class => "button" %>
                     </td>
                     <td style="text-align:center;">
                         <%= button_to "Test History", paginaIniziale_path, method: :get, :class => "button" %>

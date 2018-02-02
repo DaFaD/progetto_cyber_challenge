@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  # get 'password_resets/new'
+
+  # get 'password_resets/edit'
+
   # get 'sessions/new'
 
   root 'home_page#homepage'
@@ -8,11 +12,23 @@ Rails.application.routes.draw do
   
   get 'studenteOProfessore' => 'static_pages#studenteOProfessore'
 
-  get 'signupStudente' => 'user_studentes#new'
+  get 'signupStudente' => 'user_studentes#newStudente'
   
-  get 'signupProfessore' => 'user_professores#new'
+  get 'signupStudenteNew' => 'user_studentes#new'
   
-  get 'signupAdmin' => 'user_admins#new'
+  get 'signupProfessore' => 'user_professores#newProfessore'
+  
+  get 'signupProfessoreNew' => 'user_professores#new'
+  
+  get 'signupAdmin' => 'user_admins#newAdmin'
+  
+  get 'signupAdminNew' => 'user_admins#new'
+  
+  get 'editStudenteNow' => 'user_studentes#editStudenteNow'
+  
+  get 'editProfessoreNow' => 'user_professores#editProfessoreNow'
+  
+  get 'editAdminNow' => 'user_admins#editAdminNow'
   
   get 'newAdvice' => 'advices#new'
   
@@ -23,6 +39,10 @@ Rails.application.routes.draw do
   resources :user_admins
   
   resources :advices
+
+  resources :account_activations, only: [:edit]
+  
+  resources :password_resets, only: [:new, :create, :edit, :update]
   
   get 'listaStudenteOProfOAdmin' => 'static_pages#listaStudenteOProfOAdmin'
   
@@ -31,6 +51,12 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new'
   
   post 'login' => 'sessions#create'
+  
+  post 'loginAdmin' => 'sessions#createAdmin'
+  
+  post 'loginProfessore' => 'sessions#createProfessore'
+  
+  post 'loginStudente' => 'sessions#createStudente'
   
   delete 'logout' => 'sessions#destroy'
   
@@ -41,6 +67,14 @@ Rails.application.routes.draw do
   delete 'destroyMySelfStudente' => 'user_studentes#destroyMySelf'
   
   get 'manage' => 'manage#manage'
+  
+  get 'changeAdministratorsPassword' => 'pw_new_admins#editAdministratorsPassword'
+  
+  post 'changeAdministratorsPassword' => 'pw_new_admins#updateAdministratorsPassword'
+  
+  get 'changeProfessorsPassword' => 'pw_new_professores#editProfessorsPassword'
+  
+  post 'changeProfessorsPassword' => 'pw_new_professores#updateProfessorsPassword'
 
 
 
