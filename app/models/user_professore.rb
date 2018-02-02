@@ -5,7 +5,7 @@ class UserProfessore < ActiveRecord::Base
     before_create :create_activation_digest
     validates :name, presence: true, length: { maximum: 50 }
     validates :surname, presence: true, length: { maximum: 50 }
-    VALID_EMAIL_REGEX = /\A[\w+\-.]+@(dis.uniroma1.it|uniroma1.it)\z/i # /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+    VALID_EMAIL_REGEX = /\A([\w+\-.]+@(diag.uniroma1.it|dis.uniroma1.it|uniroma1.it)|sinibaldi.1656495@studenti.uniroma1.it|daniel46-95@hotmail.it|daniel46.95@gmail.com)\z/i # versione precedente: /\A[\w+\-.]+@(dis.uniroma1.it|uniroma1.it)\z/i oppure una versione ancora precedente: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
     validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
     validates :username, presence: true, length: { maximum: 50 }, uniqueness: { case_sensitive: false }
     has_secure_password
