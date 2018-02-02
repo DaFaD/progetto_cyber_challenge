@@ -55,12 +55,40 @@ class UserMailerTest < ActionMailer::TestCase
     assert_match user.class.to_s, mail.body.encoded
   end
 
-  #test "password_reset" do
-    #mail = UserMailer.password_reset
-    #assert_equal "Password reset", mail.subject
-    #assert_equal ["to@example.org"], mail.to
-    #assert_equal ["from@example.com"], mail.from
-    #assert_match "Hi", mail.body.encoded
-  #end
+  test "password_reset for an admin user" do
+    user = user_admins(:nomequalsiasiadmin)
+    user.reset_token = UserAdmin.new_token
+    mail = UserMailer.password_reset(user)
+    assert_equal "Password reset", mail.subject
+    assert_equal [user.email], mail.to
+    assert_equal ["noreply@example.com"], mail.from
+    assert_match user.reset_token, mail.body.encoded
+    assert_match CGI::escape(user.email), mail.body.encoded
+    assert_match user.class.to_s, mail.body.encoded
+  end
+  
+  test "password_reset for a professor user" do
+    user = user_professores(:nomequalsiasiprofessore)
+    user.reset_token = UserProfessore.new_token
+    mail = UserMailer.password_reset(user)
+    assert_equal "Password reset", mail.subject
+    assert_equal [user.email], mail.to
+    assert_equal ["noreply@example.com"], mail.from
+    assert_match user.reset_token, mail.body.encoded
+    assert_match CGI::escape(user.email), mail.body.encoded
+    assert_match user.class.to_s, mail.body.encoded
+  end
+  
+  test "password_reset for a student user" do
+    user = user_studentes(:nomequalsiasistudente)
+    user.reset_token = UserStudente.new_token
+    mail = UserMailer.password_reset(user)
+    assert_equal "Password reset", mail.subject
+    assert_equal [user.email], mail.to
+    assert_equal ["noreply@example.com"], mail.from
+    assert_match user.reset_token, mail.body.encoded
+    assert_match CGI::escape(user.email), mail.body.encoded
+    assert_match user.class.to_s, mail.body.encoded
+  end
 
 end

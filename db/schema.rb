@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180131100742) do
+ActiveRecord::Schema.define(version: 20180202112256) do
 
   create_table "pw_new_admins", force: true do |t|
     t.string   "pw"
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 20180131100742) do
     t.string   "activation_digest"
     t.boolean  "activated",         default: false
     t.datetime "activated_at"
+    t.string   "reset_digest"
+    t.datetime "reset_sent_at"
   end
 
   add_index "user_admins", ["email"], name: "index_user_admins_on_email", unique: true
@@ -54,6 +56,8 @@ ActiveRecord::Schema.define(version: 20180131100742) do
     t.string   "activation_digest"
     t.boolean  "activated",         default: false
     t.datetime "activated_at"
+    t.string   "reset_digest"
+    t.datetime "reset_sent_at"
   end
 
   add_index "user_professores", ["email"], name: "index_user_professores_on_email", unique: true
@@ -73,6 +77,8 @@ ActiveRecord::Schema.define(version: 20180131100742) do
     t.string   "activation_digest"
     t.boolean  "activated",         default: false
     t.datetime "activated_at"
+    t.string   "reset_digest"
+    t.datetime "reset_sent_at"
   end
 
   add_index "user_studentes", ["email"], name: "index_user_studentes_on_email", unique: true
