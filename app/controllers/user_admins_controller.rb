@@ -6,11 +6,12 @@ class UserAdminsController < ApplicationController
   before_action :passato_di_qua_admin, only: :new
   
   def index
-    @user_admins = UserAdmin.paginate(page: params[:page]).order('username')
+    @user_admins = UserAdmin.where(activated: true).paginate(page: params[:page]).order('username')
   end
   
   def show
     @userAdmin = UserAdmin.find(params[:id])
+    redirect_to root_url and return unless @userAdmin.activated == true
   end
   
   def newAdmin

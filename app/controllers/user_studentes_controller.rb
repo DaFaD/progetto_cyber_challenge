@@ -6,11 +6,12 @@ class UserStudentesController < ApplicationController
   before_action :passato_di_qua_studente, only: :new
   
   def index
-    @user_studentes = UserStudente.paginate(page: params[:page]).order('username')
+    @user_studentes = UserStudente.where(activated: true).paginate(page: params[:page]).order('username')
   end
   
   def show
     @userStudente = UserStudente.find(params[:id])
+    redirect_to root_url and return unless @userStudente.activated == true
   end
   
   def newStudente
