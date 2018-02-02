@@ -38,9 +38,13 @@ def CFgenerate(nome, cognome, cfintermedio)
     res.downcase
 end
 
-UserAdmin.create!(name: "Daniele", surname: "Sinibaldi", email: "daniel46.95@gmail.com", username: "Daniel-01", password: "password", password_confirmation: "password")
-UserAdmin.create!(name: "Daniele", surname: "Sinibaldi", email: "daniel46-95@hotmail.it", username: "Daniel-02", password: "password", password_confirmation: "password")
-UserAdmin.create!(name: "User", surname: "Example", email: "example@railstutorial.org", username: "EsempioSoprannome-0", password: "password", password_confirmation: "password")
+PwNewAdmin.create!(pw: PwNewAdmin.digest("password"))
+
+PwNewProfessore.create!(pw: PwNewProfessore.digest("password"))
+
+UserAdmin.create!(name: "Daniele", surname: "Sinibaldi", email: "daniel46.95@gmail.com", username: "Daniel-01", password: "password", password_confirmation: "password", activated: true, activated_at: Time.zone.now)
+UserAdmin.create!(name: "Daniele", surname: "Sinibaldi", email: "daniel46-95@hotmail.it", username: "Daniel-02", password: "password", password_confirmation: "password", activated: true, activated_at: Time.zone.now)
+UserAdmin.create!(name: "User", surname: "Example", email: "example@railstutorial.org", username: "EsempioSoprannome-0", password: "password", password_confirmation: "password", activated: true, activated_at: Time.zone.now)
 
 97.times do |n|
     name = Faker::Name.first_name
@@ -48,7 +52,7 @@ UserAdmin.create!(name: "User", surname: "Example", email: "example@railstutoria
     email = "example-#{n+1}@railstutorial.org"
     username = "esempiosoprannomeadmin-#{n+1}"
     password = "password"
-    UserAdmin.create!(name: name, surname: surname, email: email, username: username, password: password, password_confirmation: password)
+    UserAdmin.create!(name: name, surname: surname, email: email, username: username, password: password, password_confirmation: password, activated: true, activated_at: Time.zone.now)
 end
 
 100.times do |n|
@@ -57,7 +61,7 @@ end
     email = "exampleprofessore-#{n+1}@uniroma1.it"
     username = "esempiosoprannomeprofessore-#{n+1}"
     password = "password"
-    UserProfessore.create!(name: name, surname: surname, email: email, username: username, password: password, password_confirmation: password)
+    UserProfessore.create!(name: name, surname: surname, email: email, username: username, password: password, password_confirmation: password, activated: true, activated_at: Time.zone.now)
 end
 
 50.times do |n|
@@ -69,7 +73,7 @@ end
     fiscalCode_intermedio = CodiceFiscale.calculate( :name => name, :surname => surname, :gender => :male, :birthdate => birthDay, :province_code => 'RM', :city_name => 'Roma' )
     fiscalCode= CFgenerate(name, surname, fiscalCode_intermedio)
     password = "password"
-    UserStudente.create!(name: name, surname: surname, email: email, username: username, fiscalCode: fiscalCode, birthDay: birthDay, password: password, password_confirmation: password)
+    UserStudente.create!(name: name, surname: surname, email: email, username: username, fiscalCode: fiscalCode, birthDay: birthDay, password: password, password_confirmation: password, activated: true, activated_at: Time.zone.now)
 end
 
 50.times do |n|
@@ -81,5 +85,5 @@ end
     fiscalCode_intermedio = CodiceFiscale.calculate( :name => name, :surname => surname, :gender => :female, :birthdate => birthDay, :province_code => 'RM', :city_name => 'Roma' )
     fiscalCode= CFgenerate(name, surname, fiscalCode_intermedio)
     password = "password"
-    UserStudente.create!(name: name, surname: surname, email: email, username: username, fiscalCode: fiscalCode, birthDay: birthDay, password: password, password_confirmation: password)
+    UserStudente.create!(name: name, surname: surname, email: email, username: username, fiscalCode: fiscalCode, birthDay: birthDay, password: password, password_confirmation: password, activated: true, activated_at: Time.zone.now)
 end

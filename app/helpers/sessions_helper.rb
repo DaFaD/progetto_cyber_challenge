@@ -40,7 +40,7 @@ module SessionsHelper
             elsif cookies.signed[:user_type_string] == "UserStudente"
                 user = UserStudente.find_by(id: user_id)
             end
-            if user && user.authenticated?(cookies[:remember_token])
+            if user && user.authenticated?(:remember, cookies[:remember_token])
                 log_in user
                 @current_user = user
             end

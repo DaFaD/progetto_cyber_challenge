@@ -11,17 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180121122929) do
+ActiveRecord::Schema.define(version: 20180202112256) do
+
+  create_table "pw_new_admins", force: true do |t|
+    t.string   "pw"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pw_new_professores", force: true do |t|
+    t.string   "pw"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "user_admins", force: true do |t|
     t.string   "name"
     t.string   "surname"
     t.string   "email"
     t.string   "username"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "password_digest"
     t.string   "remember_digest"
+    t.string   "activation_digest"
+    t.boolean  "activated",         default: false
+    t.datetime "activated_at"
+    t.string   "reset_digest"
+    t.datetime "reset_sent_at"
   end
 
   add_index "user_admins", ["email"], name: "index_user_admins_on_email", unique: true
@@ -32,10 +49,15 @@ ActiveRecord::Schema.define(version: 20180121122929) do
     t.string   "surname"
     t.string   "email"
     t.string   "username"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "password_digest"
     t.string   "remember_digest"
+    t.string   "activation_digest"
+    t.boolean  "activated",         default: false
+    t.datetime "activated_at"
+    t.string   "reset_digest"
+    t.datetime "reset_sent_at"
   end
 
   add_index "user_professores", ["email"], name: "index_user_professores_on_email", unique: true
@@ -48,10 +70,15 @@ ActiveRecord::Schema.define(version: 20180121122929) do
     t.string   "username"
     t.string   "fiscalCode"
     t.date     "birthDay"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "password_digest"
     t.string   "remember_digest"
+    t.string   "activation_digest"
+    t.boolean  "activated",         default: false
+    t.datetime "activated_at"
+    t.string   "reset_digest"
+    t.datetime "reset_sent_at"
   end
 
   add_index "user_studentes", ["email"], name: "index_user_studentes_on_email", unique: true

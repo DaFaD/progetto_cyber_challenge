@@ -90,7 +90,7 @@
             <% if current_user == @userAdmin %>
                 <tr>
                     <td style="text-align:center;">
-                        <%= button_to "Profile Settings", edit_user_admin_path(current_user), method: :get, :class => "button" %>
+                        <%= button_to "Profile Settings", editAdminNow_path, method: :get, :class => "button" %>
                     </td>
                     <td style="text-align:center;">
                         <%= button_to "Delete My Account", destroyMySelfAdmin_path, method: :delete, :class => "button", data: { confirm: "You sure?" } %>
