@@ -75,6 +75,16 @@ Rails.application.routes.draw do
   get 'changeProfessorsPassword' => 'pw_new_professores#editProfessorsPassword'
   
   post 'changeProfessorsPassword' => 'pw_new_professores#updateProfessorsPassword'
+  
+  get 'manageSurveyOrActivationPage' => 'survey_activations#manageSurveyOrActivationPage'
+  
+  get 'manageSurvey' => 'survey_activations#manageSurvey'
+  
+  get 'activeSurveyPage' => 'survey_activations#activationPage'
+  
+  get 'activeSurvey' => 'survey_activations#activation'
+  
+  get 'doSurvey' => 'survey_activations#doSurvey'
 
 
 
