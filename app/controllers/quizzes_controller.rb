@@ -11,11 +11,17 @@ class QuizzesController < ApplicationController
 
   def new
     @quiz = Quiz.new
+
+
   end
 
   def create
+
    @quiz = Quiz.new(quiz_params)
+
+
     if @quiz.save
+
 
     else
         render 'new'

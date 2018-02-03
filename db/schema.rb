@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180129103309) do
+ActiveRecord::Schema.define(version: 20180203142116) do
+
+  create_table "histories", force: true do |t|
+    t.integer  "id_user"
+    t.integer  "id_quiz"
+    t.integer  "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "questions", force: true do |t|
     t.string   "text"

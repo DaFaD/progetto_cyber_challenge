@@ -1,5 +1,5 @@
 class Quiz < ActiveRecord::Base
-    validates :id, presence: true
+
     validates :q1, presence: true
     validates :q2, presence: true
     validates :q3, presence: true

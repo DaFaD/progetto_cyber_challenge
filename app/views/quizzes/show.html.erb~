@@ -13,7 +13,7 @@
                 <%= "#{key}"%>
             </td>
 
-             <td >
+             <td ">
                 <% if key=='id'%>
                     <%= "#{value} "%>
                 <%elsif key=='created_at' || key=='updated_at'%>

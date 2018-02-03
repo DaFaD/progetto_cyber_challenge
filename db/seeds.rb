@@ -92,7 +92,7 @@ end
     ans3 =('a'..'z').to_a.shuffle[0..7].join
     ans4 =('a'..'z').to_a.shuffle[0..7].join
 
-    ans_ok=('1'..'4').to_a.shuffle[0].to_s
+    ans_ok=1+rand(4)
     Question.create!(text: text, ans1: ans1, ans2: ans2,  ans3: ans3, ans4: ans4, ans_ok: ans_ok)
 end
 
@@ -111,4 +111,14 @@ end
 
 
     Quiz.create!(q1: q1,q2: q2,q3: q3,q4: q4,q5: q5,q6: q6,q7: q7,q8: q8,q9: q9,q10: q10)
+end
+
+50.times do |n|
+
+   id_user =1+rand(97)
+   id_quiz =1+rand(n)
+   score =1+rand(30)
+
+
+    History.create!(id_user: id_user,id_quiz: id_quiz,score: score)
 end

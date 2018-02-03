@@ -6,7 +6,7 @@ class CreateQuestions < ActiveRecord::Migration
       t.string :ans2
       t.string :ans3
       t.string :ans4
-      t.string :ans_ok
+      t.integer :ans_ok
 
       t.timestamps null: false
     end

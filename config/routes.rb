@@ -2,6 +2,16 @@ Rails.application.routes.draw do
 
 
 
+
+
+  get 'histories/show'
+
+  get 'histories/new'
+
+  get 'histories/create'
+
+  get 'histories/destroy'
+
   # get 'sessions/new'
 
   root 'home_page#homepage'
@@ -23,6 +33,8 @@ Rails.application.routes.draw do
   resources :user_admins
 
   resources :quizzes
+
+  resources :questions
 
   get 'listaStudenteOProfOAdmin' => 'static_pages#listaStudenteOProfOAdmin'
 
