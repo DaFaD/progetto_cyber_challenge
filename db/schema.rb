@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180203142116) do
+ActiveRecord::Schema.define(version: 20180204190707) do
 
   create_table "advices", force: true do |t|
     t.string   "title"
@@ -54,6 +54,14 @@ ActiveRecord::Schema.define(version: 20180203142116) do
 
   create_table "survey_activations", force: true do |t|
     t.boolean  "activated"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "training_averages", force: true do |t|
+    t.integer  "id_user"
+    t.float    "average"
+    t.integer  "ntest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
