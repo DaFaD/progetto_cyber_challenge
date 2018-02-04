@@ -30,9 +30,9 @@ class QuestionsController < ApplicationController
   end
 
   def update
-  if @question.update_attributes(question_params)
+  if Question.find(params[:id]).update_attributes(question_params)
       flash[:success] = "Question updated"
-      redirect_to @question
+      redirect_to Question.find(params[:id])
     else
       render 'edit'
     end
@@ -46,8 +46,8 @@ class QuestionsController < ApplicationController
 
 private
 
-    def user_params
-        params.require(:question).permit(:text, :ans1, :ans2, :ams3, :ans4, :ans_ok)
+    def question_params
+        params.require(:question).permit(:text, :ans1, :ans2, :ans3, :ans4, :ans_ok)
     end
 
     # Before filters

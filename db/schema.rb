@@ -13,13 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20180203142116) do
 
-  create_table "histories", force: true do |t|
-    t.integer  "id_user"
-    t.integer  "score"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "advices", force: true do |t|
     t.string   "title"
     t.string   "content"
@@ -29,13 +22,9 @@ ActiveRecord::Schema.define(version: 20180203142116) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "questions", force: true do |t|
-    t.string   "text"
-    t.string   "ans1"
-    t.string   "ans2"
-    t.string   "ans3"
-    t.string   "ans4"
-    t.integer  "ans_ok"
+  create_table "histories", force: true do |t|
+    t.integer  "id_user"
+    t.integer  "score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -48,6 +37,17 @@ ActiveRecord::Schema.define(version: 20180203142116) do
 
   create_table "pw_new_professores", force: true do |t|
     t.string   "pw"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "questions", force: true do |t|
+    t.string   "text"
+    t.string   "ans1"
+    t.string   "ans2"
+    t.string   "ans3"
+    t.string   "ans4"
+    t.integer  "ans_ok"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

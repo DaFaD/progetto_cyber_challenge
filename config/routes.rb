@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   root 'home_page#homepage'
-  
+
   resources :histories, only: [:show]
 
   get 'paginaIniziale' => 'static_pages#paginaIniziale'
@@ -9,37 +9,37 @@ Rails.application.routes.draw do
   get 'studenteOProfessore' => 'static_pages#studenteOProfessore'
 
   get 'signupStudente' => 'user_studentes#newStudente'
-  
+
   get 'signupStudenteNew' => 'user_studentes#new'
-  
+
   get 'signupProfessore' => 'user_professores#newProfessore'
-  
+
   get 'signupProfessoreNew' => 'user_professores#new'
-  
+
   get 'signupAdmin' => 'user_admins#newAdmin'
-  
+
   get 'signupAdminNew' => 'user_admins#new'
-  
+
   get 'editStudenteNow' => 'user_studentes#editStudenteNow'
-  
+
   get 'editProfessoreNow' => 'user_professores#editProfessoreNow'
-  
+
   get 'editAdminNow' => 'user_admins#editAdminNow'
-  
+
   get 'newAdvice' => 'advices#new'
-  
+
   resources :user_studentes
 
   resources :user_professores
 
   resources :user_admins
 
-  resources :questions, only: [:edit, :new, :index, :show]
+  resources :questions, only: [:edit, :update, :index, :show, :destroy, :create]
 
   resources :advices
 
   resources :account_activations, only: [:edit]
-  
+
   resources :password_resets, only: [:new, :create, :edit, :update]
 
   get 'listaStudenteOProfOAdmin' => 'static_pages#listaStudenteOProfOAdmin'
@@ -51,11 +51,11 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
 
   post 'loginAdmin' => 'sessions#createAdmin'
-  
+
   post 'loginProfessore' => 'sessions#createProfessore'
-  
+
   post 'loginStudente' => 'sessions#createStudente'
- 
+
   delete 'logout' => 'sessions#destroy'
 
   delete 'destroyMySelfAdmin' => 'user_admins#destroyMySelf'
@@ -65,24 +65,28 @@ Rails.application.routes.draw do
   delete 'destroyMySelfStudente' => 'user_studentes#destroyMySelf'
 
   get 'manage' => 'manage#manage'
-  
+
   get 'changeAdministratorsPassword' => 'pw_new_admins#editAdministratorsPassword'
-  
+
   post 'changeAdministratorsPassword' => 'pw_new_admins#updateAdministratorsPassword'
-  
+
   get 'changeProfessorsPassword' => 'pw_new_professores#editProfessorsPassword'
-  
+
   post 'changeProfessorsPassword' => 'pw_new_professores#updateProfessorsPassword'
-  
+
   get 'manageSurveyOrActivationPage' => 'survey_activations#manageSurveyOrActivationPage'
-  
+
   get 'manageSurvey' => 'survey_activations#manageSurvey'
-  
+
   get 'activeSurveyPage' => 'survey_activations#activationPage'
-  
+
   get 'activeSurvey' => 'survey_activations#activation'
-  
+
   get 'doSurvey' => 'survey_activations#doSurvey'
+
+  get 'trainingQuestionsManage' => 'static_pages#trainingQuestionsManage'
+
+  get 'newQuestion' => 'questions#new'
 
 
 
