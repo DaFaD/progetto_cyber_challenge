@@ -6,7 +6,4 @@ class Question < ActiveRecord::Base
     validates :ans4, presence: true
     validates :ans_ok, presence: true
 
-    def TrueAns
-        self.select(:ans_ok)
-    end
 end

@@ -1,17 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  text: MyString
-  ans1: MyString
-  ans2: MyString
-  ans3: MyString
-  ans4: MyString
-  ans_ok: MyString
+#one:
+ # text: MyString
+  #ans1: MyString
+  #ans2: MyString
+  #ans3: MyString
+  #ans4: MyString
+  #ans_ok: 2
 
-two:
-  text: MyString
-  ans1: MyString
-  ans2: MyString
-  ans3: MyString
-  ans4: MyString
-  ans_ok: MyString
+#two:
+ # text: MyString
+  #ans1: MyString
+  #ans2: MyString
+  #ans3: MyString
+  #ans4: MyString
+  #ans_ok: 2

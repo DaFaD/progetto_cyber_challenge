@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
 
   before_action :logged_in_user, only: [:index, :edit, :update, :show, :destroy, :new, :create]
 
-  before_action :professor_user, only: [:edit, :update, :new, :create, :destroy]
+  before_action :professor_user, only: [:index, :show, :edit, :update, :new, :create, :destroy]
 
   def index
      @questions = Question.paginate(page: params[:page]).order('id')

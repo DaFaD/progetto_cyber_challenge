@@ -96,29 +96,14 @@ end
     Question.create!(text: text, ans1: ans1, ans2: ans2,  ans3: ans3, ans4: ans4, ans_ok: ans_ok)
 end
 
-50.times do |n|
 
-    q1 =1+rand(n)
-    q2 =1+rand(n)
-    q3 =1+rand(n)
-    q4 =1+rand(n)
-    q5 =1+rand(n)
-    q6 =1+rand(n)
-    q7 =1+rand(n)
-    q8 =1+rand(n)
-    q9 =1+rand(n)
-    q10 =1+rand(n)
-
-
-    Quiz.create!(q1: q1,q2: q2,q3: q3,q4: q4,q5: q5,q6: q6,q7: q7,q8: q8,q9: q9,q10: q10)
-end
 
 50.times do |n|
 
    id_user =1+rand(97)
-   id_quiz =1+rand(n)
+
    score =1+rand(30)
 
 
-    History.create!(id_user: id_user,id_quiz: id_quiz,score: score)
+    History.create!(id_user: id_user,score: score)
 end
