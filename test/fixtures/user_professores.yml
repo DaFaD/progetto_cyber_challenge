@@ -4,6 +4,8 @@ nomequalsiasiprofessore:
     email: nomeprofessore@uniroma1.it
     username: soprannomeprofessore
     password_digest: <%= UserProfessore.digest('password') %>
+    activated: true
+    activated_at: <%= Time.zone.now %>
 
 nomequalsiasiprofessore2:
     name: Nomeprofessore2
@@ -11,6 +13,8 @@ nomequalsiasiprofessore2:
     email: nomeprofessore2@uniroma1.it
     username: soprannomeprofessore2
     password_digest: <%= UserProfessore.digest('password') %>
+    activated: true
+    activated_at: <%= Time.zone.now %>
 
 nomequalsiasiprofessore3:
     name: Nomeprofessore3
@@ -18,6 +22,8 @@ nomequalsiasiprofessore3:
     email: nomeprofessore3@uniroma1.it
     username: soprannomeprofessore3
     password_digest: <%= UserProfessore.digest('password') %>
+    activated: true
+    activated_at: <%= Time.zone.now %>
 
 nomequalsiasiprofessore4:
     name: Nomeprofessore4
@@ -25,6 +31,8 @@ nomequalsiasiprofessore4:
     email: nomeprofessore4@uniroma1.it
     username: soprannomeprofessore4
     password_digest: <%= UserProfessore.digest('password') %>
+    activated: true
+    activated_at: <%= Time.zone.now %>
 
 <% 30.times do |n| %>
 user_professore_<%= n %>:
@@ -33,4 +41,6 @@ user_professore_<%= n %>:
     email: <%= "userprofessore-#{n}@uniroma1.it" %>
     username: <%= "usersoprannomeprofessore-#{n}" %>
     password_digest: <%= UserProfessore.digest('password') %>
+    activated: true
+    activated_at: <%= Time.zone.now %>
 <% end %>

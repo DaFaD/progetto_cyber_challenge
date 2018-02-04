@@ -20,6 +20,15 @@ ActiveRecord::Schema.define(version: 20180203142116) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "advices", force: true do |t|
+    t.string   "title"
+    t.string   "content"
+    t.string   "author"
+    t.datetime "writtenAt"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "questions", force: true do |t|
     t.string   "text"
     t.string   "ans1"
@@ -31,15 +40,38 @@ ActiveRecord::Schema.define(version: 20180203142116) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "pw_new_admins", force: true do |t|
+    t.string   "pw"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pw_new_professores", force: true do |t|
+    t.string   "pw"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "survey_activations", force: true do |t|
+    t.boolean  "activated"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "user_admins", force: true do |t|
     t.string   "name"
     t.string   "surname"
     t.string   "email"
     t.string   "username"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "password_digest"
     t.string   "remember_digest"
+    t.string   "activation_digest"
+    t.boolean  "activated",         default: false
+    t.datetime "activated_at"
+    t.string   "reset_digest"
+    t.datetime "reset_sent_at"
   end
 
   add_index "user_admins", ["email"], name: "index_user_admins_on_email", unique: true
@@ -50,10 +82,15 @@ ActiveRecord::Schema.define(version: 20180203142116) do
     t.string   "surname"
     t.string   "email"
     t.string   "username"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "password_digest"
     t.string   "remember_digest"
+    t.string   "activation_digest"
+    t.boolean  "activated",         default: false
+    t.datetime "activated_at"
+    t.string   "reset_digest"
+    t.datetime "reset_sent_at"
   end
 
   add_index "user_professores", ["email"], name: "index_user_professores_on_email", unique: true
@@ -66,10 +103,15 @@ ActiveRecord::Schema.define(version: 20180203142116) do
     t.string   "username"
     t.string   "fiscalCode"
     t.date     "birthDay"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "password_digest"
     t.string   "remember_digest"
+    t.string   "activation_digest"
+    t.boolean  "activated",         default: false
+    t.datetime "activated_at"
+    t.string   "reset_digest"
+    t.datetime "reset_sent_at"
   end
 
   add_index "user_studentes", ["email"], name: "index_user_studentes_on_email", unique: true

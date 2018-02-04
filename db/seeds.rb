@@ -38,9 +38,15 @@ def CFgenerate(nome, cognome, cfintermedio)
     res.downcase
 end
 
-UserAdmin.create!(name: "Daniele", surname: "Sinibaldi", email: "daniel46.95@gmail.com", username: "Daniel-01", password: "password", password_confirmation: "password")
-UserAdmin.create!(name: "Daniele", surname: "Sinibaldi", email: "daniel46-95@hotmail.it", username: "Daniel-02", password: "password", password_confirmation: "password")
-UserAdmin.create!(name: "User", surname: "Example", email: "example@railstutorial.org", username: "EsempioSoprannome-0", password: "password", password_confirmation: "password")
+PwNewAdmin.create!(pw: PwNewAdmin.digest("password"))
+
+PwNewProfessore.create!(pw: PwNewProfessore.digest("password"))
+
+SurveyActivation.create!(activated: true)
+
+UserAdmin.create!(name: "Daniele", surname: "Sinibaldi", email: "daniel46.95@gmail.com", username: "Daniel-01", password: "password", password_confirmation: "password", activated: true, activated_at: Time.zone.now)
+UserAdmin.create!(name: "Daniele", surname: "Sinibaldi", email: "daniel46-95@hotmail.it", username: "Daniel-02", password: "password", password_confirmation: "password", activated: true, activated_at: Time.zone.now)
+UserAdmin.create!(name: "User", surname: "Example", email: "example@railstutorial.org", username: "EsempioSoprannome-0", password: "password", password_confirmation: "password", activated: true, activated_at: Time.zone.now)
 
 97.times do |n|
     name = Faker::Name.first_name
@@ -48,7 +54,7 @@ UserAdmin.create!(name: "User", surname: "Example", email: "example@railstutoria
     email = "example-#{n+1}@railstutorial.org"
     username = "esempiosoprannomeadmin-#{n+1}"
     password = "password"
-    UserAdmin.create!(name: name, surname: surname, email: email, username: username, password: password, password_confirmation: password)
+    UserAdmin.create!(name: name, surname: surname, email: email, username: username, password: password, password_confirmation: password, activated: true, activated_at: Time.zone.now)
 end
 
 100.times do |n|
@@ -57,7 +63,7 @@ end
     email = "exampleprofessore-#{n+1}@uniroma1.it"
     username = "esempiosoprannomeprofessore-#{n+1}"
     password = "password"
-    UserProfessore.create!(name: name, surname: surname, email: email, username: username, password: password, password_confirmation: password)
+    UserProfessore.create!(name: name, surname: surname, email: email, username: username, password: password, password_confirmation: password, activated: true, activated_at: Time.zone.now)
 end
 
 50.times do |n|
@@ -69,7 +75,7 @@ end
     fiscalCode_intermedio = CodiceFiscale.calculate( :name => name, :surname => surname, :gender => :male, :birthdate => birthDay, :province_code => 'RM', :city_name => 'Roma' )
     fiscalCode= CFgenerate(name, surname, fiscalCode_intermedio)
     password = "password"
-    UserStudente.create!(name: name, surname: surname, email: email, username: username, fiscalCode: fiscalCode, birthDay: birthDay, password: password, password_confirmation: password)
+    UserStudente.create!(name: name, surname: surname, email: email, username: username, fiscalCode: fiscalCode, birthDay: birthDay, password: password, password_confirmation: password, activated: true, activated_at: Time.zone.now)
 end
 
 50.times do |n|
@@ -81,7 +87,15 @@ end
     fiscalCode_intermedio = CodiceFiscale.calculate( :name => name, :surname => surname, :gender => :female, :birthdate => birthDay, :province_code => 'RM', :city_name => 'Roma' )
     fiscalCode= CFgenerate(name, surname, fiscalCode_intermedio)
     password = "password"
-    UserStudente.create!(name: name, surname: surname, email: email, username: username, fiscalCode: fiscalCode, birthDay: birthDay, password: password, password_confirmation: password)
+    UserStudente.create!(name: name, surname: surname, email: email, username: username, fiscalCode: fiscalCode, birthDay: birthDay, password: password, password_confirmation: password, activated: true, activated_at: Time.zone.now)
+end
+
+100.times do |n|
+    title = "title-#{n+1}"
+    content = "Lorem -#{n+1}- ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis"
+    author = UserProfessore.find_by(id: "#{n+1}").username.to_s
+    writtenAt = Time.now
+    Advice.create!(title: title, content: content, author: author, writtenAt: writtenAt)
 end
 
 50.times do |n|

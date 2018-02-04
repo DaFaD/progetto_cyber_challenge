@@ -1,9 +1,20 @@
 <ul>
-  <li style="text-align: center;" ><%= link_to "Add new notice to the notice board", root_path %></li>
-  <br>
-  <li style="text-align: center;" >Account deleting request</li>
-  <br>
-  <li style="text-align: center;" >Test in the database</li>
-  <br>
-  <li style="text-align: center;" >Partecipation give up requests</l1>
+    <br><br><br>
+    <% if user_professore? %>
+        <li style="text-align: center;" ><%= link_to "Manage the notices", advices_path %></li>
+        <br>
+    <% end %>
+    <% if user_admin? %>
+        <li style="text-align: center;" ><%= link_to "Change the administrators' password", changeAdministratorsPassword_path %></li>
+        <br>
+        <li style="text-align: center;" ><%= link_to "Change the professors' password", changeProfessorsPassword_path %></li>
+        <br>
+        <li style="text-align: center;" ><%= link_to "Manage survey", manageSurveyOrActivationPage_path %></li>
+        <br>
+    <% end %>
+    <li style="text-align: center;" >Account deleting request</li>
+    <br>
+    <li style="text-align: center;" >Test in the database</li>
+    <br>
+    <li style="text-align: center;" >Partecipation give up requests</l1>
 </ul>
