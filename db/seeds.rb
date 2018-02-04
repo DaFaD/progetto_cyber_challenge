@@ -112,11 +112,11 @@ end
 
 
 
-50.times do |n|
+1000.times do |n|
 
    id_user =1+rand(97)
 
-   score =1+rand(30)
+   score =-11+1+rand(41)
 
 
     History.create!(id_user: id_user,score: score)

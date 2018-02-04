@@ -8,7 +8,7 @@ class Question < ActiveRecord::Base
 
     def score_answer(studentAnswer)
         if studentAnswer.to_s==self.ans_ok.to_s
-            2
+            3
         elsif studentAnswer.to_s==""
             0
         else

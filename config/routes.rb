@@ -2,8 +2,6 @@ Rails.application.routes.draw do
 
   root 'home_page#homepage'
 
-  resources :histories, only: [:show]
-
   get 'paginaIniziale' => 'static_pages#paginaIniziale'
 
   get 'studenteOProfessore' => 'static_pages#studenteOProfessore'
@@ -35,6 +33,8 @@ Rails.application.routes.draw do
   resources :user_admins
 
   resources :questions, only: [:edit, :update, :index, :show, :destroy, :create]
+
+  resources :histories, only: [:index]
 
   resources :advices
 

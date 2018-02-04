@@ -2,7 +2,7 @@
     <head>
         <style>
             /*buttons*/
-            
+
             .button {
               display: inline-block;
               padding: 15px 25px;
@@ -25,9 +25,9 @@
               box-shadow: 0 5px #666;
               transform: translateY(4px);
             }
-            
+
             /* sidebar */
-            
+
             aside {
                 section.user_info {
                     margin-top: 20px;
@@ -53,16 +53,16 @@
                     }
                 }
             }
-            
+
             .gravatar {
                 float: center; /*left;*/
                 margin-right: 10px;
             }
-            
+
             .gravatar_edit {
                 margin-top: 15px;
             }
-            
+
         </style>
     </head>
     <body style="background-color: #B34154;">
@@ -94,7 +94,7 @@
                         <%= button_to "Profile Settings", editStudenteNow_path, method: :get, :class => "button" %>
                     </td>
                     <td style="text-align:center;">
-                        <%= button_to "Test History", paginaIniziale_path, method: :get, :class => "button" %>
+                        <%= button_to "Test History", histories_path, method: :get, :class => "button" %>
                     </td>
                     <td style="text-align:center;">
                         <%= button_to "Delete My Account", destroyMySelfStudente_path, method: :delete, :class => "button", data: { confirm: "You sure?" } %>
