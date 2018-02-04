@@ -1,15 +1,11 @@
 Rails.application.routes.draw do
 
-  # get 'password_resets/new'
-
-  # get 'password_resets/edit'
-
-  # get 'sessions/new'
-
   root 'home_page#homepage'
   
+  resources :histories, only: [:show]
+
   get 'paginaIniziale' => 'static_pages#paginaIniziale'
-  
+
   get 'studenteOProfessore' => 'static_pages#studenteOProfessore'
 
   get 'signupStudente' => 'user_studentes#newStudente'
@@ -33,39 +29,41 @@ Rails.application.routes.draw do
   get 'newAdvice' => 'advices#new'
   
   resources :user_studentes
-  
+
   resources :user_professores
-  
+
   resources :user_admins
-  
+
+  resources :questions, only: [:edit, :new, :index, :show]
+
   resources :advices
 
   resources :account_activations, only: [:edit]
   
   resources :password_resets, only: [:new, :create, :edit, :update]
-  
+
   get 'listaStudenteOProfOAdmin' => 'static_pages#listaStudenteOProfOAdmin'
-  
+
   # get 'testNavFoo' => 'static_pages#testNavFoo'
-  
+
   get 'login' => 'sessions#new'
-  
+
   post 'login' => 'sessions#create'
-  
+
   post 'loginAdmin' => 'sessions#createAdmin'
   
   post 'loginProfessore' => 'sessions#createProfessore'
   
   post 'loginStudente' => 'sessions#createStudente'
-  
+ 
   delete 'logout' => 'sessions#destroy'
-  
+
   delete 'destroyMySelfAdmin' => 'user_admins#destroyMySelf'
-  
+
   delete 'destroyMySelfProfessore' => 'user_professores#destroyMySelf'
-  
+
   delete 'destroyMySelfStudente' => 'user_studentes#destroyMySelf'
-  
+
   get 'manage' => 'manage#manage'
   
   get 'changeAdministratorsPassword' => 'pw_new_admins#editAdministratorsPassword'
@@ -142,10 +140,10 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  
-  
+
+
   # Righe commentate di Daria
-  
+
   #get 'home_page/homepage'
 
   #get 'home_page/training'

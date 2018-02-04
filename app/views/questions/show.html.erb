@@ -1,0 +1,28 @@
+<% provide(:title, "Question# #{@question.id}") %>
+<table style="width:100%;" cellpadding="10" border="1">
+     <tr>
+        <td colspan="2" style="text-align: center;" >
+            <h1>Question# <%= @question.id %> </h1>
+        </td>
+    </tr>
+
+    <% @question.attributes.each do |key,value| %>
+        <tr>
+
+            <td style="text-align: center; width:20%; ">
+                <%= "#{key}"%>
+            </td>
+
+             <td style="text-align: center; width:80%; ">
+                <% if key=='created_at' || key=='updated_at'%>
+                    <%= "#{value.in_time_zone("Rome").to_s[0..18]}"%>
+
+                <%else%>
+                    <%= "#{value} "%>
+                <%end%>
+
+            </td>
+
+        </tr>
+    <% end %>
+</table>

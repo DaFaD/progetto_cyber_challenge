@@ -97,3 +97,27 @@ end
     writtenAt = Time.now
     Advice.create!(title: title, content: content, author: author, writtenAt: writtenAt)
 end
+
+50.times do |n|
+
+    text =('a'..'z').to_a.shuffle[0..7].join
+    ans1 =('a'..'z').to_a.shuffle[0..7].join
+    ans2 =('a'..'z').to_a.shuffle[0..7].join
+    ans3 =('a'..'z').to_a.shuffle[0..7].join
+    ans4 =('a'..'z').to_a.shuffle[0..7].join
+
+    ans_ok=1+rand(4)
+    Question.create!(text: text, ans1: ans1, ans2: ans2,  ans3: ans3, ans4: ans4, ans_ok: ans_ok)
+end
+
+
+
+50.times do |n|
+
+   id_user =1+rand(97)
+
+   score =1+rand(30)
+
+
+    History.create!(id_user: id_user,score: score)
+end
