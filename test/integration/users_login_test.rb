@@ -23,7 +23,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     
     test "login with valid information for an admin user" do
         get login_path
-        post login_path, session: { email: @userAdmin.email, password: 'password' }
+        post loginAdmin_path, session: { email: @userAdmin.email, password: 'password' }
         assert is_logged_in?
         assert_redirected_to @userAdmin
         follow_redirect!
@@ -35,7 +35,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     
     test "login with valid information for a professor user" do
         get login_path
-        post login_path, session: { email: @userProfessore.email, password: 'password' }
+        post loginProfessore_path, session: { email: @userProfessore.email, password: 'password' }
         assert is_logged_in?
         assert_redirected_to @userProfessore
         follow_redirect!
@@ -47,7 +47,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     
     test "login with valid information for a student user" do
         get login_path
-        post login_path, session: { email: @userStudente.email, password: 'password' }
+        post loginStudente_path, session: { email: @userStudente.email, password: 'password' }
         assert is_logged_in?
         assert_redirected_to @userStudente
         follow_redirect!
@@ -59,7 +59,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     
     test "login with valid information followed by logout for an admin user" do
         get login_path
-        post login_path, session: { email: @userAdmin.email, password: 'password' }
+        post loginAdmin_path, session: { email: @userAdmin.email, password: 'password' }
         assert is_logged_in?
         assert_redirected_to @userAdmin
         follow_redirect!
@@ -78,7 +78,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     
     test "login with valid information followed by logout for a professor user" do
         get login_path
-        post login_path, session: { email: @userProfessore.email, password: 'password' }
+        post loginProfessore_path, session: { email: @userProfessore.email, password: 'password' }
         assert is_logged_in?
         assert_redirected_to @userProfessore
         follow_redirect!
@@ -97,7 +97,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     
     test "login with valid information followed by logout for a student user" do
         get login_path
-        post login_path, session: { email: @userStudente.email, password: 'password' }
+        post loginStudente_path, session: { email: @userStudente.email, password: 'password' }
         assert is_logged_in?
         assert_redirected_to @userStudente
         follow_redirect!
@@ -116,7 +116,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     
     test "login with valid information followed by logout with a simulation of an user clicking logout in a second window for an admin user" do
         get login_path
-        post login_path, session: { email: @userAdmin.email, password: 'password' }
+        post loginAdmin_path, session: { email: @userAdmin.email, password: 'password' }
         assert is_logged_in?
         assert_redirected_to @userAdmin
         follow_redirect!
@@ -137,7 +137,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     
     test "login with valid information followed by logout with a simulation of an user clicking logout in a second window for a professor user" do
         get login_path
-        post login_path, session: { email: @userProfessore.email, password: 'password' }
+        post loginProfessore_path, session: { email: @userProfessore.email, password: 'password' }
         assert is_logged_in?
         assert_redirected_to @userProfessore
         follow_redirect!
@@ -158,7 +158,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     
     test "login with valid information followed by logout with a simulation of an user clicking logout in a second window for a student user" do
         get login_path
-        post login_path, session: { email: @userStudente.email, password: 'password' }
+        post loginStudente_path, session: { email: @userStudente.email, password: 'password' }
         assert is_logged_in?
         assert_redirected_to @userStudente
         follow_redirect!

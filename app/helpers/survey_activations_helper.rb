@@ -1,0 +1,2 @@
+module SurveyActivationsHelper
+end
