@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <style>
+            /*button*/
+            
+            .button {
+              display: inline-block;
+              padding: 15px 25px;
+              font-size: 24px;
+              cursor: pointer;
+              text-align: center;
+              text-decoration: none;
+              outline: none;
+              color: #fff;
+              background-color: #333;
+              border: none;
+              border-radius: 15px;
+              box-shadow: 0 9px #999;
+            }
+
+            .button:hover {background-color: #222}
+
+            .button:active {
+              background-color: #222;
+              box-shadow: 0 5px #666;
+              transform: translateY(4px);
+            }
+        </style>
+    </head>
+    <body>
+        <div style="text-align: center;">
+            <br><br><br>
+            <% if CompetitionSubscribed.all.where(id_user: current_user.id, year: Time.current.year).empty? %>
+                <h2>You didn't subscribe to competition yet</h2>
+                <br><br>
+                <%= button_to "Subscribe to competition", root_path, method: :get, :class => "button" %>
+            <% else %>
+                <h2>You are a competition partecipant</h2>
+                <br><br>
+                <%= button_to "Give up the competition", root_path, method: :get, :class => "button", data: { confirm: "You sure?" } %>
+            <% end %>
+            <br><br><br>
+        </div>
+    </body>
+</html>
