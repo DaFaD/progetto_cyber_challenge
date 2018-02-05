@@ -112,12 +112,23 @@ end
 
 
 
-50.times do |n|
+1000.times do |n|
 
-   id_user =1+rand(97)
+   id_user =1+rand(100)
 
-   score =1+rand(30)
+   score =-11+1+rand(41)
 
 
     History.create!(id_user: id_user,score: score)
+end
+
+
+100.times do |n|
+
+   id_user =n+1
+   my_average= -11+1+rand(40) + rand(10)*0.1 + rand(10)*0.01
+   ntest=1+rand(100)
+   year = 2010 +rand(9)
+
+    TrainingAverage.create!(id_user: id_user,my_average: my_average,ntest: ntest, year: year)
 end

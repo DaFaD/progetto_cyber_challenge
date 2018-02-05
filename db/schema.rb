@@ -11,14 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180203142116) do
-
-  create_table "histories", force: true do |t|
-    t.integer  "id_user"
-    t.integer  "score"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 20180204190707) do
 
   create_table "advices", force: true do |t|
     t.string   "title"
@@ -29,13 +22,9 @@ ActiveRecord::Schema.define(version: 20180203142116) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "questions", force: true do |t|
-    t.string   "text"
-    t.string   "ans1"
-    t.string   "ans2"
-    t.string   "ans3"
-    t.string   "ans4"
-    t.integer  "ans_ok"
+  create_table "histories", force: true do |t|
+    t.integer  "id_user"
+    t.integer  "score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -52,8 +41,28 @@ ActiveRecord::Schema.define(version: 20180203142116) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "questions", force: true do |t|
+    t.string   "text"
+    t.string   "ans1"
+    t.string   "ans2"
+    t.string   "ans3"
+    t.string   "ans4"
+    t.integer  "ans_ok"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "survey_activations", force: true do |t|
     t.boolean  "activated"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "training_averages", force: true do |t|
+    t.integer  "id_user"
+    t.float    "my_average"
+    t.integer  "ntest"
+    t.integer  "year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

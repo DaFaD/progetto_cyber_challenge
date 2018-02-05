@@ -1,28 +1,68 @@
-<% provide(:title, "Question# #{@question.id}") %>
-<table style="width:100%;" cellpadding="10" border="1">
-     <tr>
-        <td colspan="2" style="text-align: center;" >
-            <h1>Question# <%= @question.id %> </h1>
-        </td>
-    </tr>
+<html>
+    <head>
+        <style>
+            /*button*/
 
-    <% @question.attributes.each do |key,value| %>
-        <tr>
+            .button {
+              display: inline-block;
+              padding: 15px 25px;
+              font-size: 24px;
+              cursor: pointer;
+              text-align: center;
+              text-decoration: none;
+              outline: none;
+              color: #fff;
+              background-color: #333;
+              border: none;
+              border-radius: 15px;
+              box-shadow: 0 9px #999;
+            }
 
-            <td style="text-align: center; width:20%; ">
-                <%= "#{key}"%>
-            </td>
+            .button:hover {background-color: #222}
 
-             <td style="text-align: center; width:80%; ">
-                <% if key=='created_at' || key=='updated_at'%>
-                    <%= "#{value.in_time_zone("Rome").to_s[0..18]}"%>
+            .button:active {
+              background-color: #222;
+              box-shadow: 0 5px #666;
+              transform: translateY(4px);
+            }
+        </style>
+    </head>
+    <body style="background-color: #B34154;">
+        <% provide(:title, "Question# #{@question.id}") %>
+        <table style="width:100%;" cellpadding="10">
+             <tr>
+                <td style="text-align: right;" >
+                    <h1>Question# <%= @question.id %> </h1>
+                </td>
+                <td style="text-align: center;" >
+                    <%= button_to "Delete question", Question.find(params[:id]), method: :delete, data: { confirm: "You sure?" }, :class => "button" %>
+                </td>
+                <td style="text-align: center;" >
+                    <%= button_to "Edit question", edit_question_url(Question.find(params[:id])), method: :get, :class => "button" %>
+                </td>
+            </tr>
+        </table>
 
-                <%else%>
-                    <%= "#{value} "%>
-                <%end%>
+        <table style="width:100%;" cellpadding="10" border="1">
+            <% @question.attributes.each do |key,value| %>
+                <tr>
 
-            </td>
+                    <td style="text-align: center; width:20%; ">
+                        <%= "#{key}"%>
+                    </td>
 
-        </tr>
-    <% end %>
-</table>
+                     <td style="text-align: center; width:80%; ">
+                        <% if key=='created_at' || key=='updated_at'%>
+                            <%= "#{value.in_time_zone("Rome").to_s[0..18]}"%>
+
+                        <%else%>
+                            <%= "#{value} "%>
+                        <%end%>
+
+                    </td>
+
+                </tr>
+            <% end %>
+        </table>
+    </body>
+</html>

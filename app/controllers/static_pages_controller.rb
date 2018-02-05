@@ -1,8 +1,12 @@
 class StaticPagesController < ApplicationController
-  before_action :logged_in_user, only: [:listaStudenteOProfOAdmin]
+  before_action :logged_in_user, only: [:listaStudenteOProfOAdmin, :trainingQuestionsManage]
   before_action :logged_out_user, only: [:paginaIniziale, :studenteOProfessore]
+  before_action :professor_user, only: [:trainingQuestionsManage]
 
-  
+
+  def trainingQuestionsManage
+  end
+
   def paginaIniziale
     if session[:passatoQuaAdmin] != nil
         session.delete(:passatoQuaAdmin)
@@ -14,7 +18,7 @@ class StaticPagesController < ApplicationController
         session.delete(:passatoQuaStudente)
     end
   end
-  
+
   def studenteOProfessore
     if session[:passatoQuaAdmin] != nil
         session.delete(:passatoQuaAdmin)
@@ -26,18 +30,18 @@ class StaticPagesController < ApplicationController
         session.delete(:passatoQuaStudente)
     end
   end
-  
+
   def listaStudenteOProfOAdmin
   end
-  
+
   #def testNavFoo
   #end
-  
-  
+
+
   private
-  
+
     # Before filters
-    
+
     # Confirms a logged-in user.
     def logged_in_user
         unless logged_in?
@@ -46,12 +50,20 @@ class StaticPagesController < ApplicationController
             redirect_to login_url
         end
     end
-    
+
     # Confirms a logged-out user.
     def logged_out_user
         unless !logged_in?
             flash[:danger] = "Please log out."
             redirect_to root_url
+        end
+    end
+
+        # Confirms an professor user.
+    def professor_user
+        unless this_is_professore?(current_user)
+            flash[:danger] = "You don't have the rights for this page."
+            redirect_to(root_url)
         end
     end
 end
