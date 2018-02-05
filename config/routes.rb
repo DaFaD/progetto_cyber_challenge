@@ -88,6 +88,12 @@ Rails.application.routes.draw do
 
   get 'newQuestion' => 'questions#new'
 
+  get 'newCasual' => 'quizzes#newCasual'
+
+  get 'trainingTestDonePage' => 'quizzes#trainingTestDonePage'
+
+  post 'trainingTestDone' => 'quizzes#trainingTestDone'
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

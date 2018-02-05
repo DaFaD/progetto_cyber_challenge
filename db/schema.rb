@@ -60,8 +60,9 @@ ActiveRecord::Schema.define(version: 20180204190707) do
 
   create_table "training_averages", force: true do |t|
     t.integer  "id_user"
-    t.float    "average"
+    t.float    "my_average"
     t.integer  "ntest"
+    t.integer  "year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
