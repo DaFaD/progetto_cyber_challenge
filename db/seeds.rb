@@ -43,6 +43,7 @@ PwNewAdmin.create!(pw: PwNewAdmin.digest("password"))
 PwNewProfessore.create!(pw: PwNewProfessore.digest("password"))
 
 SurveyActivation.create!(activated: true)
+SubscribeAndExamActivation.create!(subscribe: true, exam: true)
 
 UserAdmin.create!(name: "Daniele", surname: "Sinibaldi", email: "daniel46.95@gmail.com", username: "Daniel-01", password: "password", password_confirmation: "password", activated: true, activated_at: Time.zone.now)
 UserAdmin.create!(name: "Daniele", surname: "Sinibaldi", email: "daniel46-95@hotmail.it", username: "Daniel-02", password: "password", password_confirmation: "password", activated: true, activated_at: Time.zone.now)
@@ -131,4 +132,10 @@ end
    year = 2010 +rand(9)
 
     TrainingAverage.create!(id_user: id_user,my_average: my_average,ntest: ntest, year: year)
+end
+
+50.times do |n|
+    id_user= UserStudente.find(n+1).id
+    score= -11+1+rand(41)
+    CompetitionSubscribed.create!(id_user: id_user, score: score)
 end

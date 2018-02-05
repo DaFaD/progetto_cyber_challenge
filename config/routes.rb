@@ -46,6 +46,8 @@ Rails.application.routes.draw do
 
   get 'trainingPage' => 'static_pages#trainingPage'
 
+  get 'competition' => 'static_pages#competition'
+
   # get 'testNavFoo' => 'static_pages#testNavFoo'
 
   get 'login' => 'sessions#new'

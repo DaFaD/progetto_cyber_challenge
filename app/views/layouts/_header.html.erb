@@ -95,10 +95,6 @@ th{
         <li class= "navebar1"><%= link_to "Log in / Sign in", paginaIniziale_path %></li>
     <% end %>
 
-    <% if user_studente? %>
-        <li><a href="#contact">Give up competition</a></li>
-    <% end %>
-
     <% if user_professore? %>
         <li><a href="#news">Classification</a></li>
     <% end %>
@@ -127,8 +123,11 @@ th{
         <li><%= link_to "Profile", user_studente_path(current_user) %></li>
     <% end %>
 
+    <% if user_studente? && SubscribeAndExamActivation.first.subscribe %>
+        <li><%= link_to "Competition", competition_path %></li>
+    <% end %>
+
     <% if user_studente? %>
-        <li><a href="#about">Subscribe to competition</a></li>
         <li><%= link_to "Training", trainingPage_path %></li>
     <% end %>
 

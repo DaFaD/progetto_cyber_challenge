@@ -11,13 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180204190707) do
+ActiveRecord::Schema.define(version: 20180205133835) do
 
   create_table "advices", force: true do |t|
     t.string   "title"
     t.string   "content"
     t.string   "author"
     t.datetime "writtenAt"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "competition_subscribeds", force: true do |t|
+    t.integer  "id_user"
+    t.integer  "score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -48,6 +55,13 @@ ActiveRecord::Schema.define(version: 20180204190707) do
     t.string   "ans3"
     t.string   "ans4"
     t.integer  "ans_ok"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "subscribe_and_exam_activations", force: true do |t|
+    t.boolean  "subscribe"
+    t.boolean  "exam"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
