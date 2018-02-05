@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20180205133835) do
   create_table "competition_subscribeds", force: true do |t|
     t.integer  "id_user"
     t.integer  "score"
+    t.integer  "year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

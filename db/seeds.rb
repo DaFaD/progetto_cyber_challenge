@@ -137,5 +137,6 @@ end
 50.times do |n|
     id_user= UserStudente.find(n+1).id
     score= -11+1+rand(41)
-    CompetitionSubscribed.create!(id_user: id_user, score: score)
+    year = 2010 +rand(9)
+    CompetitionSubscribed.create!(id_user: id_user, score: score, year: year)
 end

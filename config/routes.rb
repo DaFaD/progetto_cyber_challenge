@@ -97,6 +97,16 @@ Rails.application.routes.draw do
   get 'trainingTestDonePage' => 'quizzes#trainingTestDonePage'
 
   post 'trainingTestDone' => 'quizzes#trainingTestDone'
+  
+  get 'manageSubscribeOrExamActivation' => 'subscribe_and_exam_activations#manageSubscribeOrExamActivation'
+  
+  get 'activeSubscribePage' => 'subscribe_and_exam_activations#subscribeActivationPage'
+
+  get 'activeSubscribe' => 'subscribe_and_exam_activations#subscribeActivation'
+  
+  get 'activeExamPage' => 'subscribe_and_exam_activations#examActivationPage'
+
+  get 'activeExam' => 'subscribe_and_exam_activations#examActivation'
 
 
 

@@ -1,8 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-#one:
-  #subscribe: false
-  #exam: false
+one:
+  subscribe: true
+  exam: true
 
 #two:
   #subscribe: false

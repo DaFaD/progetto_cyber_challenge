@@ -103,7 +103,7 @@ th{
         <li><%= link_to "Manage", manage_path %></li>
     <% end %>
 
-    <% if user_studente? %>
+    <% if user_studente? && SubscribeAndExamActivation.first.exam %>
         <li><a href="#news">Exam</a></li>
     <% end %>
 
