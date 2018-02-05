@@ -44,6 +44,8 @@ Rails.application.routes.draw do
 
   get 'listaStudenteOProfOAdmin' => 'static_pages#listaStudenteOProfOAdmin'
 
+  get 'trainingPage' => 'static_pages#trainingPage'
+
   # get 'testNavFoo' => 'static_pages#testNavFoo'
 
   get 'login' => 'sessions#new'
