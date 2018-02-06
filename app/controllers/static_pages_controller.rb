@@ -1,9 +1,12 @@
 class StaticPagesController < ApplicationController
-  before_action :logged_in_user, only: [:competition, :trainingPage, :listaStudenteOProfOAdmin, :trainingQuestionsManage]
+  before_action :logged_in_user, only: [:subscribeBeforeTest, :competition, :trainingPage, :listaStudenteOProfOAdmin, :trainingQuestionsManage]
   before_action :logged_out_user, only: [:paginaIniziale, :studenteOProfessore]
   before_action :professor_user, only: [:trainingQuestionsManage]
-  before_action :student_user, only: [:competition, :trainingPage]
-  before_action :subscribe_activated, only: :competition
+  before_action :student_user, only: [:subscribeBeforeTest, :competition, :trainingPage]
+  before_action :subscribe_activated, only: [:subscribeBeforeTest, :competition]
+  
+  def subscribeBeforeTest
+  end
 
   def competition
   end

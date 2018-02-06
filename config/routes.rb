@@ -33,6 +33,8 @@ Rails.application.routes.draw do
   resources :user_admins
 
   resources :questions, only: [:edit, :update, :index, :show, :destroy, :create]
+  
+  resources :pretest_and_exam_quizs, only: [:edit, :update, :show]
 
   resources :histories, only: [:index]
 
@@ -47,6 +49,8 @@ Rails.application.routes.draw do
   get 'trainingPage' => 'static_pages#trainingPage'
 
   get 'competition' => 'static_pages#competition'
+  
+  get 'subscribeBeforeTest' => 'static_pages#subscribeBeforeTest'
 
   # get 'testNavFoo' => 'static_pages#testNavFoo'
 
