@@ -111,6 +111,14 @@ Rails.application.routes.draw do
   get 'activeExamPage' => 'subscribe_and_exam_activations#examActivationPage'
 
   get 'activeExam' => 'subscribe_and_exam_activations#examActivation'
+  
+  get 'pretest' => 'pretest_and_exam_quizs#pretest'
+  
+  get 'pretestDonePage' => 'pretest_and_exam_quizs#pretestDonePage'
+
+  post 'pretestDone' => 'pretest_and_exam_quizs#pretestDone'
+  
+  get 'getAnotherOTP' => 'pretest_and_exam_quizs#getAnotherOTP'
 
 
 

@@ -1,6 +1,9 @@
 class PretestAndExamQuizsController < ApplicationController
-    before_action :logged_in_user, only: [:edit, :update, :show]
+    before_action :logged_in_user, only: [:edit, :update, :show, :pretest, :pretestDone, :pretestDonePage, :getAnotherOTP]
     before_action :professor_user, only: [:edit, :update, :show]
+    before_action :studente_user, only: [:pretest, :pretestDone, :pretestDonePage, :getAnotherOTP]
+    before_action :not_a_partecipant, only: [:pretest, :pretestDone, :pretestDonePage]
+    before_action :yes_a_partecipant, only: :getAnotherOTP
     
     def show
         @pretestOrExam = PretestAndExamQuiz.find(params[:id])
@@ -19,6 +22,43 @@ class PretestAndExamQuizsController < ApplicationController
             redirect_to PretestAndExamQuiz.find(params[:id])
         else
             render 'edit'
+        end
+    end
+    
+    def getAnotherOTP
+        if Otp.find_by(id_user: current_user.id) == nil || (Otp.find_by(id_user: current_user.id) != nil && Otp.find_by(id_user: current_user.id).updated_at.year != Time.current.year)
+            flash[:danger] = "You haven't got any OTP for the competition of this year. If you never had it or you already used it you can't receive another OTP"
+            redirect_to competition_url
+        else
+            otp= Otp.createOtp(current_user)
+            UserMailer.send_otp(current_user, otp).deliver_now
+            flash[:info] = "Please check your email to find your new OTP."
+            redirect_to competition_url
+        end
+    end
+    
+    def pretest
+    end
+    
+    def pretestDonePage
+    end
+
+    def pretestDone
+        @punteggio= PretestAndExamQuiz.first.score(params[:answer1], params[:answer2], params[:answer3], params[:answer4], params[:answer5], params[:answer6], params[:answer7], params[:answer8], params[:answer9], params[:answer10])
+        @risposteUtente= Array.new()
+        10.times do |n|
+            @risposteUtente << params["answer#{n+1}".to_sym]
+        end
+        tuple=CompetitionSubscribed.all.where(year: Time.current.year).where(id_user: current_user.id)
+        if !tuple.empty?
+            flash[:danger] = "You are already a competition partecipant for this year! Your score won't be changed!"
+            redirect_to root_url
+        else
+            otp= Otp.createOtp(current_user)
+            CompetitionSubscribed.create(id_user: current_user.id, score: @punteggio, year: Time.current.year)
+            UserMailer.send_otp(current_user, otp).deliver_now
+            flash.now[:info] = "Now you are a competition partecipant. Please check your email to find your OTP."
+            render 'pretestDonePage'
         end
     end
     
@@ -43,6 +83,28 @@ class PretestAndExamQuizsController < ApplicationController
         def professor_user
             unless this_is_professore?(current_user)
                 flash[:danger] = "You don't have the rights for this page/action."
+                redirect_to(root_url)
+            end
+        end
+        
+        # Confirms a student user.
+        def studente_user
+            unless this_is_studente?(current_user)
+                flash[:danger] = "You don't have the rights for this page/action."
+                redirect_to(root_url)
+            end
+        end
+        
+        def not_a_partecipant
+            unless CompetitionSubscribed.all.where(year: Time.current.year).where(id_user: current_user.id).empty?
+                flash[:danger] = "You are already a competition partecipant for this year! Your score won't be changed!"
+                redirect_to(root_url)
+            end
+        end
+        
+        def yes_a_partecipant
+            unless !CompetitionSubscribed.all.where(year: Time.current.year).where(id_user: current_user.id).empty?
+                flash[:danger] = "You aren't a competition partecipant for this year!"
                 redirect_to(root_url)
             end
         end

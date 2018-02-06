@@ -143,4 +143,7 @@ end
     score= -11+1+rand(41)
     year = 2010 +rand(9)
     CompetitionSubscribed.create!(id_user: id_user, score: score, year: year)
+    otp= Otp.new_token.to_s[0,9]
+    otpDigest= Otp.digest(otp)
+    Otp.create!(id_user: id_user, otp_digest: otpDigest)
 end

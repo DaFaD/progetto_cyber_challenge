@@ -37,6 +37,10 @@
             <% else %>
                 <h2>You are a competition partecipant</h2>
                 <br><br>
+                <h3>If you never used your OTP, you forgot it and you want a new OTP click below:</h3>
+                <br>
+                <%= button_to "Get another OTP", getAnotherOTP_path, method: :get, :class => "button", data: { confirm: "You sure?" } %>
+                <br><br><br><br><br><br><br><br>
                 <%= button_to "Give up the competition", root_path, method: :get, :class => "button", data: { confirm: "You sure?" } %>
             <% end %>
             <br><br><br>

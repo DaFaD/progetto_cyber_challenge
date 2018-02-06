@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180206084002) do
+ActiveRecord::Schema.define(version: 20180206162535) do
 
   create_table "advices", force: true do |t|
     t.string   "title"
@@ -33,6 +33,13 @@ ActiveRecord::Schema.define(version: 20180206084002) do
   create_table "histories", force: true do |t|
     t.integer  "id_user"
     t.integer  "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "otps", force: true do |t|
+    t.integer  "id_user"
+    t.string   "otp_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -20,4 +20,10 @@ class UserMailer < ActionMailer::Base
     @user = user
     mail to: user.email, subject: "Password reset"
   end
+  
+  def send_otp(user, otp)
+    @user = user
+    @otp= otp
+    mail to: user.email, subject: "OTP for the exam"
+  end
 end
