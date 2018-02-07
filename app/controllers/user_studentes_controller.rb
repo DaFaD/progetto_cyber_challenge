@@ -84,6 +84,28 @@ class UserStudentesController < ApplicationController
   end
   
   def destroy
+    @studenteDaCancellare= UserStudente.find(params[:id])
+    @allenamenti= History.all.where(id_user: @studenteDaCancellare.id)
+    if @allenamenti != nil
+        @allenamenti.each do |h|
+            h.destroy
+        end
+    end
+    if TrainingAverage.find_by(id_user: @studenteDaCancellare.id, year: Time.current.year) != nil
+        TrainingAverage.find_by(id_user: @studenteDaCancellare.id, year: Time.current.year).destroy
+    end
+    if CompetitionSubscribed.find_by(id_user: @studenteDaCancellare.id, year: Time.current.year) != nil
+        CompetitionSubscribed.find_by(id_user: @studenteDaCancellare.id, year: Time.current.year).destroy
+    end
+    if ExamDonePartecipant.find_by(id_user: @studenteDaCancellare.id, year: Time.current.year) != nil
+        ExamDonePartecipant.find_by(id_user: @studenteDaCancellare.id, year: Time.current.year).destroy
+    end
+    if Otp.find_by(id_user: @studenteDaCancellare.id) != nil
+        Otp.find_by(id_user: @studenteDaCancellare.id).destroy
+    end
+    if Winner.find_by(id_user: @studenteDaCancellare.id, year: Time.current.year) != nil
+        Winner.find_by(id_user: @studenteDaCancellare.id, year: Time.current.year).destroy
+    end
     UserStudente.find(params[:id]).destroy
     flash[:success] = "User deleted"
     redirect_to user_studentes_url
@@ -92,6 +114,27 @@ class UserStudentesController < ApplicationController
   def destroyMySelf
     @userCorrenteStudente= current_user
     log_out
+    @allenamenti= History.all.where(id_user: @userCorrenteStudente.id)
+    if @allenamenti != nil
+        @allenamenti.each do |h|
+            h.destroy
+        end
+    end
+    if TrainingAverage.find_by(id_user: @userCorrenteStudente.id, year: Time.current.year) != nil
+        TrainingAverage.find_by(id_user: @userCorrenteStudente.id, year: Time.current.year).destroy
+    end
+    if CompetitionSubscribed.find_by(id_user: @userCorrenteStudente.id, year: Time.current.year) != nil
+        CompetitionSubscribed.find_by(id_user: @userCorrenteStudente.id, year: Time.current.year).destroy
+    end
+    if ExamDonePartecipant.find_by(id_user: @userCorrenteStudente.id, year: Time.current.year) != nil
+        ExamDonePartecipant.find_by(id_user: @userCorrenteStudente.id, year: Time.current.year).destroy
+    end
+    if Otp.find_by(id_user: @userCorrenteStudente.id) != nil
+        Otp.find_by(id_user: @userCorrenteStudente.id).destroy
+    end
+    if Winner.find_by(id_user: @userCorrenteStudente.id, year: Time.current.year) != nil
+        Winner.find_by(id_user: @userCorrenteStudente.id, year: Time.current.year).destroy
+    end
     @userCorrenteStudente.destroy
     flash[:success] = "You deleted your account"
     redirect_to root_url

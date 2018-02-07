@@ -131,6 +131,30 @@ Rails.application.routes.draw do
   post 'examDone' => 'pretest_and_exam_quizs#examDone'
   
   get 'giveUp' => 'pretest_and_exam_quizs#giveUp'
+  
+  get 'selectClassification' => 'classifications#selectClassification'
+  
+  get 'trainingClassificationSelectYear' => 'classifications#trainingClassificationSelectYear'
+  
+  post 'trainingClassification' => 'classifications#trainingClassification'
+  
+  get 'partecipantsClassificationSelectYear' => 'classifications#partecipantsClassificationSelectYear'
+  
+  post 'partecipantsClassification' => 'classifications#partecipantsClassification'
+  
+  get 'postExamClassificationSelectYear' => 'classifications#postExamClassificationSelectYear'
+  
+  post 'postExamClassification' => 'classifications#postExamClassification'
+  
+  post 'addToWinners' => 'classifications#addToWinners'
+  
+  get 'winnersClassificationSelectYear' => 'classifications#winnersClassificationSelectYear'
+  
+  post 'winnersClassification' => 'classifications#winnersClassification'
+  
+  post 'editWinners' => 'classifications#editWinners'
+  
+  post 'removeWinner' => 'classifications#removeWinner'
 
 
 
