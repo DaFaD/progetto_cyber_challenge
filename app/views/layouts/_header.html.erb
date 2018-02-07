@@ -96,7 +96,7 @@ th{
     <% end %>
 
     <% if user_professore? %>
-        <li><a href="#news">Classification</a></li>
+        <li><%= link_to "Classification", selectClassification_path %></li>
     <% end %>
 
     <% if user_admin? || user_professore? %>

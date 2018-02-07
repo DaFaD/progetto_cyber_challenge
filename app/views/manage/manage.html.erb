@@ -10,7 +10,6 @@
         <li style="text-align: center;" ><%= link_to "Manage exam quiz", PretestAndExamQuiz.find(2) %></li>
         <br>
         <li style="text-align: center;" ><%= link_to "Manage enable/disable competition subscribing/giving up and enable/disable exam", manageSubscribeOrExamActivation_path %></li>
-        <br>
     <% end %>
     <% if user_admin? %>
         <li style="text-align: center;" ><%= link_to "Change the administrators' password", changeAdministratorsPassword_path %></li>
@@ -18,11 +17,5 @@
         <li style="text-align: center;" ><%= link_to "Change the professors' password", changeProfessorsPassword_path %></li>
         <br>
         <li style="text-align: center;" ><%= link_to "Manage survey", manageSurveyOrActivationPage_path %></li>
-        <br>
     <% end %>
-    <li style="text-align: center;" >Account deleting request</li>
-    <br>
-    <li style="text-align: center;" >Test in the database</li>
-    <br>
-    <li style="text-align: center;" >Partecipation give up requests</l1>
 </ul>
