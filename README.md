@@ -71,3 +71,5 @@ Per i test è stato usato lo strumento Minitest.
          _Utente professore: è necessaria una e-mail terminante con "@uniroma1.it" oppure con "@dis.uniroma1.it"
                              oppure ancora con "@diag.uniroma1.it";
          _Utente studente: è necessaria una email istituzionale della Sapienza.
+4. Per come è strutturato il sondaggio di iscrizione per gli studenti al suo termine reindirizza alla pagina di registrazione degli
+   studenti dell'applicazione che è stata messa a disposizione online.
