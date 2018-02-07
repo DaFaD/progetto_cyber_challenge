@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <style>
+            /*buttons*/
+            
+            .button {
+              display: inline-block;
+              padding: 15px 25px;
+              font-size: 24px;
+              cursor: pointer;
+              text-align: center;
+              text-decoration: none;
+              outline: none;
+              color: #fff;
+              background-color: #333;
+              border: none;
+              border-radius: 15px;
+              box-shadow: 0 9px #999;
+            }
+
+            .button:hover {background-color: #222}
+
+            .button:active {
+              background-color: #222;
+              box-shadow: 0 5px #666;
+              transform: translateY(4px);
+            }
+        </style>
+    </head>
+    <body style="background-color: #B34154;">
+        <table style="width:100%">
+            <tr>
+                <td colspan="3" style="text-align:center;">
+                    <h1>
+                        Advice
+                    </h1>
+                    <br>
+                    <h2>
+                        <%= @advice.title %>
+                    </h2>
+                    <% provide(:title, @advice.title) %>
+                </td>
+            </tr>
+            <tr>
+                <td style="width:30%">
+                </td>
+                <td  style="width:40%">
+                    Written at <%= @advice.writtenAt.in_time_zone("Rome").to_s[0,20] %>
+                    <br>
+                    Updated at <%= @advice.updated_at.in_time_zone("Rome").to_s[0,20] %>
+                    <br>
+                </td>
+                <td style="width:30%">
+                </td>
+            </tr>
+            <tr>
+                <td style="width:30%">
+                </td>
+                <td  style="width:40%">
+                    <%= simple_format(@advice.content) %>
+                </td>
+                <td style="width:30%">
+                </td>
+            </tr>
+            <tr>
+                <td style="width:30%">
+                </td>
+                <td  style="text-align:right; width:40%;">
+                    Written by <%= @advice.author %>
+                </td>
+                <td style="width:30%">
+                </td>
+            </tr>
+        </table>
+        <% if this_is_professore?(current_user)  && current_user.username==@advice.author %>
+            <table style="width:100%">
+                <tr>
+                    <td style="text-align:center; width:50%;">
+                        <%= button_to "Modify", edit_advice_path(@advice), method: :get, :class => "button" %>
+                    </td>
+                    <td style="text-align:center; width:50%;">
+                        <%= button_to "Delete", @advice, method: :delete, :class => "button", data: { confirm: "You sure?" } %>
+                    </td>
+                </tr>
+            </table>
+        <% end %>
+    </body>
+</html>

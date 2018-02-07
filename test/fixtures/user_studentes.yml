@@ -1,0 +1,82 @@
+nomequalsiasistudente:
+    name: Nomestudente
+    surname: Cognomestudente
+    email: cognomestudente.1656293@studenti.uniroma1.it
+    username: soprannomestudente
+    fiscalCode: cgnnst98m06h501b
+    birthDay: 1998-08-06
+    password_digest: <%= UserStudente.digest('password') %>
+    activated: true
+    activated_at: <%= Time.zone.now %>
+
+nomequalsiasistudente2:
+    name: Nomestudente2
+    surname: Cognomestudente2
+    email: cognomestudente2.1656592@studenti.uniroma1.it
+    username: soprannomestudente2
+    fiscalCode: cgnnst98m06h501c
+    birthDay: 1998-08-06
+    password_digest: <%= UserStudente.digest('password') %>
+    activated: true
+    activated_at: <%= Time.zone.now %>
+
+nomequalsiasistudente3:
+    name: Nomestudente3
+    surname: Cognomestudente3
+    email: cognomestudente3.1656293@studenti.uniroma1.it
+    username: soprannomestudente3
+    fiscalCode: cgnnst98m06h501d
+    birthDay: 1998-08-06
+    password_digest: <%= UserStudente.digest('password') %>
+    activated: true
+    activated_at: <%= Time.zone.now %>
+
+nomequalsiasistudente4:
+    name: Nomestudente4
+    surname: Cognomestudente4
+    email: cognomestudente4.1656592@studenti.uniroma1.it
+    username: soprannomestudente4
+    fiscalCode: cgnnst98m06h501f
+    birthDay: 1998-08-06
+    password_digest: <%= UserStudente.digest('password') %>
+    activated: true
+    activated_at: <%= Time.zone.now %>
+
+<% 10.times do |n| %>
+user_studente_<%= n %>:
+    name: <%= "UserNomeStudente-#{n}" %>
+    surname: <%= "UserCognomeStudente-#{n}" %>
+    email: <%= "userstudente-#{n}.1656284@studenti.uniroma1.it" %>
+    username: <%= "usersoprannomestudente-#{n}" %>
+    fiscalCode: <%= "cgnnst98m06h50#{n}g" %>
+    birthDay: 1998-08-06
+    password_digest: <%= UserStudente.digest('password') %>
+    activated: true
+    activated_at: <%= Time.zone.now %>
+<% end %>
+
+<% 10.times do |n| %>
+user_studente_1<%= n %>:
+    name: <%= "UserNomeStudente-1#{n}" %>
+    surname: <%= "UserCognomeStudente-1#{n}" %>
+    email: <%= "userstudente-1#{n}.1656284@studenti.uniroma1.it" %>
+    username: <%= "usersoprannomestudente-1#{n}" %>
+    fiscalCode: <%= "cgnnst98m06h50#{n}l" %>
+    birthDay: 1998-08-06
+    password_digest: <%= UserStudente.digest('password') %>
+    activated: true
+    activated_at: <%= Time.zone.now %>
+<% end %>
+
+<% 10.times do |n| %>
+user_studente_2<%= n %>:
+    name: <%= "UserNomeStudente-2#{n}" %>
+    surname: <%= "UserCognomeStudente-2#{n}" %>
+    email: <%= "userstudente-2#{n}.1656284@studenti.uniroma1.it" %>
+    username: <%= "usersoprannomestudente-2#{n}" %>
+    fiscalCode: <%= "cgnnst98m06h50#{n}m" %>
+    birthDay: 1998-08-06
+    password_digest: <%= UserStudente.digest('password') %>
+    activated: true
+    activated_at: <%= Time.zone.now %>
+<% end %>

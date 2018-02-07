@@ -1,0 +1,34 @@
+<% if session[:professorPasswordSbagliata] == "1" %>
+    <div id="error_explanation">
+        <div class="alert alert-danger">
+            The form contains 1 error.
+        </div>
+        <ul>
+            <li>The necessary password to create a new professor user is uncorrect</li>
+        </ul>
+    </div>
+<% end %>
+
+<% if session[:giaPresoProfessore] == "1" %>
+    <div id="error_explanation">
+        <div class="alert alert-danger">
+            The form contains 1 error.
+        </div>
+        <ul>
+            <li>Username has already been token</li>
+        </ul>
+    </div>
+<% end %>
+
+<% if @userProfessore.errors.any? %>
+    <div id="error_explanation">
+        <div class="alert alert-danger">
+            The form contains <%= pluralize(@userProfessore.errors.count, "error") %>.
+        </div>
+        <ul>
+        <% @userProfessore.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+        </ul>
+    </div>
+<% end %>

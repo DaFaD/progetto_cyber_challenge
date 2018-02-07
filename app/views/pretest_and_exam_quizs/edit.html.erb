@@ -1,0 +1,113 @@
+<html>
+    <head>
+        <style>
+            /*button*/
+
+            #button {
+              display: inline-block;
+              padding: 15px 25px;
+              font-size: 24px;
+              cursor: pointer;
+              text-align: center;
+              text-decoration: none;
+              outline: none;
+              color: #fff;
+              background-color: #333;
+              border: none;
+              border-radius: 15px;
+              box-shadow: 0 9px #999;
+            }
+
+            #button:hover {background-color: #222}
+
+            #button:active {
+              background-color: #222;
+              box-shadow: 0 5px #666;
+              transform: translateY(4px);
+            }
+
+            /* forms */
+
+            input, textarea, select, .uneditable-input {
+                border: 1px solid #bbb;
+                width: 100%;
+                margin-bottom: 15px;
+                @include box_sizing;
+            }
+
+            input {
+                height: auto !important;
+            }
+
+            /*fields*/
+
+            .personal_field {
+                background-color: #999;
+                width: 100%;
+                padding: 6px 10px;
+                margin: 8px 0;
+                box-sizing: border-box;
+                border: 1px solid #555;
+                outline: none;
+            }
+            .personal_field:focus {
+                background-color: #777;
+            }
+        </style>
+    </head>
+    <body style="background-color: #B34154;">
+        <table style="width:100%;">
+            <tr>
+                <td style="width:33%;">
+                </td>
+                <td style="width:34%; text-align:center;">
+                    <% if PretestAndExamQuiz.find(params[:id]).id == 1 %>
+                        <% provide(:title, 'Edit the pretest quiz') %>
+                    <% end %>
+                    <% if PretestAndExamQuiz.find(params[:id]).id == 2 %>
+                        <% provide(:title, 'Edit the exam quiz') %>
+                    <% end %>
+                    <% if PretestAndExamQuiz.find(params[:id]).id == 1 %>
+                        <h1>Edit the pretest quiz</h1>
+                    <% end %>
+                    <% if PretestAndExamQuiz.find(params[:id]).id == 2 %>
+                        <h1>Edit the exam quiz</h1>
+                    <% end %>
+
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <%= form_for(PretestAndExamQuiz.find(params[:id])) do |f| %>
+                                <%= render 'shared/error_messages_pretest_and_exam_quiz_edit' %>
+
+                                <% 10.times do |n| %>
+                                    <h3><%= f.label "text#{n+1}".to_sym %></h3>
+                                    <%= f.text_field "text#{n+1}".to_sym , class: "personal_field form-control" %>
+
+                                    <h3><%= f.label "ans#{n+1}_1".to_sym, "Answer #1 of the question ##{n+1}" %></h3>
+                                    <%= f.text_field "ans#{n+1}_1".to_sym , class: "personal_field form-control" %>
+
+                                    <h3><%= f.label "ans#{n+1}_2".to_sym, "Answer #2 of the question ##{n+1}" %></h3>
+                                    <%= f.text_field "ans#{n+1}_2".to_sym , class: "personal_field form-control" %>
+
+                                    <h3><%= f.label "ans#{n+1}_3".to_sym, "Answer #3 of the question ##{n+1}" %></h3>
+                                    <%= f.text_field "ans#{n+1}_3".to_sym , class: "personal_field form-control" %>
+
+                                    <h3><%= f.label "ans#{n+1}_4".to_sym, "Answer #4 of the question ##{n+1}" %></h3>
+                                    <%= f.text_field "ans#{n+1}_4".to_sym , class: "personal_field form-control" %>
+
+                                    <h3><%= f.label "ans#{n+1}_ok".to_sym, "Correct answer of the question ##{n+1}" %></h3>
+                                    <%= f.number_field "ans#{n+1}_ok".to_sym , class: "personal_field form-control", min: 1, max: 4 %>
+                                
+                                <% end %>
+
+                                <%= f.submit "Save changes", class: "btn btn-primary", id: "button" %>
+                            <% end %>
+                        </div>
+                    </div>
+                </td>
+                <td style="width:33%;">
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

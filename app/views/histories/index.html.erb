@@ -1,0 +1,73 @@
+<% provide(:title, 'My training test history') %>
+<table style="width:100%;" cellpadding="10" >
+    <tr>
+        <td style="text-align: center;" colspan="2">
+            <h1>My training test history</h1>
+        </td>
+    </tr>
+
+    <tr>
+        <td  style="text-align: center;" colspan="2">
+            <table style="width:100%;">
+                <tr>
+                    <td style="width:40%;">
+                    </td>
+                    <td style="width:20%;">
+                        <div class="digg_pagination">
+                            <div class="page_info">
+                                <%= page_entries_info @posts %>
+                            </div>
+                            <%= will_paginate @posts, :container => false %>
+                        </div>
+                    </td>
+                    <td style="width:40%;">
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<table style="width:100%;" cellpadding="10" border="1" >
+    <tr>
+        <th style="text-align: center; width: 50%;">
+            Training test date
+        </th>
+        <th style="text-align: center; width: 50%;">
+            Score
+        </th>
+    </tr>
+
+    <% @histories.each do |story| %>
+        <tr>
+            <td style="text-align: center; width: 50%;">
+                <%= story.created_at.in_time_zone("Rome").to_s[0..18] %>
+            </td>
+            <td style="text-align: center; width: 50%;">
+                <%= story.score %>
+
+            </td>
+        </tr>
+    <% end %>
+</table>
+<table style="width:100%;" cellpadding="10" >
+    <tr>
+        <td style="text-align: center;" colspan="2">
+            <table style="width:100%;">
+                <tr>
+                    <td style="width:40%;">
+                    </td>
+                    <td style="width:20%;">
+                        <div class="digg_pagination">
+                            <div class="page_info">
+                                <%= page_entries_info @posts %>
+                            </div>
+                            <%= will_paginate @posts, :container => false %>
+                        </div>
+                    </td>
+                    <td style="width:40%;">
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

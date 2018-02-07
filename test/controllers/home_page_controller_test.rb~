@@ -1,0 +1,49 @@
+require 'test_helper'
+
+class HomePageControllerTest < ActionController::TestCase
+  test "should get homepage" do
+    get :homepage
+    assert_response :success
+  end
+
+  test "should get training" do
+    get :training
+    assert_response :success
+  end
+
+  test "should get subscribeToCompetition" do
+    get :subscribeToCompetition
+    assert_response :success
+  end
+
+  test "should get profile" do
+    get :profile
+    assert_response :success
+  end
+
+  test "should get manage" do
+    get :manage
+    assert_response :success
+  end
+
+  test "should get classification" do
+    get :classification
+    assert_response :success
+  end
+
+  test "should get sendRequest" do
+    get :sendRequest
+    assert_response :success
+  end
+
+  test "should get logOut" do
+    get :logOut
+    assert_response :success
+  end
+
+  test "should get noticeBoards" do
+    get :noticeBoards
+    assert_response :success
+  end
+
+end

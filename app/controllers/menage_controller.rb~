@@ -1,0 +1,9 @@
+class MenageController < ApplicationController
+
+  def menage
+  end
+  
+  def notice
+  end
+  
+end

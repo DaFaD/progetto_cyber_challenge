@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .button {
+              display: inline-block;
+              padding: 15px 25px;
+              font-size: 24px;
+              cursor: pointer;
+              text-align: center;
+              text-decoration: none;
+              outline: none;
+              color: #fff;
+              background-color: #333;
+              border: none;
+              border-radius: 15px;
+              box-shadow: 0 9px #999;
+            }
+
+            .button:hover {background-color: #222}
+
+            .button:active {
+              background-color: #222;
+              box-shadow: 0 5px #666;
+              transform: translateY(4px);
+            }
+        </style>
+    </head>
+    <body style="background-color:#B34154">
+        <table style="width:100%">
+            <tr>
+                <td style="text-align:center;">
+                    <h3>
+                        Welcome to the Cyber Challenge Platform
+                    </h3>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:center;">
+                    <h2>
+                        Do you want login?
+                    </h2>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:center;">
+                    <%= button_to "Log in", login_path, method: :get, :class => "button" %>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:center;">
+                    <h1>
+                        OR
+                    </h1>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:center;">
+                    <h2>
+                        Do you want sign in?
+                    </h2>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:center;">
+                    <%= button_to "Sign in", studenteOProfessore_path, method: :get, :class => "button" %>
+                </td>
+            </tr>
+        </table> 
+    </body>
+</html>

@@ -1,0 +1,2 @@
+module MenageHelper
+end
