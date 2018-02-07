@@ -1,8 +1,18 @@
 class StaticPagesController < ApplicationController
-  before_action :logged_in_user, only: [:listaStudenteOProfOAdmin, :trainingQuestionsManage]
+  before_action :logged_in_user, only: [:subscribeBeforeTest, :competition, :trainingPage, :listaStudenteOProfOAdmin, :trainingQuestionsManage]
   before_action :logged_out_user, only: [:paginaIniziale, :studenteOProfessore]
   before_action :professor_user, only: [:trainingQuestionsManage]
+  before_action :student_user, only: [:subscribeBeforeTest, :competition, :trainingPage]
+  before_action :subscribe_activated, only: [:subscribeBeforeTest, :competition]
+  
+  def subscribeBeforeTest
+  end
 
+  def competition
+  end
+
+  def trainingPage
+  end
 
   def trainingQuestionsManage
   end
@@ -59,10 +69,25 @@ class StaticPagesController < ApplicationController
         end
     end
 
-        # Confirms an professor user.
+    # Confirms an professor user.
     def professor_user
         unless this_is_professore?(current_user)
             flash[:danger] = "You don't have the rights for this page."
+            redirect_to(root_url)
+        end
+    end
+
+    # Confirms an professor user.
+    def student_user
+        unless this_is_studente?(current_user)
+            flash[:danger] = "You don't have the rights for this page."
+            redirect_to(root_url)
+        end
+    end
+
+    def subscribe_activated
+        unless SubscribeAndExamActivation.first.subscribe
+            flash[:danger] = "The competition of this year isn't ready yet!"
             redirect_to(root_url)
         end
     end

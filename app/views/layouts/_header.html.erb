@@ -20,7 +20,7 @@ html, body{
 
 .site-footer {
 	background: #333;
-	
+
 	}
 
 .navebar1 {
@@ -38,9 +38,9 @@ html, body{
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;}
-    
+
 .navebar2 a:hover{
-	
+
     background-color: #111;
 }
 
@@ -66,7 +66,7 @@ table {
 
 td {
     height: 50px;
-    
+
 }
 
 
@@ -88,50 +88,49 @@ th{
 <ul class= "navebar1">
 
     <la class= "navebar2" ><%= link_to "CyberChallenge app", root_path %></la>
-    
+
     <% if logged_in? %>
         <li class= "navebar1"><%= link_to "Log out", logout_path, method: "delete" %></li>
     <% else %>
         <li class= "navebar1"><%= link_to "Log in / Sign in", paginaIniziale_path %></li>
     <% end %>
-    
-    <% if user_studente? %>
-        <li><a href="#contact">Give up competition</a></li>
-    <% end %>
-    
+
     <% if user_professore? %>
         <li><a href="#news">Classification</a></li>
     <% end %>
-    
+
     <% if user_admin? || user_professore? %>
         <li><%= link_to "Manage", manage_path %></li>
     <% end %>
-    
-    <% if user_studente? %>
-        <li><a href="#news">Exam</a></li>
+
+    <% if user_studente? && SubscribeAndExamActivation.first.exam && !CompetitionSubscribed.all.where(year: Time.current.year).where(id_user: current_user.id).empty? %>
+        <li><%= link_to "Exam", insertOTPPage_path %></li>
     <% end %>
-    
+
     <% if logged_in? %>
         <li><%= link_to "Users", listaStudenteOProfOAdmin_path %></li>
     <% end %>
-    
+
     <% if user_admin? %>
         <li><%= link_to "Profile", user_admin_path(current_user) %></li>
     <% end %>
-    
+
     <% if user_professore? %>
         <li><%= link_to "Profile", user_professore_path(current_user) %></li>
     <% end %>
-    
+
     <% if user_studente? %>
         <li><%= link_to "Profile", user_studente_path(current_user) %></li>
     <% end %>
-    
-    <% if user_studente? %>
-        <li><a href="#about">Subscribe to competition</a></li>
-        <li><a href="#news">Training</a></li>
+
+    <% if user_studente? && SubscribeAndExamActivation.first.subscribe %>
+        <li><%= link_to "Competition", competition_path %></li>
     <% end %>
-    
+
+    <% if user_studente? %>
+        <li><%= link_to "Training", trainingPage_path %></li>
+    <% end %>
+
 </ul class= "navebar1">
 
 </body>

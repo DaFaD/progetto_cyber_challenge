@@ -47,6 +47,8 @@
                 <td  style="width:40%">
                     Written at <%= @advice.writtenAt.in_time_zone("Rome").to_s[0,20] %>
                     <br>
+                    Updated at <%= @advice.updated_at.in_time_zone("Rome").to_s[0,20] %>
+                    <br>
                 </td>
                 <td style="width:30%">
                 </td>

@@ -5,6 +5,12 @@
         <br>
         <li style="text-align: center;" ><%= link_to "Manage training questions", trainingQuestionsManage_path %></li>
         <br>
+        <li style="text-align: center;" ><%= link_to "Manage pretest quiz", PretestAndExamQuiz.find(1) %></li>
+        <br>
+        <li style="text-align: center;" ><%= link_to "Manage exam quiz", PretestAndExamQuiz.find(2) %></li>
+        <br>
+        <li style="text-align: center;" ><%= link_to "Manage enable/disable competition subscribing/giving up and enable/disable exam", manageSubscribeOrExamActivation_path %></li>
+        <br>
     <% end %>
     <% if user_admin? %>
         <li style="text-align: center;" ><%= link_to "Change the administrators' password", changeAdministratorsPassword_path %></li>
