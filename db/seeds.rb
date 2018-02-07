@@ -155,3 +155,10 @@ end
     ExamDonePartecipant.create!(id_user: id_user, score: score, year: year)
     Otp.find_by(id_user: id_user).destroy
 end
+
+30.times do |n|
+    id_user= ExamDonePartecipant.find(n+1).id_user
+    score= ExamDonePartecipant.find(n+1).score
+    year = ExamDonePartecipant.find(n+1).year
+    Winner.create!(id_user: id_user, score: score, year: year)
+end

@@ -141,6 +141,12 @@ Rails.application.routes.draw do
   get 'partecipantsClassificationSelectYear' => 'classifications#partecipantsClassificationSelectYear'
   
   post 'partecipantsClassification' => 'classifications#partecipantsClassification'
+  
+  get 'postExamClassificationSelectYear' => 'classifications#postExamClassificationSelectYear'
+  
+  post 'postExamClassification' => 'classifications#postExamClassification'
+  
+  post 'addToWinners' => 'classifications#addToWinners'
 
 
 
