@@ -116,6 +116,9 @@ class PretestAndExamQuizsController < ApplicationController
         if Otp.find_by(id_user: current_user.id) != nil
             Otp.find_by(id_user: current_user.id).destroy
         end
+        if Winner.find_by(id_user: current_user.id, year: Time.current.year) != nil
+            Winner.find_by(id_user: current_user.id, year: Time.current.year).destroy
+        end
         flash[:success] = "You correctly gived up!"
         redirect_to competition_url
     end
