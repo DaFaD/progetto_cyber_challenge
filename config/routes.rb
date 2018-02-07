@@ -137,6 +137,10 @@ Rails.application.routes.draw do
   get 'trainingClassificationSelectYear' => 'classifications#trainingClassificationSelectYear'
   
   post 'trainingClassification' => 'classifications#trainingClassification'
+  
+  get 'partecipantsClassificationSelectYear' => 'classifications#partecipantsClassificationSelectYear'
+  
+  post 'partecipantsClassification' => 'classifications#partecipantsClassification'
 
 
 

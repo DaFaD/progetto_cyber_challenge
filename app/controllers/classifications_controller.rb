@@ -1,6 +1,6 @@
 class ClassificationsController < ApplicationController
-    before_action :logged_in_user, only: [:selectClassification, :trainingClassificationSelectYear, :trainingClassification]
-    before_action :professor_user, only: [:selectClassification, :trainingClassificationSelectYear, :trainingClassification]
+    before_action :logged_in_user, only: [:selectClassification, :trainingClassificationSelectYear, :trainingClassification, :partecipantsClassificationSelectYear, :partecipantsClassification]
+    before_action :professor_user, only: [:selectClassification, :trainingClassificationSelectYear, :trainingClassification, :partecipantsClassificationSelectYear, :partecipantsClassification]
 
     def selectClassification
     end
@@ -12,6 +12,17 @@ class ClassificationsController < ApplicationController
         @year= params[:year]
         @users= Array.new()
         TrainingAverage.all.where(year: params[:year]).order("my_average DESC").select("id_user").each do |user|
+            @users << UserStudente.find(user.id_user)
+        end
+    end
+    
+    def partecipantsClassificationSelectYear
+    end
+    
+    def partecipantsClassification
+        @year= params[:year]
+        @users= Array.new()
+        CompetitionSubscribed.all.where(year: params[:year]).order("score DESC").select("id_user").each do |user|
             @users << UserStudente.find(user.id_user)
         end
     end

@@ -1,0 +1,27 @@
+<table style="width:100%;" cellpadding="10">
+    <tr>
+        <td colspan="2" style="text-align: center;">
+            <h1>All competition partecipants of <%= @year %></h1>
+        </td>
+    </tr>
+            
+    <tr>
+        <th style="text-align: right; width:55%;">
+            Partecipant
+        </th>
+        <th style="text-align: left; width:45%;">
+            Pretest score
+        </th>
+    </tr>
+            
+    <% @users.each do |user| %>
+        <tr>
+            <td style="text-align: right; width:55%;">
+                <%= user.username %>
+            </td>
+            <td style="text-align: left; width:45%;">
+                <%= CompetitionSubscribed.find_by(id_user: user.id, year: @year).score %>
+            </td>
+        </tr>
+    <% end %>
+</table>
