@@ -1,9 +1,10 @@
 class PretestAndExamQuizsController < ApplicationController
-    before_action :logged_in_user, only: [:edit, :update, :show, :pretest, :pretestDone, :pretestDonePage, :getAnotherOTP]
+    before_action :logged_in_user, only: [:edit, :update, :show, :pretest, :pretestDone, :pretestDonePage, :getAnotherOTP, :insertOTPPage, :verifyOTP, :exam, :examDonePage, :examDone, :giveUp]
     before_action :professor_user, only: [:edit, :update, :show]
-    before_action :studente_user, only: [:pretest, :pretestDone, :pretestDonePage, :getAnotherOTP]
+    before_action :studente_user, only: [:pretest, :pretestDone, :pretestDonePage, :getAnotherOTP, :insertOTPPage, :verifyOTP, :exam, :examDonePage, :examDone, :giveUp]
     before_action :not_a_partecipant, only: [:pretest, :pretestDone, :pretestDonePage]
-    before_action :yes_a_partecipant, only: :getAnotherOTP
+    before_action :yes_a_partecipant, only: [:getAnotherOTP, :insertOTPPage, :verifyOTP, :exam, :examDonePage, :examDone, :giveUp]
+    before_action :otp_verified, only: [:exam, :examDone]
     
     def show
         @pretestOrExam = PretestAndExamQuiz.find(params[:id])
@@ -62,6 +63,63 @@ class PretestAndExamQuizsController < ApplicationController
         end
     end
     
+    def insertOTPPage
+    end
+    
+    def exam
+    end
+    
+    def examDonePage
+    end
+
+    def examDone
+        @punteggio= PretestAndExamQuiz.find(2).score(params[:answer1], params[:answer2], params[:answer3], params[:answer4], params[:answer5], params[:answer6], params[:answer7], params[:answer8], params[:answer9], params[:answer10])
+        @risposteEsameUtente= Array.new()
+        10.times do |n|
+            @risposteEsameUtente << params["answer#{n+1}".to_sym]
+        end
+        tuple=ExamDonePartecipant.all.where(year: Time.current.year).where(id_user: current_user.id)
+        if !tuple.empty?
+            session.delete(:otp)
+            flash[:danger] = "You already did the exam for this year! Your score won't be changed!"
+            redirect_to root_url
+        else
+            ExamDonePartecipant.create(id_user: current_user.id, score: @punteggio, year: Time.current.year)
+            session.delete(:otp)
+            flash.now[:success] = "Your exam finished. Now you can do what you want!"
+            render 'examDonePage'
+        end
+    end
+    
+    def verifyOTP
+        if Otp.find_by(id_user: current_user.id) == nil
+            flash.now[:danger] = "You haven't got an OTP! (Maybe you already used your one) You can't do the exam!"
+            render 'insertOTPPage'
+        elsif Otp.find_by(id_user: current_user.id).authenticated?(params[:pretest_and_exam_quiz][:otp])
+            Otp.find_by(id_user: current_user.id).destroy
+            session[:otp] = "1"
+            flash[:success] = "OTP verified!"
+            redirect_to exam_url
+        else
+            flash.now[:danger] = "Uncorrect OTP!"
+            render 'insertOTPPage'
+        end
+    end
+    
+    def giveUp
+        if CompetitionSubscribed.find_by(id_user: current_user.id, year: Time.current.year) != nil
+            CompetitionSubscribed.find_by(id_user: current_user.id, year: Time.current.year).destroy
+        end
+        if ExamDonePartecipant.find_by(id_user: current_user.id, year: Time.current.year) != nil
+            ExamDonePartecipant.find_by(id_user: current_user.id, year: Time.current.year).destroy
+        end
+        if Otp.find_by(id_user: current_user.id) != nil
+            Otp.find_by(id_user: current_user.id).destroy
+        end
+        flash[:success] = "You correctly gived up!"
+        redirect_to competition_url
+    end
+    
     private
 
         def question_params
@@ -105,6 +163,13 @@ class PretestAndExamQuizsController < ApplicationController
         def yes_a_partecipant
             unless !CompetitionSubscribed.all.where(year: Time.current.year).where(id_user: current_user.id).empty?
                 flash[:danger] = "You aren't a competition partecipant for this year!"
+                redirect_to(root_url)
+            end
+        end
+        
+        def otp_verified
+            unless session[:otp] == "1"
+                flash[:danger] = "You aren't covered by an OTP!"
                 redirect_to(root_url)
             end
         end

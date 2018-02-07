@@ -147,3 +147,11 @@ end
     otpDigest= Otp.digest(otp)
     Otp.create!(id_user: id_user, otp_digest: otpDigest)
 end
+
+40.times do |n|
+    id_user= CompetitionSubscribed.find(n+1).id_user
+    score= -11+1+rand(41)
+    year = CompetitionSubscribed.find(n+1).year
+    ExamDonePartecipant.create!(id_user: id_user, score: score, year: year)
+    Otp.find_by(id_user: id_user).destroy
+end

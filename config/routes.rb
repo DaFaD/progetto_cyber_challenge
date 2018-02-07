@@ -119,6 +119,18 @@ Rails.application.routes.draw do
   post 'pretestDone' => 'pretest_and_exam_quizs#pretestDone'
   
   get 'getAnotherOTP' => 'pretest_and_exam_quizs#getAnotherOTP'
+  
+  get 'insertOTPPage' => 'pretest_and_exam_quizs#insertOTPPage'
+  
+  post 'verifyOTP' => 'pretest_and_exam_quizs#verifyOTP'
+  
+  get 'exam' => 'pretest_and_exam_quizs#exam'
+  
+  get 'examDonePage' => 'pretest_and_exam_quizs#examDonePage'
+  
+  post 'examDone' => 'pretest_and_exam_quizs#examDone'
+  
+  get 'giveUp' => 'pretest_and_exam_quizs#giveUp'
 
 
 

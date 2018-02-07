@@ -103,8 +103,8 @@ th{
         <li><%= link_to "Manage", manage_path %></li>
     <% end %>
 
-    <% if user_studente? && SubscribeAndExamActivation.first.exam %>
-        <li><a href="#news">Exam</a></li>
+    <% if user_studente? && SubscribeAndExamActivation.first.exam && !CompetitionSubscribed.all.where(year: Time.current.year).where(id_user: current_user.id).empty? %>
+        <li><%= link_to "Exam", insertOTPPage_path %></li>
     <% end %>
 
     <% if logged_in? %>
